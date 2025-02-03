@@ -1,7 +1,7 @@
 {
-	"name": "Sample Theme",
-	"version": "1.0.0",
+	"name": "composer",
+	"version": "0.0.1",
 	"minAppVersion": "1.0.0",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md"
+	"author": "vran",
+	"authorUrl": "https://github.com/vran-dev"
 }
