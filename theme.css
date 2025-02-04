@@ -1,3 +1,115 @@
+/* @settings
+
+name: Composer
+id: obsidian-composer-theme
+settings:
+    - 
+        id: theme-variant
+        title: Color Scheme
+        title.zh: 配色方案
+        description: Choose a color scheme for the theme
+        description.zh: 选择一个预设的配色方案
+        type: class-select
+        allowEmpty: false
+        default: composer--DefaultScheme
+        options:
+            - composer--DefaultScheme
+            - composer--CraftScheme
+    - 
+        id: color-settings
+        title: Color Settings
+        title.zh: 色彩设置
+        type: heading
+        level: 2
+        collapsed: true
+    - 
+        id: background-primary
+        title: Background Primary
+        title.zh: 主要背景色
+        type: variable-themed-color
+        format: hex
+        default-light: '#f8f8f8'
+        default-dark: '#27282f'
+    - 
+        id: background-primary-alt
+        title: Background Primary Alt
+        title.zh: 主要背景色（备用）
+        type: variable-themed-color
+        format: hex
+        default-light: '#f0f2f7'
+        default-dark: '#2c2d36'
+    - 
+        id: background-secondary
+        title: Background Secondary
+        title.zh: 次要背景色
+        type: variable-themed-color
+        format: hex
+        default-light: '#e8ebf4'
+        default-dark: '#32333d'
+    - 
+        id: background-secondary-alt
+        title: Background Secondary Alt
+        title.zh: 次要背景色（备用）
+        type: variable-themed-color
+        format: hex
+        default-light: '#e0e5f0'
+        default-dark: '#383a45'
+    - 
+        id: editor-settings
+        title: Editor Settings
+        title.zh: 编辑器设置
+        type: heading
+        level: 2
+        collapsed: true
+    - 
+        id: file-line-width
+        title: Content Area width
+        title.zh: 内容区域宽度
+        description: The maximum line width
+        description.zh: 最大行宽
+        type: variable-number-slider
+        default: 700
+        min: 420
+        max: 1200
+        format: px
+        step: 1
+    - 
+        id: navbar-settings
+        title: Navbar Settings
+        title.zh: 导航栏设置
+        type: heading
+        level: 2
+        collapsed: true
+    - 
+        id: composer--HideFileListNavbar
+        title: Hide File List Navbar
+        title.zh: 隐藏文件列表菜单
+        description: enable this option to hide hide the menu above the file list
+        description.zh: 启用此选项以隐藏文件列表上方的菜单
+        type: class-toggle
+    - 
+        id: plugin-components
+        title: Components Plugin
+        title.zh: Components 插件
+        type: heading
+        level: 2
+        collapsed: true
+    - 
+        id: composer--ComponentsSimpleTag
+        title: Simple Tag Style
+        title.zh: 简单标签样式
+        description: switch to simple tag style to select / multi-select / group-name...
+        description.zh: 改变数据视图中单选、多选项的样式
+        type: class-toggle 
+    -
+        id: composer--ComponentsFilledGallaryCover
+        title: Notion Style Gallary Cover
+        title.zh: Notion 风格的封面
+        description: remove Gallary dynamic data view's cover padding
+        description.zh: 移除动态数据视图中的封面内边距
+        type: class-toggle
+*/
+
 ::-webkit-scrollbar {
 	width: 6px;
 	height: 6px;
@@ -19,6 +131,7 @@ body {
 	--header-height: 36px;
 	--modal-bg-blur: 3px;
 	--metadata-input-font-size: 14px;
+	--file-margins: 24px;
 
 	/* link */
 	--link-color: #5d7e9c;
@@ -50,29 +163,34 @@ body {
 	--suggesttion-highlight-color: var(--code-normal);
 
 	--ribbon-padding: 0px;
-	--ribbon-background: var(--background-primary);
-	--titlebar-background: var(--background-primary);
-	--tab-container-background: var(--background-primary);
-	--tab-background-active: var(--background-secondary);
+	--ribbon-background: transparent;
+	--titlebar-background: transparent;
+	--titlebar-background-focused: transparent;
+	--tab-container-background: transparent;
+	--tab-background-active: rgba(31, 34, 37, 0.03);
 
 	/* tag */
 	--tag-radius: 2em;
 	--tag-padding-y: 0.3em;
 	--tag-border-width: 1px;
+
+	--ribbon-background-collapsed: transparent;
 }
 
 .theme-light {
 	--background-modifier-border: rgba(225, 219, 214, 0.5);
-	--background-primary: #ffffff;
-	--background-primary-alt: #f8f9fa;
-	--background-secondary: #f1f3f5;
-	--background-secondary-alt: #e9ecef;
+	--background-primary: #f8f8f8; /* 用户指定基底-柔光白 */
+	--background-primary-alt: #f0f2f7; /* 薄雾蓝灰 hsl(220, 25%, 95%) */
+	--background-secondary: #e8ebf4; /* 晨雾紫灰 hsl(235, 30%, 92%) */
+	--background-secondary-alt: #e0e5f0; /* 冰川蓝紫 hsl(240, 35%, 89%) */
+	--background-gradient: linear-gradient(
+		165deg,
+		var(--background-primary-alt) 20%,
+		var(--background-secondary-alt) 80%
+	);
 
 	/* text */
 	--color-base-100: #3a4659;
-	/* --text-normal: #3a4659;
-	--text-muted: #5d6b80;
-	--text-faint: #8493a8; */
 	--bold-color: #2d3748;
 	--bold-modifier: 200;
 
@@ -140,18 +258,27 @@ body {
 	--accent-h: 254; /* 色相 - 科技蓝紫 */
 	--accent-s: 80%; /* 饱和度 - 高饱和 */
 	--accent-l: 68%; /* 明度 - 中等亮度 */
+
+	/* customize */
+	--nav-button-container-bg: rgba(31, 34, 37, 0.03);
 }
 
 .theme-dark {
 	--background-modifier-border: rgba(131, 139, 149, 0.25);
-	--background-primary: #1e1e1e;
-	--background-primary-alt: #252526;
-	--background-secondary: #2d2d2d;
-	--background-secondary-alt: #37373d;
+	--background-primary: #27282f;
+	--background-primary-alt: #2c2d36;
+	--background-secondary: #32333d;
+	--background-secondary-alt: #383a45;
+	--background-gradient: linear-gradient(
+		15deg,
+		hsl(245, 8%, 15%) 10%,
+		hsl(255, 10%, 20%) 90%
+	);
+
 	/* text */
-	/* --text-normal: #d9dde3;
-	--text-muted: #b4beca;
-	--text-faint: #8f9ba9; */
+	/* --text-normal: #e0e3eb; 
+		--text-muted: #a5a9b7; 
+		--text-faint: #7a7f8e;  */
 	--bold-color: #ffffff;
 	--bold-modifier: 200;
 	--color-base-100: #d9dde3;
@@ -224,6 +351,64 @@ body {
 	--callout-todo: var(--color-blue-rgb);
 	--callout-warning: 218, 164, 92;
 	--callout-quote: 158, 158, 158;
+	/* customize */
+	--nav-button-container-bg: rgba(140, 142, 144, 0.1);
+}
+
+.theme-light.composer--CraftScheme {
+	--background-modifier-border: hsla(25, 20%, 70%, 0.4);
+
+	--background-primary: rgb(243, 237, 233); /* 暖月白 hsl(25, 30%, 93%) */
+	--background-primary-alt: rgb(238, 230, 225); /* 暖灰 hsl(25, 30%, 91%) */
+	--background-secondary: rgb(232, 223, 217); /* 深暖灰 hsl(25, 30%, 88%) */
+	--background-secondary-alt: rgb(225, 215, 208);
+	--background-gradient: linear-gradient(
+		rgb(217, 224, 227),
+		rgb(235, 215, 210)
+	);
+
+	/* 块引用 */
+	--blockquote-border-color: hsl(25, 20%, 70%);
+	--blockquote-background-color: rgba(237, 228, 222, 0.811);
+	--blockquote-color: hsl(25, 20%, 30%);
+
+	/* 代码块 */
+	--codeblock-background: rgba(234, 223, 215, 0.749);
+	--codeblock-caret-color: hsl(25, 20%, 30%);
+
+	/* 文本高亮 */
+	--text-highlight-background: rgba(247, 232, 186, 0.8);
+	--text-highlight-border-color: rgba(224, 201, 133, 0.8);
+	--text-highlight-color: rgb(92, 74, 61);
+}
+
+.composer--CraftScheme.theme-dark {
+	/* 背景颜色 */
+	--background-primary: #2a2622;
+	--background-primary-alt: #322d29;
+	--background-secondary: #38322e;
+	--background-secondary-alt: #3e3732;
+	--background-gradient: linear-gradient(
+		hsl(25, 10%, 18%),
+		hsl(25, 10%, 22%)
+	);
+
+	/* 边框颜色 */
+	--background-modifier-border: rgba(92, 74, 61, 0.4);
+
+	/* 块引用 */
+	--blockquote-border-color: #5c4a3d;
+	--blockquote-background-color: #38322ecc;
+	--blockquote-color: #dbc9bd;
+
+	/* 代码块 */
+	--codeblock-background: rgba(56, 50, 46, 0.8);
+	--codeblock-caret-color: #dbc9bd;
+
+	/* 文本高亮 */
+	--text-highlight-background: rgba(122, 99, 31, 0.8);
+	--text-highlight-border-color: rgba(153, 128, 51, 0.8);
+	--text-highlight-color: rgb(219, 201, 189);
 }
 
 .markdown-source-view,
@@ -256,13 +441,18 @@ body {
 	margin-inline-start: -28px;
 }
 
-.markdown-rendered h1::before,
-.markdown-rendered h2::before,
-.markdown-rendered h2::before,
-.markdown-rendered h3::before,
-.markdown-rendered h4::before,
-.markdown-rendered h5::before,
-.markdown-rendered h6::before {
+.markdown-rendered > h1::before,
+.markdown-rendered > h2::before,
+.markdown-rendered > h3::before,
+.markdown-rendered > h4::before,
+.markdown-rendered > h5::before,
+.markdown-rendered > h6::before,
+.markdown-rendered .el-h1 > h1::before,
+.markdown-rendered .el-h2 > h2::before,
+.markdown-rendered .el-h3 > h3::before,
+.markdown-rendered .el-h4 > h4::before,
+.markdown-rendered .el-h5 > h5::before,
+.markdown-rendered .el-h6 > h6::before {
 	content: " ";
 	height: calc(1.2em - 6px);
 	display: inline-block;
@@ -273,19 +463,37 @@ body {
 	transform: translateY(4px);
 }
 
-.markdown-rendered h2::before {
+.markdown-rendered > h4::before,
+.markdown-rendered .el-h4 > h4::before {
+	transform: translateY(2px);
+}
+.markdown-rendered > h5::before,
+.markdown-rendered > h6::before,
+.markdown-rendered .el-h5 > h5::before,
+.markdown-rendered .el-h6 > h6::before {
+	transform: translateY(0px);
+}
+.markdown-rendered > h2::before,
+.markdown-rendered .el-h2 > h2::before {
 	background-color: var(--h2-indicator-color);
 }
-.markdown-rendered h3::before {
+.markdown-rendered > h3::before,
+.markdown-rendered .el-h3 > h3::before {
 	background-color: var(--h3-indicator-color);
 }
-.markdown-rendered h4::before {
+
+.markdown-rendered > h4::before,
+.markdown-rendered .el-h4 > h4::before {
 	background-color: var(--h4-indicator-color);
 }
-.markdown-rendered h5::before {
+
+.markdown-rendered > h5::before,
+.markdown-rendered .el-h5 > h5::before {
 	background-color: var(--h5-indicator-color);
 }
-.markdown-rendered h6::before {
+
+.markdown-rendered > h6::before,
+.markdown-rendered .el-h6 > h6::before {
 	background-color: var(--h6-indicator-color);
 }
 .markdown-source-view.mod-cm6 .HyperMD-header {
@@ -297,7 +505,7 @@ body {
 	background-color: var(--background-primary-alt);
 }
 
-body:not(.heading-indicator-off) .is-live-preview .HyperMD-header::before {
+.is-live-preview .HyperMD-header::before {
 	content: " ";
 	height: calc(1.2em - 6px);
 	display: inline-block;
@@ -308,29 +516,27 @@ body:not(.heading-indicator-off) .is-live-preview .HyperMD-header::before {
 	transform: translateY(4px);
 }
 
-body:not(.heading-indicator-off)
-	.is-live-preview
-	.HyperMD-header-2.HyperMD-header::before {
+.is-live-preview .HyperMD-header-4.HyperMD-header::before {
+	transform: translateY(6px);
+}
+.is-live-preview .HyperMD-header-5.HyperMD-header::before,
+.is-live-preview .HyperMD-header-6.HyperMD-header::before {
+	transform: translateY(7px);
+}
+
+.is-live-preview .HyperMD-header-2.HyperMD-header::before {
 	background-color: var(--h2-indicator-color);
 }
-body:not(.heading-indicator-off)
-	.is-live-preview
-	.HyperMD-header-3.HyperMD-header::before {
+.is-live-preview .HyperMD-header-3.HyperMD-header::before {
 	background-color: var(--h3-indicator-color);
 }
-body:not(.heading-indicator-off)
-	.is-live-preview
-	.HyperMD-header-4.HyperMD-header::before {
+.is-live-preview .HyperMD-header-4.HyperMD-header::before {
 	background-color: var(--h4-indicator-color);
 }
-body:not(.heading-indicator-off)
-	.is-live-preview
-	.HyperMD-header-5.HyperMD-header::before {
+.is-live-preview .HyperMD-header-5.HyperMD-header::before {
 	background-color: var(--h5-indicator-color);
 }
-body:not(.heading-indicator-off)
-	.is-live-preview
-	.HyperMD-header-6.HyperMD-header::before {
+.is-live-preview .HyperMD-header-6.HyperMD-header::before {
 	background-color: var(--h6-indicator-color);
 }
 
@@ -513,19 +719,34 @@ body.is-focused .workspace-ribbon.mod-left {
 	border-width: 1px 1px 1px 0px;
 	border-style: solid;
 	border-color: var(--background-modifier-border);
-	border-radius: 0px var(--radius-l) var(--radius-l) 0px;
+	border-radius: 0px var(--radius-m) var(--radius-m) 0px;
 	overflow: hidden;
-	padding: var(--size-2-2);
+	padding: var(--size-2-2) var(--size-2-2) var(--size-2-2) 0px;
+	margin-top: 8px;
 }
 
 /* file list top menus */
+.composer--HideFileListNavbar
+	.workspace-leaf-content[data-type="file-explorer"]
+	.nav-header {
+	display: none;
+}
+
+body:not(.is-mobile) .nav-header {
+	display: flex;
+	justify-content: center;
+}
+
+body:not(.is-mobile) .nav-buttons-container {
+	background-color: var(--nav-button-container-bg);
+	border-radius: var(--radius-m);
+	padding: 2px 4px;
+	width: fit-content;
+}
+
 .mod-left-split .workspace-tab-header-container-inner,
 .mod-right-split .workspace-tab-header-container-inner {
 	gap: 4px;
-}
-
-.nav-buttons-container {
-	justify-content: flex-start;
 }
 
 .nav-header {
@@ -540,21 +761,23 @@ body.is-focused .workspace-ribbon.mod-left {
 	--icon-size: var(--icon-s);
 }
 
+/* tab for all area */
+body:not(.is-phone) .workspace {
+	background-color: var(--background-secondary);
+	background: var(--background-gradient);
+}
+
+body.is-phone .workspace {
+	background-color: var(--background-secondary);
+}
+
 .workspace-tabs .workspace-leaf {
-	background-color: var(--background-primary);
+	background-color: transparent;
 }
 
 .workspace-tab-header-container {
 	border-bottom: none;
 	background-color: transparent;
-}
-
-.workspace-tab-header.is-active {
-	box-shadow: none;
-	color: var(--tab-text-color-active);
-	background-color: var(--tab-background-active);
-	border-bottom: none;
-	border-radius: var(--radius-m);
 }
 
 .workspace-tab-header.is-active:hover {
@@ -565,27 +788,183 @@ body.is-focused .workspace-ribbon.mod-left {
 	padding: 0 4px;
 }
 
+.workspace-tab-container {
+	background-color: transparent;
+	padding: 4px;
+}
+
+.workspace .mod-left-split .workspace-tab-container,
+.workspace .mod-right-split .workspace-tab-container,
+.workspace .mod-root,
+.mod-root .workspace-tabs .workspace-leaf {
+	background-color: transparent;
+}
+
+/* Root tab */
+.workspace .mod-root .workspace-tab-header {
+	padding: 2px;
+	border: 1px solid transparent;
+	border-radius: var(--radius-s);
+}
+
+.workspace .mod-root .workspace-tab-header:not(.is-active):hover {
+	color: var(--text-accent);
+	background-color: var(--tab-background-active);
+}
+
+.workspace .mod-root .workspace-tab-header.is-active {
+	box-shadow: none;
+	color: var(--tab-text-color-active);
+	background-color: var(--tab-background-active);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: var(--radius-s);
+}
+
+.workspace
+	.mod-root
+	.workspace-tab-header:not(.is-active):hover
+	.workspace-tab-header-inner {
+	border: none;
+	background-color: transparent;
+}
+
 .workspace .mod-root .workspace-tab-header-inner::after,
 .workspace-split.mod-root .workspace-tab-header.is-active::before,
 .workspace-split.mod-root .workspace-tab-header.is-active::after {
 	display: none;
 }
 
-.workspace-tab-container {
-	background-color: var(--background-primary);
-}
-
 .mod-macos.is-hidden-frameless:not(.is-popout-window)
 	.sidebar-toggle-button.mod-right {
-	background-color: var(--background-primary);
+	background-color: transparent;
 }
 
+/* content leaf */
+body:not(.is-phone) .mod-root .workspace-tab-header-container {
+	padding: 0px 12px 4px 12px;
+	margin-bottom: 4px;
+}
+
+body:not(.is-phone)
+	.workspace:is(.is-left-sidedock-open.is-right-sidedock-open)
+	.mod-root.workspace-split.mod-vertical {
+	margin-left: 0;
+	margin-right: 0;
+	padding-bottom: 24px;
+}
+
+body:not(.is-phone)
+	.workspace:is(.is-left-sidedock-open):not(.is-right-sidedock-open)
+	.mod-root.workspace-split.mod-vertical {
+	margin-left: 0;
+	margin-right: 16px;
+	padding-bottom: 24px;
+}
+
+body:not(.is-phone)
+	.workspace:is(.is-right-sidedock-open):not(.is-left-sidedock-open)
+	.mod-root.workspace-split.mod-vertical {
+	margin-left: 16px;
+	margin-right: 0;
+	padding-bottom: 24px;
+}
+
+body:not(.is-phone)
+	.workspace:not(.is-right-sidedock-open):not(.is-left-sidedock-open)
+	.mod-root.workspace-split.mod-vertical {
+	margin-left: 16px;
+	margin-right: 16px;
+	padding-bottom: 24px;
+}
+
+body:not(.is-phone) .mod-root .workspace-leaf-content {
+	border: 1px solid var(--background-modifier-border);
+	border-radius: var(--radius-m);
+	box-shadow: rgba(31, 34, 37, 0.03) 0px 0px 0px 1px,
+		rgba(0, 0, 0, 0.08) 0px 8px 20px 0px,
+		rgba(0, 0, 0, 0.04) 0px 8px 12px -6px;
+}
+
+.workspace-split.mod-left-split > .workspace-leaf-resize-handle,
+.workspace-split.mod-right-split > .workspace-leaf-resize-handle,
+.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle {
+	opacity: 0 !important;
+}
+
+.workspace-split.mod-left-split > .workspace-leaf-resize-handle:hover,
+.workspace-split.mod-right-split > .workspace-leaf-resize-handle:hover,
+.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle:hover {
+	opacity: 1 !important;
+}
+
+.workspace-split.mod-horizontal:not(.mod-left-split, .mod-right-split)
+	> *
+	> .workspace-leaf-resize-handle {
+	opacity: 0 !important;
+}
+
+.workspace-split.mod-horizontal:not(.mod-left-split, .mod-right-split)
+	> *
+	> .workspace-leaf-resize-handle:hover {
+	opacity: 1 !important;
+}
+
+/* left and right */
+.workspace-split.mod-left-split {
+	padding-right: 4px;
+}
+.workspace-split.mod-right-split {
+	padding-left: 4px;
+}
+
+/* vault profile */
 body:not(.is-mobile)
 	.workspace-split.mod-left-split
 	.workspace-sidedock-vault-profile {
 	border: none;
 	background-color: transparent;
 }
+
+/* status bar */
+.status-bar {
+	padding: 0px;
+	border: none;
+	background-color: var(--background-primary);
+}
+
+/* outline */
+.workspace-leaf-content[data-type="outline"] {
+	border-radius: var(--radius-m);
+}
+
+.workspace-leaf-content[data-type="outline"] .tree-item-children {
+	border-inline-start: none;
+}
+
+.workspace-leaf-content[data-type="outline"] .tree-item-self .tree-item-icon {
+	opacity: 0;
+}
+
+.workspace-leaf-content[data-type="outline"] .tree-item-self.is-active {
+	color: var(--text-accent);
+}
+
+.workspace-leaf-content[data-type="outline"]
+	.tree-item-self:hover
+	.tree-item-icon,
+.workspace-leaf-content[data-type="outline"]
+	.tree-item-self
+	.tree-item-icon.is-collapsed {
+	opacity: 1;
+}
+
+/* windows titlebar button */
+.is-hidden-frameless:not(.is-fullscreen).is-focused
+	.titlebar-button-container.mod-right,
+.is-hidden-frameless:not(.is-fullscreen) .titlebar-button-container.mod-right {
+	background-color: transparent;
+}
+
 /* file header title */
 
 .view-header-title-container {
@@ -677,6 +1056,13 @@ body:not(.is-mobile)
 	opacity: 1;
 	transition: opacity 0.6s;
 }
+
+/* file list */
+.nav-file-title,
+.nav-folder-title {
+	margin-bottom: 4px;
+}
+
 /* modal */
 .modal-container {
 	backdrop-filter: blur(var(--modal-bg-blur));
@@ -699,49 +1085,72 @@ body:not(.is-mobile)
 	--link-external-color: transparent;
 }
 
+/* components */
+.composer--ComponentsSimpleTag .theme-dark .components--tag,
+.composer--ComponentsSimpleTag .components--tag {
+	background-color: transparent;
+	border: 1px solid var(--background-modifier-border);
+}
+
+.composer--ComponentsFilledGallaryCover .components--DynamicDataView-PageCard {
+	padding: 0px;
+	overflow: hidden;
+	border: 0px;
+}
+
+.composer--ComponentsFilledGallaryCover
+	.components--DynamicDataView-PageCardCover,
+.components--DynamicDataView-PageCardCover .components--Picture {
+	border-radius: initial;
+}
+
+.composer--ComponentsFilledGallaryCover
+	.components--DynamicDataView-PageCard
+	.components--DynamicDataView-PageTitle {
+	padding-top: 4px;
+}
+
 /* 
-  
-  Checkbox Styles is from Minimal Theme by @kepano
-  ---------------------------------------------------------------------------
-  
-  Minimal Theme by @kepano
-  
-  User interface replacement for Obsidian.
-  
-  Designed to be used with the Minimal Theme Settings 
-  plugin and the Hider plugin.
-  
-  Sponsor my work:
-  https://www.buymeacoffee.com/kepano
-  
-  Readme:
-  https://github.com/kepano/obsidian-minimal
-  
-  -----------------------------------------------------------------------------
-  
-  MIT License
-  
-  Copyright (c) 2020-2024 Steph Ango (@kepano)
-  
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to deal
-  in the Software without restriction, including without limitation the rights
-  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
-  
-  The above copyright notice and this permission notice shall be included in 
-  all copies or substantial portions of the Software.
-  
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
-  
-  */
+Checkbox Styles is from Minimal Theme by @kepano
+---------------------------------------------------------------------------
+
+Minimal Theme by @kepano
+
+User interface replacement for Obsidian.
+
+Designed to be used with the Minimal Theme Settings 
+plugin and the Hider plugin.
+
+Sponsor my work:
+https://www.buymeacoffee.com/kepano
+
+Readme:
+https://github.com/kepano/obsidian-minimal
+
+-----------------------------------------------------------------------------
+
+MIT License
+
+Copyright (c) 2020-2024 Steph Ango (@kepano)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in 
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 /* checkbox styles from minimal theme */
 input[data-task=">"]:checked,
 input[data-task="!"]:checked,
