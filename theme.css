@@ -13,8 +13,12 @@ settings:
         allowEmpty: false
         default: composer--DefaultScheme
         options:
-            - composer--DefaultScheme
-            - composer--CraftScheme
+            - 
+              label: Default
+              value: composer--DefaultScheme
+            - 
+              label: Craft
+              value: composer--CraftScheme
     - 
         id: color-settings
         title: Color Settings
@@ -36,7 +40,7 @@ settings:
         title.zh: 主要背景色（备用）
         type: variable-themed-color
         format: hex
-        default-light: '#f0f2f7'
+        default-light: '#f2f2f2'
         default-dark: '#2c2d36'
     - 
         id: background-secondary
@@ -44,7 +48,7 @@ settings:
         title.zh: 次要背景色
         type: variable-themed-color
         format: hex
-        default-light: '#e8ebf4'
+        default-light: '#ececec'
         default-dark: '#32333d'
     - 
         id: background-secondary-alt
@@ -52,12 +56,12 @@ settings:
         title.zh: 次要背景色（备用）
         type: variable-themed-color
         format: hex
-        default-light: '#e0e5f0'
+        default-light: '#e5e5e5'
         default-dark: '#383a45'
     - 
         id: editor-settings
-        title: Editor Settings
-        title.zh: 编辑器设置
+        title: Typograph Settings
+        title.zh: 排版设置
         type: heading
         level: 2
         collapsed: true
@@ -73,6 +77,13 @@ settings:
         max: 1200
         format: px
         step: 1
+    - 
+        id: composer--ParagraphIndent
+        title: Paragraph Indent
+        title.zh: 段落首行缩进
+        description: indent the first line of a paragraph
+        description.zh: 段落首行自动缩进 2 个字符
+        type: class-toggle
     - 
         id: navbar-settings
         title: Navbar Settings
@@ -95,6 +106,13 @@ settings:
         level: 2
         collapsed: true
     - 
+        id: dynamic-dataview-component
+        title: Dynamic Dataview
+        title.zh: 数据视图
+        type: heading
+        level: 3
+        collapsed: true
+    - 
         id: composer--ComponentsSimpleTag
         title: Simple Tag Style
         title.zh: 简单标签样式
@@ -108,6 +126,23 @@ settings:
         description: remove Gallary dynamic data view's cover padding
         description.zh: 移除动态数据视图中的封面内边距
         type: class-toggle
+    - 
+        id: count-component
+        title: Count Component
+        title.zh:  统计数字组件
+        type: heading
+        level: 3
+        collapsed: true
+    - 
+        id: components--CountComponentValueFontSize
+        title: Value Font Size
+        title.zh: 数值字体大小
+        type: variable-number-slider
+        default: 24
+        min: 14
+        max: 48
+        format: px
+        step: 1
 */
 
 ::-webkit-scrollbar {
@@ -133,11 +168,14 @@ body {
 	--metadata-input-font-size: 14px;
 	--file-margins: 24px;
 
-	/* link */
-	--link-color: #5d7e9c;
-	--link-color-hover: #486a8b;
-	--link-unresolved-color: #7c8d9e;
-	--link-unresolved-decoration-color: #8a9baf;
+	/* font-size */
+	--h1-size: 1.69em;
+	--h2-size: 1.51em;
+	--h3-size: 1.35em;
+	--h4-size: 1.21em;
+	--h5-size: 1.1em;
+	--h6-size: 1em;
+
 	--link-external-color: rgba(55, 53, 47, 0.85);
 	--link-external-color-hover: var(--text-normal);
 	--link-decoration: none;
@@ -174,19 +212,25 @@ body {
 	--tag-padding-y: 0.3em;
 	--tag-border-width: 1px;
 
+	--background-modifier-message: var(--background-secondary);
 	--ribbon-background-collapsed: transparent;
 }
 
 .theme-light {
+	--accent-h: 204;
+	--accent-s: 15%;
+	--accent-l: 58%;
+
 	--background-modifier-border: rgba(225, 219, 214, 0.5);
-	--background-primary: #f8f8f8; /* 用户指定基底-柔光白 */
-	--background-primary-alt: #f0f2f7; /* 薄雾蓝灰 hsl(220, 25%, 95%) */
-	--background-secondary: #e8ebf4; /* 晨雾紫灰 hsl(235, 30%, 92%) */
-	--background-secondary-alt: #e0e5f0; /* 冰川蓝紫 hsl(240, 35%, 89%) */
+	--background-primary: #f8f8f8;
+	--background-primary-alt: #f2f2f2;
+	--background-secondary: #ececec;
+	--background-secondary-alt: #e5e5e5;
+
 	--background-gradient: linear-gradient(
 		165deg,
-		var(--background-primary-alt) 20%,
-		var(--background-secondary-alt) 80%
+		var(--background-primary) 20%,
+		var(--background-primary-alt) 80%
 	);
 
 	/* text */
@@ -206,7 +250,7 @@ body {
 	--h3-indicator-color: #66788d;
 	--h4-indicator-color: #7f8a9b;
 	--h5-indicator-color: #9aa5b5;
-	--h6-indicator-color: #e6e8eb;
+	--h6-indicator-color: #808080;
 
 	/* inline code */
 	--code-normal: #eb5757;
@@ -221,11 +265,11 @@ body {
 
 	/* quote */
 	--blockquote-border-color: #cbd5e0;
-	--blockquote-background-color: #f8f9fa;
+	--blockquote-background-color: #f1f3f5;
 	--blockquote-color: #4a556b;
 
 	/* codeblock */
-	--codeblock-background: #f8f9fa;
+	--codeblock-background: #d6d4d440;
 	--codeblock-caret-color: #4a556b;
 	--codeblock-border-radius: 8px;
 
@@ -255,15 +299,18 @@ body {
 	--callout-warning: 191, 127, 63;
 	--callout-quote: 158, 158, 158;
 
-	--accent-h: 254; /* 色相 - 科技蓝紫 */
-	--accent-s: 80%; /* 饱和度 - 高饱和 */
-	--accent-l: 68%; /* 明度 - 中等亮度 */
-
 	/* customize */
 	--nav-button-container-bg: rgba(31, 34, 37, 0.03);
+	--header-active-bg: rgba(31, 34, 37, 0.03);
+	--content-area-shadow: var(--background-modifier-border) 0px 1px 3px 1px,
+		var(--background-modifier-border) 0px 1px 3px 1px;
 }
 
 .theme-dark {
+	--accent-h: 225;
+	--accent-s: 25%;
+	--accent-l: 65%;
+
 	--background-modifier-border: rgba(131, 139, 149, 0.25);
 	--background-primary: #27282f;
 	--background-primary-alt: #2c2d36;
@@ -301,8 +348,8 @@ body {
 	--code-bg: rgba(255, 107, 107, 0.05);
 
 	/* text-highlight */
-	--text-highlight-background: #3d3820;
-	--text-highlight-border-color: #6b6540;
+	--text-highlight-background: #6d642ba3;
+	--text-highlight-border-color: #928c64;
 	--text-highlight-color: #e6e0c8;
 	--text-highlight-border-radius: 4px;
 
@@ -319,12 +366,8 @@ body {
 	--codeblock-shadow: 0 2px 8px rgba(31, 41, 55, 0.04);
 
 	/* link */
-	--link-color: #7fa3c2;
-	--link-color-hover: #88abca;
 	--link-external-color: rgba(196, 196, 196, 0.85);
 	--link-external-color-hover: var(--text-normal);
-	--link-unresolved-color: #93a6b8;
-	--link-unresolved-decoration-color: #1e0363bc;
 
 	/* basic color */
 	--color-red-rgb: 218, 95, 95;
@@ -353,9 +396,15 @@ body {
 	--callout-quote: 158, 158, 158;
 	/* customize */
 	--nav-button-container-bg: rgba(140, 142, 144, 0.1);
+	--header-active-bg: rgba(140, 142, 144, 0.1);
+	--content-area-shadow: var(--background-modifier-border) 0px 1px 3px 1px,
+		var(--background-modifier-border) 0px 1px 3px 1px;
 }
 
 .theme-light.composer--CraftScheme {
+	--accent-h: 12;
+	--accent-s: 31%;
+	--accent-l: 60%;
 	--background-modifier-border: hsla(25, 20%, 70%, 0.4);
 
 	--background-primary: rgb(243, 237, 233); /* 暖月白 hsl(25, 30%, 93%) */
@@ -378,11 +427,15 @@ body {
 
 	/* 文本高亮 */
 	--text-highlight-background: rgba(247, 232, 186, 0.8);
-	--text-highlight-border-color: rgba(224, 201, 133, 0.8);
+	--text-highlight-border-color: rgb(194, 168, 90);
 	--text-highlight-color: rgb(92, 74, 61);
 }
 
 .composer--CraftScheme.theme-dark {
+	--accent-h: 12;
+	--accent-s: 28%;
+	--accent-l: 60%;
+
 	/* 背景颜色 */
 	--background-primary: #2a2622;
 	--background-primary-alt: #322d29;
@@ -411,6 +464,13 @@ body {
 	--text-highlight-color: rgb(219, 201, 189);
 }
 
+.notice {
+	color: var(--text-normal);
+	border: 1px solid var(--background-modifier-border);
+	box-shadow: var(--background-modifier-border) 0px 1px 3px 1px,
+		var(--background-modifier-border) 0px 1px 3px 1px;
+}
+
 .markdown-source-view,
 .markdown-preview-view {
 	letter-spacing: var(--paragraph-letter-spacing);
@@ -430,6 +490,7 @@ body {
 .el-blockquote blockquote {
 	padding-top: 4px;
 	padding-bottom: 4px;
+	padding-inline-start: 14px;
 }
 
 /* title */
@@ -502,7 +563,7 @@ body {
 }
 
 .markdown-source-view.mod-cm6 .HyperMD-header.cm-active {
-	background-color: var(--background-primary-alt);
+	background-color: var(--header-active-bg);
 }
 
 .is-live-preview .HyperMD-header::before {
@@ -543,11 +604,16 @@ body {
 /* list */
 /* add top margin at the start of list */
 .markdown-source-view .cm-line:not(.HyperMD-header) + .HyperMD-list-line-1 {
-	margin-top: 1rem !important;
+	padding-top: 1rem !important;
 }
 
 .markdown-source-view .cm-line.HyperMD-list-line + .HyperMD-list-line-1 {
-	margin-top: 0px !important;
+	padding-top: 0px !important;
+}
+
+/* reading view */
+.markdown-rendered ul > li {
+	margin-inline-start: 26px;
 }
 
 /* callout */
@@ -566,8 +632,9 @@ body {
 }
 
 /* code */
-.cm-s-obsidian .cm-inline-code:not(.cm-formatting) {
-	padding: 0.15em 0.4em;
+body .cm-s-obsidian .cm-scroller .cm-inline-code:not(.cm-formatting) {
+	padding: 0.15em 0.3em;
+	color: var(--code-normal);
 }
 
 /* codeblock */
@@ -616,8 +683,8 @@ pre[class*="language-"] {
 }
 
 /* highlight */
-.cm-s-obsidian span.cm-formatting-highlight,
-.cm-s-obsidian span.cm-highlight {
+body .cm-s-obsidian .cm-scroller span.cm-formatting-highlight,
+body .cm-s-obsidian .cm-scroller span.cm-highlight {
 	color: var(--text-highlight-color);
 	background-color: var(--text-highlight-background);
 	border-bottom: 1px dashed var(--text-highlight-border-color);
@@ -629,7 +696,7 @@ pre[class*="language-"] {
 }
 
 /* highlight for reading view */
-.markdown-rendered mark {
+body .markdown-rendered mark {
 	color: var(--text-highlight-color);
 	background-color: var(--text-highlight-background);
 	border-bottom: 1px dashed var(--text-highlight-border-color);
@@ -721,7 +788,7 @@ body.is-focused .workspace-ribbon.mod-left {
 	border-color: var(--background-modifier-border);
 	border-radius: 0px var(--radius-m) var(--radius-m) 0px;
 	overflow: hidden;
-	padding: var(--size-2-2) var(--size-2-2) var(--size-2-2) 0px;
+	padding: 2px;
 	margin-top: 8px;
 }
 
@@ -788,9 +855,9 @@ body.is-phone .workspace {
 	padding: 0 4px;
 }
 
-.workspace-tab-container {
+body:not(.is-phone) .workspace-tab-container {
 	background-color: transparent;
-	padding: 4px;
+	padding: 6px;
 }
 
 .workspace .mod-left-split .workspace-tab-container,
@@ -877,12 +944,9 @@ body:not(.is-phone)
 	padding-bottom: 24px;
 }
 
-body:not(.is-phone) .mod-root .workspace-leaf-content {
-	border: 1px solid var(--background-modifier-border);
+body:not(.is-phone) .mod-root .workspace-tabs .workspace-leaf {
 	border-radius: var(--radius-m);
-	box-shadow: rgba(31, 34, 37, 0.03) 0px 0px 0px 1px,
-		rgba(0, 0, 0, 0.08) 0px 8px 20px 0px,
-		rgba(0, 0, 0, 0.04) 0px 8px 12px -6px;
+	box-shadow: var(--content-area-shadow);
 }
 
 .workspace-split.mod-left-split > .workspace-leaf-resize-handle,
@@ -930,6 +994,24 @@ body:not(.is-mobile)
 	padding: 0px;
 	border: none;
 	background-color: var(--background-primary);
+	box-shadow: var(--content-area-shadow);
+}
+
+/* markdown */
+/* file header title */
+body:not(.is-phone) .view-header-title-parent {
+	width: 0;
+	opacity: 0;
+}
+
+@media (hover: hover) {
+	body:not(.is-phone)
+		.view-header-title-container:hover
+		.view-header-title-parent {
+		width: auto;
+		opacity: 1;
+		transition: opacity 0.5s;
+	}
 }
 
 /* outline */
@@ -963,19 +1045,6 @@ body:not(.is-mobile)
 	.titlebar-button-container.mod-right,
 .is-hidden-frameless:not(.is-fullscreen) .titlebar-button-container.mod-right {
 	background-color: transparent;
-}
-
-/* file header title */
-
-.view-header-title-container {
-	opacity: 0;
-}
-
-@media (hover: hover) {
-	.view-header-title-container:hover {
-		opacity: 1;
-		transition: opacity 0.6s;
-	}
 }
 
 /* inline title */
@@ -1072,6 +1141,28 @@ body:not(.is-mobile)
 	color: var(--suggesttion-highlight-color);
 }
 
+/* typograph */
+
+/* 
+  * Paragraph indent
+  * thanks for https://forum-zh.obsidian.md/t/topic/40452
+  */
+.composer--ParagraphIndent {
+	--paragraph-indent: calc(var(--font-text-size) * 2);
+}
+.composer--ParagraphIndent
+	:is([class="cm-line"], [class="cm-active cm-line"], p) {
+	text-indent: var(--paragraph-indent);
+}
+.composer--ParagraphIndent p > br {
+	content: "";
+	white-space: pre;
+}
+.composer--ParagraphIndent p > br::after {
+	content: "\000A\200B";
+	margin-inline-end: var(--paragraph-indent);
+}
+
 /* ====== Basic UI Component ====== */
 
 /* ====== Third Plugin integration ====== */
@@ -1108,6 +1199,11 @@ body:not(.is-mobile)
 	.components--DynamicDataView-PageCard
 	.components--DynamicDataView-PageTitle {
 	padding-top: 4px;
+}
+
+/* components.count */
+.components--CountComponentValue {
+	font-size: var(--components--CountComponentValueFontSize, 24px);
 }
 
 /* 
