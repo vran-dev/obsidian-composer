@@ -15,6 +15,8 @@ settings:
             value: composer--DefaultScheme
           - label: Xia 霞
             value: composer--XiaScheme
+          - label: Qing 青
+            value: composer--QingScheme
     - id: typograph-settings
       title: Typograph Settings
       title.zh: 排版设置
@@ -267,7 +269,13 @@ body {
 
 	--background-modifier-message: var(--background-secondary);
 	--ribbon-background-collapsed: transparent;
-	--root-workspace-padding-bottom: 32px;
+	--mod-root-background: transparent;
+	--mod-root-border: 0px 1px 0px 1px solid var(--background-modifier-border);
+
+	--root-workspace-padding-bottom: 28px;
+	--root-workspace-radius: var(--radius-m);
+	--root-workspace-shadow: var(--background-modifier-border) 0px 1px 3px 1px,
+		var(--background-modifier-border) 0px 1px 3px 1px;
 }
 
 .theme-light {
@@ -357,8 +365,6 @@ body {
 	/* customize */
 	--nav-button-container-bg: rgba(31, 34, 37, 0.03);
 	--header-active-bg: rgba(31, 34, 37, 0.03);
-	--content-area-shadow: var(--background-modifier-border) 0px 1px 3px 1px,
-		var(--background-modifier-border) 0px 1px 3px 1px;
 }
 
 .theme-dark {
@@ -442,11 +448,12 @@ body {
 	/* 自定义组件 */
 	--nav-button-container-bg: rgba(255, 255, 255, 0.03);
 	--header-active-bg: rgba(255, 255, 255, 0.05);
-	--content-area-shadow: var(--background-modifier-border) 0px 1px 3px 0px,
+	--root-workspace-shadow: var(--background-modifier-border) 0px 1px 3px 0px,
 		var(--background-modifier-border) 0px 1px 2px 0px;
 }
 
-.theme-light.composer--XiaScheme {
+/* ---- Xia ---- */
+.composer--XiaScheme.theme-light {
 	--accent-h: 12;
 	--accent-s: 31%;
 	--accent-l: 60%;
@@ -508,6 +515,61 @@ body {
 	--text-highlight-background: hsla(38, 25%, 47%, 0.45);
 	--text-highlight-border-color: hsl(31, 41%, 61%);
 	--text-highlight-color: hsl(40, 20%, 90%);
+}
+
+/* ---- Qing ---- */
+.composer--QingScheme.theme-light {
+	--accent-h: 190;
+	--accent-s: 25%;
+	--accent-l: 60%;
+
+	--background-primary: hsl(195, 30%, 98%);
+	--background-primary-alt: hsl(195, 25%, 94%);
+	--background-secondary: hsl(195, 22%, 90%);
+	--background-secondary-alt: hsl(195, 20%, 86%);
+	--background-gradient: linear-gradient(
+		160deg,
+		hsl(190, 30%, 95%) 0%,
+		hsl(190, 20%, 90%) 100%
+	);
+
+	--blockquote-border-color: hsl(190, 15%, 70%);
+	--blockquote-background-color: hsla(190, 20%, 95%, 0.8);
+	--blockquote-color: hsl(190, 25%, 35%);
+
+	--codeblock-background: hsla(190, 15%, 92%, 0.9);
+	--codeblock-caret-color: hsl(190, 25%, 35%);
+
+	--text-highlight-background: hsla(190, 50%, 85%, 0.5);
+	--text-highlight-border-color: hsl(190, 31%, 67%);
+	--text-highlight-color: hsl(190, 35%, 40%);
+}
+
+.composer--QingScheme.theme-dark {
+	--accent-h: 200;
+	--accent-s: 30%;
+	--accent-l: 40%;
+
+	--background-primary: #172331;
+	--background-primary-alt: #223040;
+	--background-secondary: #2a3a4d;
+	--background-secondary-alt: #324459;
+	--background-gradient: linear-gradient(
+		150deg,
+		hsl(200, 35%, 15%) 30%,
+		hsl(200, 25%, 20%) 70%
+	);
+
+	--blockquote-border-color: hsl(200, 20%, 35%);
+	--blockquote-background-color: hsla(200, 25%, 18%, 0.8);
+	--blockquote-color: hsl(200, 32%, 71%);
+
+	--codeblock-background: hsla(200, 20%, 22%, 0.9);
+	--codeblock-caret-color: hsl(200, 30%, 65%);
+
+	--text-highlight-background: hsla(200, 30%, 35%, 0.4);
+	--text-highlight-border-color: hsl(200, 25%, 45%);
+	--text-highlight-color: hsl(200, 36%, 77%);
 }
 
 .notice,
@@ -971,12 +1033,15 @@ body:not(.is-phone) .workspace-tab-container {
 
 .workspace .mod-left-split .workspace-tab-container,
 .workspace .mod-right-split .workspace-tab-container,
-.workspace .mod-root,
 .mod-root .workspace-tabs .workspace-leaf {
 	background-color: transparent;
 }
 
 /* Root tab */
+.workspace .mod-root {
+	background-color: var(--mod-root-background);
+	border: var(--mod-root-border);
+}
 .workspace .mod-root .workspace-tab-header {
 	padding: 2px;
 	border: 1px solid transparent;
@@ -1026,8 +1091,8 @@ body:not(.is-mobile) .mod-root .workspace-tabs {
 }
 
 body:not(.is-mobile) .mod-root .workspace-tab-container {
-	border-radius: var(--radius-m);
-	box-shadow: var(--content-area-shadow);
+	border-radius: var(--root-workspace-radius);
+	box-shadow: var(--root-workspace-shadow);
 }
 
 body:not(.is-phone) .mod-root .workspace-tab-header-container {
@@ -1105,10 +1170,10 @@ body:not(.is-phone)
 
 /* left and right */
 .workspace-split.mod-left-split {
-	padding-right: 16px;
+	padding-right: 12px;
 }
 .workspace-split.mod-right-split {
-	padding-left: 16px;
+	padding-left: 12px;
 }
 
 /* vault profile */
@@ -1124,7 +1189,7 @@ body:not(.is-mobile)
 	padding: 0px;
 	border: none;
 	background-color: var(--background-primary);
-	box-shadow: var(--content-area-shadow);
+	box-shadow: var(--root-workspace-shadow);
 }
 
 /* markdown */
@@ -1274,9 +1339,9 @@ body:not(.is-phone) .view-header-title-parent {
 /* typograph */
 
 /* 
-* Paragraph indent
-* thanks for https://forum-zh.obsidian.md/t/topic/40452
-*/
+	* Paragraph indent
+	* thanks for https://forum-zh.obsidian.md/t/topic/40452
+	*/
 .composer--ParagraphIndent {
 	--paragraph-indent: calc(var(--font-text-size) * 2);
 }
