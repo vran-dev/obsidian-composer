@@ -1,148 +1,201 @@
 /* @settings
-
 name: Composer
 id: obsidian-composer-theme
 settings:
-    - 
-        id: theme-variant
-        title: Color Scheme
-        title.zh: 配色方案
-        description: Choose a color scheme for the theme
-        description.zh: 选择一个预设的配色方案
-        type: class-select
-        allowEmpty: false
-        default: composer--DefaultScheme
-        options:
-            - 
-              label: Default
-              value: composer--DefaultScheme
-            - 
-              label: Craft
-              value: composer--CraftScheme
-    - 
-        id: color-settings
-        title: Color Settings
-        title.zh: 色彩设置
-        type: heading
-        level: 2
-        collapsed: true
-    - 
-        id: background-primary
-        title: Background Primary
-        title.zh: 主要背景色
-        type: variable-themed-color
-        format: hex
-        default-light: '#f8f8f8'
-        default-dark: '#27282f'
-    - 
-        id: background-primary-alt
-        title: Background Primary Alt
-        title.zh: 主要背景色（备用）
-        type: variable-themed-color
-        format: hex
-        default-light: '#f2f2f2'
-        default-dark: '#2c2d36'
-    - 
-        id: background-secondary
-        title: Background Secondary
-        title.zh: 次要背景色
-        type: variable-themed-color
-        format: hex
-        default-light: '#ececec'
-        default-dark: '#32333d'
-    - 
-        id: background-secondary-alt
-        title: Background Secondary Alt
-        title.zh: 次要背景色（备用）
-        type: variable-themed-color
-        format: hex
-        default-light: '#e5e5e5'
-        default-dark: '#383a45'
-    - 
-        id: editor-settings
-        title: Typograph Settings
-        title.zh: 排版设置
-        type: heading
-        level: 2
-        collapsed: true
-    - 
-        id: file-line-width
-        title: Content Area width
-        title.zh: 内容区域宽度
-        description: The maximum line width
-        description.zh: 最大行宽
-        type: variable-number-slider
-        default: 700
-        min: 420
-        max: 1200
-        format: px
-        step: 1
-    - 
-        id: composer--ParagraphIndent
-        title: Paragraph Indent
-        title.zh: 段落首行缩进
-        description: indent the first line of a paragraph
-        description.zh: 段落首行自动缩进 2 个字符
-        type: class-toggle
-    - 
-        id: navbar-settings
-        title: Navbar Settings
-        title.zh: 导航栏设置
-        type: heading
-        level: 2
-        collapsed: true
-    - 
-        id: composer--HideFileListNavbar
-        title: Hide File List Navbar
-        title.zh: 隐藏文件列表菜单
-        description: enable this option to hide hide the menu above the file list
-        description.zh: 启用此选项以隐藏文件列表上方的菜单
-        type: class-toggle
-    - 
-        id: plugin-components
-        title: Components Plugin
-        title.zh: Components 插件
-        type: heading
-        level: 2
-        collapsed: true
-    - 
-        id: dynamic-dataview-component
-        title: Dynamic Dataview
-        title.zh: 数据视图
-        type: heading
-        level: 3
-        collapsed: true
-    - 
-        id: composer--ComponentsSimpleTag
-        title: Simple Tag Style
-        title.zh: 简单标签样式
-        description: switch to simple tag style to select / multi-select / group-name...
-        description.zh: 改变数据视图中单选、多选项的样式
-        type: class-toggle 
-    -
-        id: composer--ComponentsFilledGallaryCover
-        title: Notion Style Gallary Cover
-        title.zh: Notion 风格的封面
-        description: remove Gallary dynamic data view's cover padding
-        description.zh: 移除动态数据视图中的封面内边距
-        type: class-toggle
-    - 
-        id: count-component
-        title: Count Component
-        title.zh:  统计数字组件
-        type: heading
-        level: 3
-        collapsed: true
-    - 
-        id: components--CountComponentValueFontSize
-        title: Value Font Size
-        title.zh: 数值字体大小
-        type: variable-number-slider
-        default: 24
-        min: 14
-        max: 48
-        format: px
-        step: 1
+    - id: theme-variant
+      title: Color Scheme
+      title.zh: 配色方案
+      description: Choose a color scheme for the theme
+      description.zh: 选择一个预设的配色方案
+      type: class-select
+      allowEmpty: false
+      default: composer--DefaultScheme
+      options:
+          - label: Su 素
+            value: composer--DefaultScheme
+          - label: Xia 霞
+            value: composer--XiaScheme
+    - id: typograph-settings
+      title: Typograph Settings
+      title.zh: 排版设置
+      type: heading
+      level: 2
+      collapsed: true
+    - id: file-line-width
+      title: Content Area width
+      title.zh: 内容区域宽度
+      description: The maximum line width
+      description.zh: 最大行宽
+      type: variable-number-slider
+      default: 700
+      min: 420
+      max: 1200
+      format: px
+      step: 1
+    - id: composer--ParagraphIndent
+      title: Paragraph Indent
+      title.zh: 段落首行缩进
+      description: indent the first line of a paragraph
+      description.zh: 段落首行自动缩进 2 个字符
+      type: class-toggle
+    - id: paragraph-line-height
+      title: Paragraph Line Height
+      title.zh: 段落行高
+      description: Set the line height of the paragraph
+      description.zh: 设置段落的行高
+      type: variable-number
+      default: 1.7
+      min: 1.2
+      max: 2.5
+    - id: paragraph-letter-spacing
+      title: Paragraph Letter Spacing
+      title.zh: 段落字间距
+      description: Set the letter spacing of the paragraph, you should specify the unit em or px
+      description.zh: 设置段落的字间距，需要指定单位 em 或 px
+      type: variable-text
+      default: 0.035em
+    - id: paragraph-word-spacing
+      title: Paragraph Word Spacing
+      title.zh: 段落词间距
+      description: Set the word spacing of the paragraph, you should specify the unit em or px
+      description.zh: 设置段落的词间距，需要指定单位 em 或 px
+      type: variable-text
+      default: 0.035em
+    - id: typograph-heading-size
+      title: Heading Size(H1-H6)
+      title.zh: 标题大小（H1-H6）
+      type: heading
+      level: 3
+      collapsed: true
+    - id: h1-size
+      title: H1 Size
+      title.zh: 一级标题大小
+      description: you should specify the unit em or px
+      description.zh: 需要指定单位 em 或 px
+      type: variable-text
+      default: 1.69em
+    - id: h2-size
+      title: H2 Size
+      title.zh: 二级标题大小
+      description: you should specify the unit em or px
+      description.zh: 需要指定单位 em 或 px
+      type: variable-text
+      default: 1.51em
+    - id: h3-size
+      title: H3 Size
+      title.zh: 三级标题大小
+      description: you should specify the unit em or px
+      description.zh: 需要指定单位 em 或 px
+      type: variable-text
+      default: 1.35em
+    - id: h4-size
+      title: H4 Size
+      title.zh: 四级标题大小
+      description: you should specify the unit em or px
+      description.zh: 需要指定单位 em 或 px
+      type: variable-text
+      default: 1.21em
+    - id: h6-size
+      title: H6 Size
+      title.zh: 五级标题大小
+      description: you should specify the unit em or px
+      description.zh: 需要指定单位 em 或 px
+      type: variable-text
+      default: 1.1em
+    - id: h6-size
+      title: H6 Size
+      title.zh: 六级标题大小
+      description: you should specify the unit em or px
+      description.zh: 需要指定单位 em 或 px
+      type: variable-text
+      default: 1em
+
+    - id: navbar-settings
+      title: Navbar Settings
+      title.zh: 导航栏设置
+      type: heading
+      level: 2
+      collapsed: true
+    - id: composer--DisableNavHeaderAutoHide
+      title: Disable Nav Header Auto Hide
+      title.zh: 关闭自动隐藏导航栏
+      description: Enable this option to disable the auto-hide of the nav header
+      description.zh: 启用以后，相关视图的导航栏将会常驻（比如文件列表、标签、目录栏的导航栏菜单），不会在失去焦点时自动隐藏
+      type: class-toggle
+    - id: color-settings
+      title: Color Settings
+      title.zh: 色彩设置
+      type: heading
+      level: 2
+      collapsed: true
+    - id: background-primary
+      title: Background Primary
+      title.zh: 主要背景色
+      type: variable-themed-color
+      format: hex
+      default-light: "#fafafa"
+      default-dark: "#1a1e24"
+    - id: background-primary-alt
+      title: Background Primary Alt
+      title.zh: 主要背景色（备用）
+      type: variable-themed-color
+      format: hex
+      default-light: "#e8eaee"
+      default-dark: "#252a32"
+    - id: background-secondary
+      title: Background Secondary
+      title.zh: 次要背景色
+      type: variable-themed-color
+      format: hex
+      default-light: "#f1f0ee"
+      default-dark: "#2d333b"
+    - id: background-secondary-alt
+      title: Background Secondary Alt
+      title.zh: 次要背景色（备用）
+      type: variable-themed-color
+      format: hex
+      default-light: "#dddfe3"
+      default-dark: "#373e48"
+    - id: plugin-components
+      title: Components Plugin
+      title.zh: Components 插件
+      type: heading
+      level: 2
+      collapsed: true
+    - id: dynamic-dataview-component
+      title: Dynamic Dataview
+      title.zh: 数据视图
+      type: heading
+      level: 3
+      collapsed: true
+    - id: composer--ComponentsSimpleTag
+      title: Simple Tag Style
+      title.zh: 简单标签样式
+      description: switch to simple tag style to select / multi-select / group-name...
+      description.zh: 改变数据视图中单选、多选项的样式
+      type: class-toggle
+    - id: composer--ComponentsFilledGallaryCover
+      title: Notion Style Gallary Cover
+      title.zh: Notion 风格的封面
+      description: remove Gallary dynamic data view's cover padding
+      description.zh: 移除动态数据视图中的封面内边距
+      type: class-toggle
+    - id: count-component
+      title: Count Component
+      title.zh: 统计数字组件
+      type: heading
+      level: 3
+      collapsed: true
+    - id: components--CountComponentValueFontSize
+      title: Value Font Size
+      title.zh: 数值字体大小
+      type: variable-number-slider
+      default: 24
+      min: 14
+      max: 48
+      format: px
+      step: 1
+
 */
 
 ::-webkit-scrollbar {
@@ -188,10 +241,10 @@ body {
 	--callout-radius: 8px;
 
 	/* Typography */
-	--line-height-normal: 1.7;
 	--paragraph-letter-spacing: 0.035em;
 	--paragraph-line-height: 1.7;
 	--paragraph-word-spacing: 0.035em;
+	--line-height-normal: var(--paragraph-line-height);
 
 	/* list */
 	--list-spacing: 0.225em;
@@ -214,6 +267,7 @@ body {
 
 	--background-modifier-message: var(--background-secondary);
 	--ribbon-background-collapsed: transparent;
+	--root-workspace-padding-bottom: 32px;
 }
 
 .theme-light {
@@ -221,17 +275,18 @@ body {
 	--accent-s: 15%;
 	--accent-l: 58%;
 
-	--background-modifier-border: rgba(225, 219, 214, 0.5);
-	--background-primary: #f8f8f8;
-	--background-primary-alt: #f2f2f2;
-	--background-secondary: #ececec;
-	--background-secondary-alt: #e5e5e5;
+	--background-primary: #fafafa;
+	--background-primary-alt: #e8eaee;
+	--background-secondary: #f1f0ee;
+	--background-secondary-alt: #dddfe3;
 
-	--background-gradient: linear-gradient(
-		165deg,
-		var(--background-primary) 20%,
-		var(--background-primary-alt) 80%
+	--background-gradient: radial-gradient(
+		ellipse at 50% 30%,
+		hsl(0, 0%, 100%) 20%,
+		hsl(220, 16%, 95%) 80%
 	);
+
+	--background-modifier-border: rgba(225, 219, 214, 0.6);
 
 	/* text */
 	--color-base-100: #3a4659;
@@ -254,19 +309,19 @@ body {
 
 	/* inline code */
 	--code-normal: #eb5757;
-	--code-bg: rgba(235, 87, 87, 0.08);
 	--code-border-color: transparent;
+	--code-background: hsla(31, 41%, 90%, 0.6);
 
 	/* text-highlight */
-	--text-highlight-background: #fffbe6;
-	--text-highlight-border-color: #847e47;
-	--text-highlight-color: #2d3748;
+	--text-highlight-background: hsla(40, 60%, 92%, 0.6);
+	--text-highlight-border-color: hsl(40, 30%, 75%);
+	--text-highlight-color: hsl(220, 25%, 25%);
 	--text-highlight-border-radius: 4px;
 
 	/* quote */
-	--blockquote-border-color: #cbd5e0;
-	--blockquote-background-color: #f1f3f5;
-	--blockquote-color: #4a556b;
+	--blockquote-border-color: hsl(220, 15%, 80%);
+	--blockquote-background-color: hsl(220, 20%, 97%);
+	--blockquote-color: hsl(220, 25%, 35%);
 
 	/* codeblock */
 	--codeblock-background: #d6d4d440;
@@ -307,166 +362,161 @@ body {
 }
 
 .theme-dark {
-	--accent-h: 225;
-	--accent-s: 25%;
-	--accent-l: 65%;
+	--accent-h: 204;
+	--accent-s: 18%;
+	--accent-l: 42%;
 
-	--background-modifier-border: rgba(131, 139, 149, 0.25);
-	--background-primary: #27282f;
-	--background-primary-alt: #2c2d36;
-	--background-secondary: #32333d;
-	--background-secondary-alt: #383a45;
-	--background-gradient: linear-gradient(
-		15deg,
-		hsl(245, 8%, 15%) 10%,
-		hsl(255, 10%, 20%) 90%
+	--background-primary: #1a1e24;
+	--background-primary-alt: #252a32;
+	--background-secondary: #2d333b;
+	--background-secondary-alt: #373e48;
+
+	--background-gradient: radial-gradient(
+		ellipse at 50% 30%,
+		hsl(220, 12%, 18%) 20%,
+		hsl(220, 14%, 12%) 80%
 	);
 
-	/* text */
-	/* --text-normal: #e0e3eb; 
-		--text-muted: #a5a9b7; 
-		--text-faint: #7a7f8e;  */
-	--bold-color: #ffffff;
+	--background-modifier-border: rgba(67, 73, 83, 0.6);
+
+	/* 文本系统 */
+	--color-base-100: #d4d9e0;
+	--bold-color: #f0f4f8;
 	--bold-modifier: 200;
-	--color-base-100: #d9dde3;
 
 	/* title */
-	--h1-color: #ffffff;
-	--h2-color: #e6e6e6;
-	--h3-color: #cccccc;
-	--h4-color: #b3b3b3;
-	--h5-color: #999999;
-	--h6-color: #666666;
-	--h1-indicator-color: #6b8e8e;
-	--h2-indicator-color: #8f9ebb;
-	--h3-indicator-color: #a7b4c6;
-	--h4-indicator-color: #c0cad5;
-	--h5-indicator-color: #d9e0e6;
-	--h6-indicator-color: #dadde1;
-	/* inline code */
-	--code-normal: #ff6b6b;
-	--code-bg: rgba(255, 107, 107, 0.05);
+	--h1-color: #e2e6eb;
+	--h2-color: #c5cad4;
+	--h3-color: #a8aeb9;
+	--h4-color: #8f96a1;
+	--h5-color: #787f8a;
+	--h6-color: #666d78;
+	--h1-indicator-color: var(--h1-color);
+	--h2-indicator-color: var(--h2-color);
+	--h3-indicator-color: var(--h3-color);
+	--h4-indicator-color: var(--h4-color);
+	--h5-indicator-color: var(--h5-color);
+	--h6-indicator-color: var(--h6-color);
 
-	/* text-highlight */
-	--text-highlight-background: #6d642ba3;
-	--text-highlight-border-color: #928c64;
-	--text-highlight-color: #e6e0c8;
+	/* inline code */
+	--code-normal: #ff7b72;
+	--code-border-color: transparent;
+	--code-background: hsla(204, 15%, 25%, 0.4);
+
+	/* text highlight */
+	--text-highlight-background: hsla(40, 30%, 25%, 0.4);
+	--text-highlight-border-color: hsl(40, 20%, 35%);
+	--text-highlight-color: hsl(40, 60%, 85%);
 	--text-highlight-border-radius: 4px;
 
 	/* quote */
-	--blockquote-border-color: #4a556b;
-	--blockquote-background-color: #2d3748;
-	--blockquote-color: #cbd5e0;
+	--blockquote-border-color: hsl(204, 15%, 35%);
+	--blockquote-background-color: hsla(204, 15%, 15%, 0.3);
+	--blockquote-color: hsl(204, 15%, 75%);
 
 	/* codeblock */
-	--codeblock-background: #252526;
-	--codeblock-caret-color: #a7b4c6;
+	--codeblock-background: #2b303880;
+	--codeblock-caret-color: #c5cad4;
 	--codeblock-border-radius: 8px;
 	--codeblock-border: #e5e7eb;
-	--codeblock-shadow: 0 2px 8px rgba(31, 41, 55, 0.04);
 
 	/* link */
 	--link-external-color: rgba(196, 196, 196, 0.85);
 	--link-external-color-hover: var(--text-normal);
 
 	/* basic color */
-	--color-red-rgb: 218, 95, 95;
-	--color-blue-rgb: 131, 147, 173;
-	--color-purple-rgb: 142, 124, 195;
-	--color-cyan-rgb: 92, 184, 198;
-	--color-blue-rgb: 95, 164, 218;
-	--color-orange-rgb: 218, 148, 92;
-	--color-green-rgb: 92, 184, 133;
-	--color-yellow-rgb: 218, 173, 92;
-	--color-pink-rgb: 218, 124, 164;
+	--color-red-rgb: 255, 123, 114;
+	--color-blue-rgb: 123, 175, 222;
+	--color-purple-rgb: 182, 155, 255;
+	--color-cyan-rgb: 123, 204, 214;
+	--color-orange-rgb: 255, 182, 104;
+	--color-green-rgb: 123, 204, 148;
+	--color-yellow-rgb: 255, 203, 107;
+	--color-pink-rgb: 255, 157, 194;
+
 	/* callout */
-	--callout-bug: var(--color-red-rgb);
-	--callout-default: var(--color-blue-rgb);
-	--callout-error: 207, 86, 86;
-	--callout-example: var(--color-purple-rgb);
-	--callout-fail: var(--color-red-rgb);
-	--callout-important: var(--color-cyan-rgb);
-	--callout-info: var(--color-blue-rgb);
-	--callout-question: var(--color-orange-rgb);
-	--callout-success: var(--color-green-rgb);
-	--callout-summary: var(--color-cyan-rgb);
-	--callout-tip: var(--color-cyan-rgb);
-	--callout-todo: var(--color-blue-rgb);
-	--callout-warning: 218, 164, 92;
+	--callout-error: 255, 100, 92;
+	--callout-warning: 255, 170, 92;
 	--callout-quote: 158, 158, 158;
-	/* customize */
-	--nav-button-container-bg: rgba(140, 142, 144, 0.1);
-	--header-active-bg: rgba(140, 142, 144, 0.1);
-	--content-area-shadow: var(--background-modifier-border) 0px 1px 3px 1px,
-		var(--background-modifier-border) 0px 1px 3px 1px;
+
+	/* 自定义组件 */
+	--nav-button-container-bg: rgba(255, 255, 255, 0.03);
+	--header-active-bg: rgba(255, 255, 255, 0.05);
+	--content-area-shadow: var(--background-modifier-border) 0px 1px 3px 0px,
+		var(--background-modifier-border) 0px 1px 2px 0px;
 }
 
-.theme-light.composer--CraftScheme {
+.theme-light.composer--XiaScheme {
 	--accent-h: 12;
 	--accent-s: 31%;
 	--accent-l: 60%;
 	--background-modifier-border: hsla(25, 20%, 70%, 0.4);
 
-	--background-primary: rgb(243, 237, 233); /* 暖月白 hsl(25, 30%, 93%) */
-	--background-primary-alt: rgb(238, 230, 225); /* 暖灰 hsl(25, 30%, 91%) */
-	--background-secondary: rgb(232, 223, 217); /* 深暖灰 hsl(25, 30%, 88%) */
+	--background-primary: rgb(243, 237, 233);
+	--background-primary-alt: rgb(238, 230, 225);
+	--background-secondary: rgb(232, 223, 217);
 	--background-secondary-alt: rgb(225, 215, 208);
 	--background-gradient: linear-gradient(
 		rgb(217, 224, 227),
 		rgb(235, 215, 210)
 	);
 
-	/* 块引用 */
+	/* quote */
 	--blockquote-border-color: hsl(25, 20%, 70%);
 	--blockquote-background-color: rgba(237, 228, 222, 0.811);
 	--blockquote-color: hsl(25, 20%, 30%);
 
-	/* 代码块 */
+	/* codeblock */
 	--codeblock-background: rgba(234, 223, 215, 0.749);
 	--codeblock-caret-color: hsl(25, 20%, 30%);
 
-	/* 文本高亮 */
-	--text-highlight-background: rgba(247, 232, 186, 0.8);
-	--text-highlight-border-color: rgb(194, 168, 90);
-	--text-highlight-color: rgb(92, 74, 61);
+	/* text highlight */
+	--text-highlight-background: rgb(238, 225, 184, 0.8);
+	--text-highlight-border-color: rgba(161, 146, 67, 0.8);
+	--text-highlight-color: rgb(102, 80, 63);
 }
 
-.composer--CraftScheme.theme-dark {
-	--accent-h: 12;
-	--accent-s: 28%;
-	--accent-l: 60%;
+.composer--XiaScheme.theme-dark {
+	--accent-h: 30;
+	--accent-s: 40%;
+	--accent-l: 65%;
 
-	/* 背景颜色 */
-	--background-primary: #2a2622;
-	--background-primary-alt: #322d29;
-	--background-secondary: #38322e;
-	--background-secondary-alt: #3e3732;
 	--background-gradient: linear-gradient(
-		hsl(25, 10%, 18%),
-		hsl(25, 10%, 22%)
+		hsl(215, 18%, 18%),
+		hsl(255, 12%, 28%)
 	);
+	--background-primary: hsl(215, 18%, 15%);
+	--background-primary-alt: hsl(215, 18%, 19%);
+	--background-secondary: hsl(255, 12%, 25%);
+	--background-secondary-alt: hsl(255, 12%, 29%);
 
-	/* 边框颜色 */
-	--background-modifier-border: rgba(92, 74, 61, 0.4);
+	--text-normal: #dedbd3;
 
-	/* 块引用 */
-	--blockquote-border-color: #5c4a3d;
-	--blockquote-background-color: #38322ecc;
-	--blockquote-color: #dbc9bd;
+	/* border */
+	--background-modifier-border: rgb(69, 74, 84);
 
-	/* 代码块 */
-	--codeblock-background: rgba(56, 50, 46, 0.8);
-	--codeblock-caret-color: #dbc9bd;
+	/* quote */
+	--blockquote-border-color: #67594c;
+	--blockquote-background-color: rgba(42, 49, 60, 0.6);
+	--blockquote-color: rgb(207, 197, 175);
 
-	/* 文本高亮 */
-	--text-highlight-background: rgba(122, 99, 31, 0.8);
-	--text-highlight-border-color: rgba(153, 128, 51, 0.8);
-	--text-highlight-color: rgb(219, 201, 189);
+	/* codeblock*/
+	--codeblock-background: rgba(37, 44, 55, 0.85);
+	--codeblock-caret-color: rgb(201, 166, 130);
+
+	/* text highlight */
+	--text-highlight-background: hsla(38, 25%, 47%, 0.45);
+	--text-highlight-border-color: hsl(31, 41%, 61%);
+	--text-highlight-color: hsl(40, 20%, 90%);
+}
+
+.notice,
+.tooltip {
+	color: var(--text-normal);
+	border: 1px solid var(--background-modifier-border);
 }
 
 .notice {
-	color: var(--text-normal);
-	border: 1px solid var(--background-modifier-border);
 	box-shadow: var(--background-modifier-border) 0px 1px 3px 1px,
 		var(--background-modifier-border) 0px 1px 3px 1px;
 }
@@ -789,19 +839,16 @@ body.is-focused .workspace-ribbon.mod-left {
 	border-radius: 0px var(--radius-m) var(--radius-m) 0px;
 	overflow: hidden;
 	padding: 2px;
-	margin-top: 8px;
+	margin-top: 2px;
 }
 
-/* file list top menus */
-.composer--HideFileListNavbar
-	.workspace-leaf-content[data-type="file-explorer"]
-	.nav-header {
-	display: none;
-}
-
+/* Workspace nav header */
 body:not(.is-mobile) .nav-header {
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	padding: var(--size-4-1);
+	padding-left: var(--size-4-3);
 }
 
 body:not(.is-mobile) .nav-buttons-container {
@@ -811,14 +858,77 @@ body:not(.is-mobile) .nav-buttons-container {
 	width: fit-content;
 }
 
+body:not(.is-mobile):not(.composer--DisableNavHeaderAutoHide)
+	.mod-sidedock
+	.workspace-leaf-content
+	.nav-header
+	.nav-buttons-container {
+	background-color: transparent;
+}
+
+body:not(.is-mobile):not(.composer--DisableNavHeaderAutoHide)
+	.mod-sidedock
+	.workspace-leaf-content
+	.nav-header:hover
+	.nav-buttons-container {
+	background-color: var(--nav-button-container-bg);
+}
+
+body:not(.is-mobile):not(.composer--DisableNavHeaderAutoHide)
+	.mod-sidedock
+	.workspace-leaf
+	.workspace-leaf-content
+	.nav-header
+	.nav-action-button:hover {
+	background-color: var(--background-modifier-hover);
+	opacity: var(--icon-opacity);
+	border-radius: var(--clickable-icon-radius);
+}
+
+body:not(.is-mobile):not(.composer--DisableNavHeaderAutoHide)
+	.mod-sidedock
+	.workspace-leaf-content
+	.nav-header
+	.nav-action-button {
+	flex-grow: 0;
+	max-width: 5px;
+	max-height: 5px;
+	overflow: hidden;
+	border-radius: 50%;
+	padding: 0px;
+	background-color: var(--text-faint);
+	transition: max-width 240ms cubic-bezier(0.4, 0, 0.2, 1),
+		max-height 240ms cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 240ms cubic-bezier(0.4, 0, 0.2, 1),
+		padding 240ms cubic-bezier(0.4, 0, 0.2, 1),
+		background-color 120ms linear;
+}
+
+body:not(.is-mobile):not(.composer--DisableNavHeaderAutoHide)
+	.mod-sidedock
+	.workspace-leaf-content
+	.nav-header
+	.nav-action-button.is-active {
+	background-color: var(--icon-color-active);
+}
+
+body:not(.is-mobile):not(.composer--DisableNavHeaderAutoHide)
+	.mod-sidedock
+	.workspace-leaf-content
+	.nav-header:hover
+	.nav-action-button {
+	max-width: 32px;
+	max-height: 64px;
+	opacity: 0.85;
+	flex-grow: 1;
+	background-color: transparent;
+	padding: var(--size-2-2) var(--size-2-3);
+}
+
+/* workspace tab header */
 .mod-left-split .workspace-tab-header-container-inner,
 .mod-right-split .workspace-tab-header-container-inner {
 	gap: 4px;
-}
-
-.nav-header {
-	padding: var(--size-4-1);
-	padding-left: var(--size-4-3);
 }
 
 .nav-header .nav-buttons-container,
@@ -856,8 +966,7 @@ body.is-phone .workspace {
 }
 
 body:not(.is-phone) .workspace-tab-container {
-	background-color: transparent;
-	padding: 6px;
+	background-color: var(--background-primary);
 }
 
 .workspace .mod-left-split .workspace-tab-container,
@@ -907,9 +1016,35 @@ body:not(.is-phone) .workspace-tab-container {
 }
 
 /* content leaf */
+body:not(.is-mobile) .workspace-split.mod-vertical,
+body:not(.is-mobile) .workspace-split.mod-horizontal {
+	gap: 16px;
+}
+
+body:not(.is-mobile) .mod-root .workspace-tabs {
+	overflow: visible;
+}
+
+body:not(.is-mobile) .mod-root .workspace-tab-container {
+	border-radius: var(--radius-m);
+	box-shadow: var(--content-area-shadow);
+}
+
 body:not(.is-phone) .mod-root .workspace-tab-header-container {
 	padding: 0px 12px 4px 12px;
 	margin-bottom: 4px;
+}
+
+body:not(.is-phone)
+	.workspace
+	.mod-root
+	.workspace-tabs.mod-stacked
+	.workspace-tab-container
+	.workspace-tab-header {
+	border-radius: 0px;
+	border: none;
+	border-right: 1.5px dashed var(--background-modifier-border);
+	box-shadow: none;
 }
 
 body:not(.is-phone)
@@ -917,7 +1052,7 @@ body:not(.is-phone)
 	.mod-root.workspace-split.mod-vertical {
 	margin-left: 0;
 	margin-right: 0;
-	padding-bottom: 24px;
+	padding-bottom: var(--root-workspace-padding-bottom);
 }
 
 body:not(.is-phone)
@@ -925,7 +1060,7 @@ body:not(.is-phone)
 	.mod-root.workspace-split.mod-vertical {
 	margin-left: 0;
 	margin-right: 16px;
-	padding-bottom: 24px;
+	padding-bottom: var(--root-workspace-padding-bottom);
 }
 
 body:not(.is-phone)
@@ -933,7 +1068,7 @@ body:not(.is-phone)
 	.mod-root.workspace-split.mod-vertical {
 	margin-left: 16px;
 	margin-right: 0;
-	padding-bottom: 24px;
+	padding-bottom: var(--root-workspace-padding-bottom);
 }
 
 body:not(.is-phone)
@@ -941,12 +1076,7 @@ body:not(.is-phone)
 	.mod-root.workspace-split.mod-vertical {
 	margin-left: 16px;
 	margin-right: 16px;
-	padding-bottom: 24px;
-}
-
-body:not(.is-phone) .mod-root .workspace-tabs .workspace-leaf {
-	border-radius: var(--radius-m);
-	box-shadow: var(--content-area-shadow);
+	padding-bottom: var(--root-workspace-padding-bottom);
 }
 
 .workspace-split.mod-left-split > .workspace-leaf-resize-handle,
@@ -975,10 +1105,10 @@ body:not(.is-phone) .mod-root .workspace-tabs .workspace-leaf {
 
 /* left and right */
 .workspace-split.mod-left-split {
-	padding-right: 4px;
+	padding-right: 16px;
 }
 .workspace-split.mod-right-split {
-	padding-left: 4px;
+	padding-left: 16px;
 }
 
 /* vault profile */
@@ -1144,21 +1274,29 @@ body:not(.is-phone) .view-header-title-parent {
 /* typograph */
 
 /* 
-  * Paragraph indent
-  * thanks for https://forum-zh.obsidian.md/t/topic/40452
-  */
+* Paragraph indent
+* thanks for https://forum-zh.obsidian.md/t/topic/40452
+*/
 .composer--ParagraphIndent {
 	--paragraph-indent: calc(var(--font-text-size) * 2);
 }
 .composer--ParagraphIndent
+	.markdown-reading-view
+	:is([class="cm-line"], [class="cm-active cm-line"], p),
+.composer--ParagraphIndent
+	.is-live-preview
 	:is([class="cm-line"], [class="cm-active cm-line"], p) {
 	text-indent: var(--paragraph-indent);
 }
-.composer--ParagraphIndent p > br {
+
+.composer--ParagraphIndent .markdown-reading-view p > br,
+.composer--ParagraphIndent .is-live-preview p > br {
 	content: "";
 	white-space: pre;
 }
-.composer--ParagraphIndent p > br::after {
+
+.composer--ParagraphIndent .markdown-reading-view p > br::after,
+.composer--ParagraphIndent .is-live-preview p > br::after {
 	content: "\000A\200B";
 	margin-inline-end: var(--paragraph-indent);
 }
