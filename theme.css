@@ -11,11 +11,11 @@ settings:
       allowEmpty: false
       default: composer--DefaultScheme
       options:
-          - label: Su 素
+          - label: Sù 素
             value: composer--DefaultScheme
-          - label: Xia 霞
+          - label: Xiá 霞
             value: composer--XiaScheme
-          - label: Qing 青
+          - label: Qīng 青
             value: composer--QingScheme
     - id: typograph-settings
       title: Typograph Settings
@@ -230,6 +230,7 @@ body {
 	--h4-size: 1.21em;
 	--h5-size: 1.1em;
 	--h6-size: 1em;
+	--heading-spacing: calc(var(--p-spacing) * 1.8);
 
 	--link-external-color: rgba(55, 53, 47, 0.85);
 	--link-external-color-hover: var(--text-normal);
@@ -269,6 +270,9 @@ body {
 
 	--background-modifier-message: var(--background-secondary);
 	--ribbon-background-collapsed: transparent;
+
+	--heading-indicator-spacing: 6px;
+
 	--mod-root-background: transparent;
 	--mod-root-border: 0px 1px 0px 1px solid var(--background-modifier-border);
 
@@ -365,6 +369,7 @@ body {
 	/* customize */
 	--nav-button-container-bg: rgba(31, 34, 37, 0.03);
 	--header-active-bg: rgba(31, 34, 37, 0.03);
+	--root-workspace-shadow: rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .theme-dark {
@@ -519,19 +524,21 @@ body {
 
 /* ---- Qing ---- */
 .composer--QingScheme.theme-light {
-	--accent-h: 190;
-	--accent-s: 25%;
-	--accent-l: 60%;
+	--accent-h: 198;
+	--accent-s: 22%;
+	--accent-l: 55%;
 
-	--background-primary: hsl(195, 30%, 98%);
-	--background-primary-alt: hsl(195, 25%, 94%);
-	--background-secondary: hsl(195, 22%, 90%);
-	--background-secondary-alt: hsl(195, 20%, 86%);
+	--background-primary: #f8fbfb;
+	--background-primary-alt: #ecf2f4;
+	--background-secondary: #e0e8eb;
+	--background-secondary-alt: #d4dfe2;
 	--background-gradient: linear-gradient(
 		160deg,
 		hsl(190, 30%, 95%) 0%,
 		hsl(190, 20%, 90%) 100%
 	);
+
+	--background-modifier-border: #dce3e5;
 
 	--blockquote-border-color: hsl(190, 15%, 70%);
 	--blockquote-background-color: hsla(190, 20%, 95%, 0.8);
@@ -540,24 +547,26 @@ body {
 	--codeblock-background: hsla(190, 15%, 92%, 0.9);
 	--codeblock-caret-color: hsl(190, 25%, 35%);
 
-	--text-highlight-background: hsla(190, 50%, 85%, 0.5);
-	--text-highlight-border-color: hsl(190, 31%, 67%);
-	--text-highlight-color: hsl(190, 35%, 40%);
+	--text-highlight-background: hsla(200, 35%, 85%, 0.4);
+	--text-highlight-border-color: hsl(198, 25%, 70%);
+	--text-highlight-color: hsl(198, 30%, 45%);
 }
 
 .composer--QingScheme.theme-dark {
-	--accent-h: 200;
-	--accent-s: 30%;
-	--accent-l: 40%;
+	--accent-h: 198;
+	--accent-s: 28%;
+	--accent-l: 45%;
 
-	--background-primary: #172331;
-	--background-primary-alt: #223040;
-	--background-secondary: #2a3a4d;
-	--background-secondary-alt: #324459;
+	--background-primary: hsl(198, 25%, 18%);
+	--background-primary-alt: hsl(198, 22%, 21%);
+	--background-secondary: hsl(198, 20%, 24%);
+	--background-secondary-alt: hsl(198, 18%, 27%);
+
 	--background-gradient: linear-gradient(
-		150deg,
-		hsl(200, 35%, 15%) 30%,
-		hsl(200, 25%, 20%) 70%
+		165deg,
+		hsl(198, 28%, 16%) 0%,
+		hsl(198, 24%, 20%) 50%,
+		hsl(198, 20%, 23%) 100%
 	);
 
 	--blockquote-border-color: hsl(200, 20%, 35%);
@@ -631,7 +640,7 @@ body {
 	display: inline-block;
 	width: 4px;
 	border-radius: var(--size-4-1);
-	margin-right: 4px;
+	margin-right: var(--heading-indicator-spacing);
 	background-color: var(--h1-indicator-color);
 	transform: translateY(4px);
 }
@@ -670,7 +679,7 @@ body {
 	background-color: var(--h6-indicator-color);
 }
 .markdown-source-view.mod-cm6 .HyperMD-header {
-	padding-top: 1rem;
+	padding-top: var(--heading-spacing);
 	padding-bottom: 1rem;
 }
 
@@ -684,7 +693,7 @@ body {
 	display: inline-block;
 	width: 4px;
 	border-radius: var(--size-4-1);
-	margin-right: 4px;
+	margin-right: var(--heading-indicator-spacing);
 	background-color: var(--h1-indicator-color);
 	transform: translateY(4px);
 }
