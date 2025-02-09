@@ -2,6 +2,13 @@
 name: Composer
 id: obsidian-composer-theme
 settings:
+    -
+        id: learn-about-components-plugin
+        title: About Components
+        title.zh: 关于 Components
+        description: "[https://cp.cc1234.cc/](https://cp.cc1234.cc/)"
+        type: info-text
+        markdown: true
     - id: theme-variant
       title: Color Scheme
       title.zh: 配色方案
@@ -400,8 +407,8 @@ body.composer--ClassicalLayout {
 	--code-background: hsla(31, 41%, 90%, 0.6);
 
 	/* text-highlight */
-	--text-highlight-background: hsla(40, 60%, 92%, 0.6);
-	--text-highlight-border-color: hsl(40, 30%, 75%);
+	--text-highlight-background: hsla(41, 61%, 92%);
+	--text-highlight-border-color: hsl(47, 48%, 42%);
 	--text-highlight-color: hsl(220, 25%, 25%);
 	--text-highlight-border-radius: 4px;
 
@@ -490,7 +497,7 @@ body.composer--ClassicalLayout {
 
 	/* text highlight */
 	--text-highlight-background: hsla(40, 30%, 25%, 0.4);
-	--text-highlight-border-color: hsl(40, 20%, 35%);
+	--text-highlight-border-color: hsl(40, 27%, 61%);
 	--text-highlight-color: hsl(40, 60%, 85%);
 	--text-highlight-border-radius: 4px;
 
@@ -555,8 +562,8 @@ body.composer--ClassicalLayout {
 	--codeblock-caret-color: hsl(25, 20%, 30%);
 
 	/* text highlight */
-	--text-highlight-background: rgb(238, 225, 184, 0.8);
-	--text-highlight-border-color: rgba(161, 146, 67, 0.8);
+	--text-highlight-background: rgba(248, 227, 217, 0.9);
+	--text-highlight-border-color: rgb(167, 98, 64);
 	--text-highlight-color: rgb(102, 80, 63);
 }
 
@@ -589,8 +596,8 @@ body.composer--ClassicalLayout {
 	--codeblock-caret-color: rgb(201, 166, 130);
 
 	/* text highlight */
-	--text-highlight-background: hsla(38, 25%, 47%, 0.45);
-	--text-highlight-border-color: hsl(31, 41%, 61%);
+	--text-highlight-background: hsla(38, 27%, 54%, 0.5);
+	--text-highlight-border-color: hsl(31, 48%, 66%);
 	--text-highlight-color: hsl(40, 20%, 90%);
 }
 
@@ -617,11 +624,11 @@ body.composer--ClassicalLayout {
 	--blockquote-color: hsl(190, 25%, 35%);
 
 	--codeblock-background: hsla(190, 15%, 92%, 0.9);
-	--codeblock-caret-color: hsl(190, 25%, 35%);
+	--codeblock-caret-color: hsl(192, 33%, 15%);
 
-	--text-highlight-background: hsla(200, 35%, 85%, 0.4);
+	--text-highlight-background: hsla(201, 39%, 84%, 0.45);
 	--text-highlight-border-color: hsl(198, 25%, 70%);
-	--text-highlight-color: hsl(198, 30%, 45%);
+	--text-highlight-color: hsl(197, 35%, 30%);
 }
 
 .composer--QingScheme.theme-dark {
@@ -648,9 +655,9 @@ body.composer--ClassicalLayout {
 	--codeblock-background: hsla(200, 20%, 22%, 0.9);
 	--codeblock-caret-color: hsl(200, 30%, 65%);
 
-	--text-highlight-background: hsla(200, 30%, 35%, 0.4);
-	--text-highlight-border-color: hsl(200, 25%, 45%);
-	--text-highlight-color: hsl(200, 36%, 77%);
+	--text-highlight-background: hsla(200, 38%, 74%, 0.4);
+	--text-highlight-border-color: hsl(199, 55%, 88%);
+	--text-highlight-color: hsl(200, 13%, 91%);
 }
 
 .notice,
@@ -669,6 +676,11 @@ body.composer--ClassicalLayout {
 	letter-spacing: var(--paragraph-letter-spacing);
 	line-height: var(--paragraph-line-height);
 	word-spacing: var(--paragraph-word-spacing);
+}
+
+/* reduce spacing between metadata-container and first cm-line */
+.cm-contentContainer .cm-content > div:first-child + .cm-line {
+	padding-top: 1rem;
 }
 
 /* blockquote */
@@ -797,7 +809,7 @@ body.composer--ClassicalLayout {
 /* list */
 /* add top margin at the start of list */
 .markdown-source-view .cm-line:not(.HyperMD-header) + .HyperMD-list-line-1 {
-	padding-top: 1rem !important;
+	padding-top: 0.5rem !important;
 }
 
 .markdown-source-view .cm-line.HyperMD-list-line + .HyperMD-list-line-1 {
@@ -1350,7 +1362,7 @@ body:not(.is-phone) .view-header-title-parent {
 
 /* property */
 .metadata-container {
-	margin-block-end: 0.5rem;
+	margin-block-end: 0rem;
 }
 
 .metadata-container + .cm-contentContainer > div > .cm-line:first-child {
@@ -1422,7 +1434,7 @@ body:not(.is-phone) .view-header-title-parent {
 
 .metadata-content:hover .metadata-add-button {
 	opacity: 1;
-	transition: opacity 0.6s;
+	transition: opacity 0.5s;
 }
 
 /* file list */
