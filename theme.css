@@ -1,5 +1,5 @@
 /* @settings
-name: Composer
+name: Composer Theme
 id: obsidian-composer-theme
 settings:
     -
@@ -320,8 +320,9 @@ body {
 
 	/* tag */
 	--tag-radius: 2em;
-	--tag-padding-y: 0.3em;
+	--tag-padding-y: 0.2em;
 	--tag-border-width: 1px;
+	--tag-size: 0.8em;
 
 	--background-modifier-form-field: hsl(
 		var(--accent-h),
@@ -342,6 +343,10 @@ body {
 	--mod-root-border: 0px 1px 0px 1px solid var(--background-modifier-border);
 	--mod-root-header-background: transparent;
 	--mod-root-header-margin: 0px 0px 4px 0px;
+
+	--mod-left-split-background: transparent;
+	--mod-right-split-background: transparent;
+
 	--root-workspace-padding-bottom: 28px;
 	--root-workspace-radius: var(--radius-m);
 	--root-workspace-shadow: var(--background-modifier-border) 0px 0px 3px 0px,
@@ -351,7 +356,7 @@ body {
 	--side-dock-actions-border-color: var(--background-modifier-border);
 }
 
-body.composer--ClassicalLayout {
+/* body {
 	--ribbon-background-collapsed: transparent;
 	--mod-left-ribbon-background: transparent;
 	--mod-left-ribbon-background-collapsed: var(--background-primary);
@@ -362,7 +367,7 @@ body.composer--ClassicalLayout {
 	--root-workspace-shadow: none;
 	--root-workspace-margin-spacing: 0px;
 	--side-dock-actions-border-color: transparent;
-}
+  } */
 
 .theme-light {
 	--accent-h: 204;
@@ -370,7 +375,7 @@ body.composer--ClassicalLayout {
 	--accent-l: 58%;
 
 	--background-primary: #fafafa;
-	--background-primary-alt: #e8eaee;
+	--background-primary-alt: #f4f4f5;
 	--background-secondary: #f1f0ee;
 	--background-secondary-alt: #dddfe3;
 
@@ -679,7 +684,11 @@ body.composer--ClassicalLayout {
 }
 
 /* reduce spacing between metadata-container and first cm-line */
-.cm-contentContainer .cm-content > div:first-child + .cm-line {
+.metadata-container
+	+ .cm-contentContainer
+	.cm-content
+	> div[contenteditable="false"]:first-child
+	+ .cm-line {
 	padding-top: 1rem;
 }
 
@@ -1135,8 +1144,12 @@ body:not(.is-phone) .workspace-tab-container {
 	background-color: var(--background-primary);
 }
 
-.workspace .mod-left-split .workspace-tab-container,
-.workspace .mod-right-split .workspace-tab-container,
+.workspace .mod-left-split .workspace-tab-container {
+	background-color: transparent;
+}
+.workspace .mod-right-split .workspace-tab-container {
+	background-color: transparent;
+}
 .mod-root .workspace-tabs .workspace-leaf {
 	background-color: transparent;
 }
@@ -1281,9 +1294,11 @@ body:not(.is-phone)
 /* left and right */
 .workspace-split.mod-left-split {
 	padding-right: 12px;
+	background-color: var(--mod-left-split-background);
 }
 .workspace-split.mod-right-split {
 	padding-left: 12px;
+	background-color: var(--mod-right-split-background);
 }
 
 /* vault profile */
@@ -1484,11 +1499,6 @@ body:not(.is-phone) .view-header-title-parent {
 /* ====== Basic UI Component ====== */
 
 /* ====== Third Plugin integration ====== */
-/* excalidraw */
-.excalidraw-svg img {
-	max-width: var(--file-line-width) !important;
-}
-
 /* note toolbar */
 .cg-note-toolbar-callout {
 	--link-external-color: transparent;
