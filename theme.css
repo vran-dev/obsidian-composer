@@ -1565,9 +1565,9 @@ body:not(.is-phone) .view-header-title-parent {
 
 /* typograph */
 /* 
-	  * Paragraph indent
-	  * thanks for https://forum-zh.obsidian.md/t/topic/40452
-	  */
+  * Paragraph indent
+  * thanks for https://forum-zh.obsidian.md/t/topic/40452
+  */
 .composer--ParagraphIndent {
 	--paragraph-indent: calc(var(--font-text-size) * 2);
 }
@@ -1578,6 +1578,12 @@ body:not(.is-phone) .view-header-title-parent {
 	.is-live-preview
 	:is([class="cm-line"], [class="cm-active cm-line"], p) {
 	text-indent: var(--paragraph-indent);
+}
+
+/* exclude <p within codeblock */
+.composer--ParagraphIndent .markdown-reading-view .cm-preview-code-block p,
+.composer--ParagraphIndent .is-live-preview .cm-preview-code-block p {
+	text-indent: initial;
 }
 
 .composer--ParagraphIndent .markdown-reading-view p > br,
@@ -1620,6 +1626,14 @@ body:not(.is-phone) .view-header-title-parent {
 	border-radius: var(--radius-m);
 	padding: 4px 8px;
 	margin-top: 6px;
+}
+/* mermaid */
+div.mermaid {
+	letter-spacing: initial;
+}
+
+body.composer--ParagraphIndent div.markdown-reading-view div.mermaid {
+	--paragraph-indent: 0px;
 }
 
 /* components */
