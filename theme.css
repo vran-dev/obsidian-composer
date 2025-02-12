@@ -41,6 +41,43 @@ settings:
       max: 1200
       format: px
       step: 1
+    - id: table-setting
+      title: Table
+      title.zh: 表格
+      type: heading
+      level: 3
+      collapsed: true
+    - id: table-style
+      title: Table Style
+      title.zh: 表格样式
+      description: Choose prefered table style
+      description.zh: 选择表格的样式
+      type: class-select
+      allowEmpty: false
+      default: composer--DefaultTableStyle
+      options:
+          - label: Default
+            label.zh: 默认
+            value: composer--DefaultTableStyle
+          - label: Obsidian
+            label.zh: Obsidian
+            value: composer--ObsidianTableStyle
+          - label: Borderless
+            label.zh: 无边框
+            value: composer--BorderlessTableStyle
+          - label: Three Line(Academic)
+            label.zh: 三线表（学术）
+            value: composer--AcademicTableStyle
+    - id: composer--HideStripedTableBackground
+      title: Hide Striped Background
+      title.zh: 关闭斑马纹背景
+      type: class-toggle
+    - id: typograph-paragraph
+      title: Paragraph
+      title.zh: 段落
+      type: heading
+      level: 3
+      collapsed: true    
     - id: composer--ParagraphIndent
       title: Paragraph Indent
       title.zh: 段落首行缩进
@@ -367,7 +404,7 @@ body {
 	--root-workspace-shadow: none;
 	--root-workspace-margin-spacing: 0px;
 	--side-dock-actions-border-color: transparent;
-  } */
+} */
 
 .theme-light {
 	--accent-h: 204;
@@ -685,11 +722,11 @@ body {
 
 /* reduce spacing between metadata-container and first cm-line */
 .metadata-container
-	+ .cm-contentContainer
+	~ .cm-contentContainer
 	.cm-content
-	> div[contenteditable="false"]:first-child
+	> div[contenteditable="false"]
 	+ .cm-line {
-	padding-top: 1rem;
+	padding-top: 0.5rem;
 }
 
 /* blockquote */
@@ -729,25 +766,16 @@ body {
 .markdown-rendered .el-h5 > h5::before,
 .markdown-rendered .el-h6 > h6::before {
 	content: " ";
-	height: calc(1.2em - 6px);
+	height: 0.8em;
 	display: inline-block;
 	width: 4px;
 	border-radius: var(--size-4-1);
 	margin-right: var(--heading-indicator-spacing);
 	background-color: var(--h1-indicator-color);
-	transform: translateY(4px);
+	transform: translateY(-0.1em);
+	vertical-align: middle;
 }
 
-.markdown-rendered > h4::before,
-.markdown-rendered .el-h4 > h4::before {
-	transform: translateY(2px);
-}
-.markdown-rendered > h5::before,
-.markdown-rendered > h6::before,
-.markdown-rendered .el-h5 > h5::before,
-.markdown-rendered .el-h6 > h6::before {
-	transform: translateY(0px);
-}
 .markdown-rendered > h2::before,
 .markdown-rendered .el-h2 > h2::before {
 	background-color: var(--h2-indicator-color);
@@ -782,21 +810,14 @@ body {
 
 .is-live-preview .HyperMD-header::before {
 	content: " ";
-	height: calc(1.2em - 6px);
 	display: inline-block;
 	width: 4px;
 	border-radius: var(--size-4-1);
 	margin-right: var(--heading-indicator-spacing);
 	background-color: var(--h1-indicator-color);
-	transform: translateY(4px);
-}
-
-.is-live-preview .HyperMD-header-4.HyperMD-header::before {
-	transform: translateY(6px);
-}
-.is-live-preview .HyperMD-header-5.HyperMD-header::before,
-.is-live-preview .HyperMD-header-6.HyperMD-header::before {
-	transform: translateY(7px);
+	vertical-align: middle;
+	height: 0.8em;
+	transform: translateY(-0.1em);
 }
 
 .is-live-preview .HyperMD-header-2.HyperMD-header::before {
@@ -937,6 +958,63 @@ body .markdown-rendered mark {
 .markdown-source-view.mod-cm6 .cm-table-widget .table-col-btn,
 .markdown-source-view.mod-cm6 .cm-table-widget .table-row-btn {
 	background-color: var(--background-secondary);
+}
+
+.composer--ObsidianTableStyle {
+	.el-table table th,
+	.el-table table td,
+	.table-wrapper table th,
+	.table-wrapper table td {
+		border-right: 1px solid var(--background-modifier-border);
+		border-left: 1px solid var(--background-modifier-border);
+	}
+}
+
+.composer--BorderlessTableStyle {
+	.el-table table,
+	.table-wrapper table {
+		--table-border-width: 0px;
+		--table-header-border-width: 0px;
+		--table-row-last-border-width: 0px;
+
+		box-shadow: hsl(var(--accent-h), var(--accent-l), var(--accent-s), 0.25)
+				0px 0px 5px -1px,
+			hsl(var(--accent-h), var(--accent-l), var(--accent-s), 0.3) 0px 1px
+				0px -1px;
+	}
+}
+
+body:not(.composer--HideStripedTableBackground) {
+	.el-table table,
+	.table-wrapper table {
+		background-color: var(--background-primary-alt);
+		--table-row-alt-background: var(--background-primary);
+		--table-row-alt-background-hover: var(--background-primary);
+	}
+}
+
+.composer--AcademicTableStyle {
+	--table-header-border-width: 2px;
+	--table-header-border-color: var(--text-normal);
+
+	--table-row-last-border-width: 2px;
+	--table-row-last-border-color: var(--text-normal);
+
+	--table-row-first-border-color: var(--text-faint);
+	--table-row-first-top-border-width: 1px;
+
+	--table-border-width: 0px;
+
+	.el-table table tbody tr:first-child > td,
+	.table-wrapper table tbody tr:first-child > td {
+		border-color: var(--table-row-first-border-color);
+		border-top-width: var(--table-row-first-top-border-width);
+	}
+
+	.el-table table tbody tr:last-child > td,
+	.table-wrapper table tbody tr:last-child > td {
+		border-color: var(--table-row-last-border-color);
+	}
 }
 
 /* link/internal */
@@ -1104,6 +1182,24 @@ body:not(.is-mobile):not(.composer--DisableNavHeaderAutoHide)
 .mod-right-split .workspace-tab-header-container-inner {
 	gap: 4px;
 	opacity: 1;
+}
+
+body:not(.is-phone)
+	.workspace:not(.is-left-sidedock-open)
+	.sidebar-toggle-button.mod-left {
+	margin-top: 2px;
+}
+
+body:not(.is-phone)
+	.workspace:not(.is-right-sidedock-open)
+	.sidebar-toggle-button.mod-right {
+	margin-top: 2px;
+}
+
+.workspace-tab-header-tab-list,
+.workspace-tab-header-new-tab,
+.workspace-tab-header-spacer {
+	margin-top: 6px;
 }
 
 .nav-header .nav-buttons-container,
@@ -1469,9 +1565,9 @@ body:not(.is-phone) .view-header-title-parent {
 
 /* typograph */
 /* 
-	* Paragraph indent
-	* thanks for https://forum-zh.obsidian.md/t/topic/40452
-	*/
+	  * Paragraph indent
+	  * thanks for https://forum-zh.obsidian.md/t/topic/40452
+	  */
 .composer--ParagraphIndent {
 	--paragraph-indent: calc(var(--font-text-size) * 2);
 }
