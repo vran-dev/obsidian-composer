@@ -16,10 +16,10 @@ settings:
       description.zh: 选择一个预设的配色方案
       type: class-select
       allowEmpty: false
-      default: composer--DefaultScheme
+      default: composer--XiaScheme
       options:
           - label: Sù 素
-            value: composer--DefaultScheme
+            value: composer--SuScheme
           - label: Xiá 霞
             value: composer--XiaScheme
           - label: Qīng 青
@@ -107,9 +107,28 @@ settings:
       description.zh: 设置段落的词间距，需要指定单位 em 或 px
       type: variable-text
       default: 0.035em
+    - id: bold-style-setting
+      title: Bold
+      title.zh: 加粗
+      type: heading
+      level: 3
+      collapsed: true
+    - id: bold-color
+      title: Bold Color
+      title.zh: 加粗颜色
+      type: variable-themed-color
+      format: hex
+      default-light: "#2d3748"
+      default-dark: "#f0f4f8"
+    - id: bold-modifier
+      title: Bold Weight
+      title.zh: 加粗粗细
+      type: variable-number
+      default: 200
+    
     - id: typograph-heading-size
-      title: Heading (H1-H6)
-      title.zh: 标题（H1-H6）
+      title: Heading Font Size (H1-H6)
+      title.zh: 标题字体大小（H1-H6）
       type: heading
       level: 3
       collapsed: true
@@ -155,7 +174,49 @@ settings:
       description.zh: 需要指定单位 em 或 px
       type: variable-text
       default: 1em
-
+    
+    - id: typograph-heading-color-setting
+      title: Heading Font Color (H1-H6)
+      title.zh: 标题字体颜色（H1-H6）
+      type: heading
+      level: 3
+      collapsed: true
+    - id: h1-color
+      title: H1
+      type: variable-themed-color
+      format: hex
+      default-light: "#2d3748"
+      default-dark: "#e2e6eb"
+    - id: h2-color
+      title: H2
+      type: variable-themed-color
+      format: hex
+      default-light: "#4a556b"
+      default-dark: "#c5cad4"
+    - id: H3-color
+      title: H3
+      type: variable-themed-color
+      format: hex
+      default-light: "#66788d"
+      default-dark: "#a8aeb9"
+    - id: H4-color
+      title: H4
+      type: variable-themed-color
+      format: hex
+      default-light: "#7f8a9b"
+      default-dark: "#8f96a1"
+    - id: H5-color
+      title: H5
+      type: variable-themed-color
+      format: hex
+      default-light: "#9aa5b5"
+      default-dark: "#787f8a"
+    - id: H6-color
+      title: H6
+      type: variable-themed-color
+      format: hex
+      default-light: "#808080"
+      default-dark: "#666d78"
     - id: navbar-settings
       title: Navbar Settings
       title.zh: 导航栏设置
@@ -323,8 +384,6 @@ body {
 	--h6-size: 1em;
 	--heading-spacing: calc(var(--p-spacing) * 1.8);
 
-	--link-external-color: rgba(55, 53, 47, 0.85);
-	--link-external-color-hover: var(--text-normal);
 	--link-decoration: none;
 	--link-decoration-hover: none;
 	--link-external-decoration: underline;
@@ -407,25 +466,23 @@ body {
 } */
 
 .theme-light {
-	--accent-h: 204;
-	--accent-s: 15%;
-	--accent-l: 58%;
+	--accent-h: 12;
+	--accent-s: 31%;
+	--accent-l: 60%;
 
-	--background-primary: #fafafa;
-	--background-primary-alt: #f4f4f5;
-	--background-secondary: #f1f0ee;
-	--background-secondary-alt: #dddfe3;
+	--background-primary: rgb(243, 237, 233);
+	--background-primary-alt: rgb(238, 230, 225);
+	--background-secondary: rgb(232, 223, 217);
+	--background-secondary-alt: rgb(225, 215, 208);
 
-	--background-gradient: radial-gradient(
-		ellipse at 50% 30%,
-		hsl(0, 0%, 100%) 20%,
-		hsl(220, 16%, 95%) 80%
+	--background-gradient: linear-gradient(
+		rgb(217, 224, 227),
+		rgb(235, 215, 210)
 	);
-
-	--background-modifier-border: rgba(225, 219, 214, 0.6);
+	--background-modifier-border: hsla(25, 20%, 70%, 0.4);
 
 	/* text */
-	--color-base-100: #3a4659;
+	--color-base-100: #323c4d;
 	--bold-color: #2d3748;
 	--bold-modifier: 200;
 
@@ -436,33 +493,33 @@ body {
 	--h4-color: #7f8a9b;
 	--h5-color: #9aa5b5;
 	--h6-color: #808080;
-	--h1-indicator-color: #2d3748;
-	--h2-indicator-color: #4a556b;
-	--h3-indicator-color: #66788d;
-	--h4-indicator-color: #7f8a9b;
-	--h5-indicator-color: #9aa5b5;
-	--h6-indicator-color: #808080;
+	--h1-indicator-color: var(--h1-color);
+	--h2-indicator-color: var(--h2-color);
+	--h3-indicator-color: var(--h3-color);
+	--h4-indicator-color: var(--h4-color);
+	--h5-indicator-color: var(--h5-color);
+	--h6-indicator-color: var(--h6-color);
 
 	/* inline code */
 	--code-normal: #eb5757;
 	--code-border-color: transparent;
 	--code-background: hsla(31, 41%, 90%, 0.6);
 
-	/* text-highlight */
-	--text-highlight-background: hsla(41, 61%, 92%);
-	--text-highlight-border-color: hsl(47, 48%, 42%);
-	--text-highlight-color: hsl(220, 25%, 25%);
-	--text-highlight-border-radius: 4px;
-
 	/* quote */
-	--blockquote-border-color: hsl(220, 15%, 80%);
-	--blockquote-background-color: hsl(220, 20%, 97%);
-	--blockquote-color: hsl(220, 25%, 35%);
+	--blockquote-border-color: hsl(25, 20%, 70%);
+	--blockquote-background-color: rgba(237, 228, 222, 0.811);
+	--blockquote-color: hsl(25, 20%, 30%);
 
 	/* codeblock */
-	--codeblock-background: #d6d4d440;
-	--codeblock-caret-color: #4a556b;
+	--codeblock-background: rgba(234, 223, 215, 0.749);
+	--codeblock-caret-color: hsl(25, 20%, 30%);
 	--codeblock-border-radius: 8px;
+
+	/* text highlight */
+	--text-highlight-background: rgba(248, 227, 217, 0.9);
+	--text-highlight-border-color: rgb(167, 98, 64);
+	--text-highlight-color: rgb(102, 80, 63);
+	--text-highlight-border-radius: 4px;
 
 	/* basic color */
 	--color-red-rgb: 174, 62, 76;
@@ -474,6 +531,7 @@ body {
 	--color-green-rgb: 62, 132, 98;
 	--color-yellow-rgb: 191, 143, 63;
 	--color-pink-rgb: 184, 92, 132;
+
 	/* callout */
 	--callout-bug: var(--color-red-rgb);
 	--callout-default: var(--color-blue-rgb);
@@ -496,25 +554,25 @@ body {
 }
 
 .theme-dark {
-	--accent-h: 204;
-	--accent-s: 18%;
-	--accent-l: 42%;
+	--accent-h: 30;
+	--accent-s: 40%;
+	--accent-l: 65%;
 
-	--background-primary: #1a1e24;
-	--background-primary-alt: #252a32;
-	--background-secondary: #2d333b;
-	--background-secondary-alt: #373e48;
+	--background-primary: hsl(215, 22%, 15%);
+	--background-primary-alt: hsl(215, 18%, 19%);
+	--background-secondary: hsl(225, 15%, 20%);
+	--background-secondary-alt: hsl(235, 15%, 28%);
 
-	--background-gradient: radial-gradient(
-		ellipse at 50% 30%,
-		hsl(220, 12%, 18%) 20%,
-		hsl(220, 14%, 12%) 80%
+	--background-gradient: linear-gradient(
+		155deg,
+		var(--background-primary) 0%,
+		hsl(215, 18%, 18%),
+		hsl(255, 12%, 28%)
 	);
 
-	--background-modifier-border: rgba(67, 73, 83, 0.6);
+	--background-modifier-border: rgb(69, 74, 84);
 
-	/* 文本系统 */
-	--color-base-100: #d4d9e0;
+	/* bold */
 	--bold-color: #f0f4f8;
 	--bold-modifier: 200;
 
@@ -532,31 +590,26 @@ body {
 	--h5-indicator-color: var(--h5-color);
 	--h6-indicator-color: var(--h6-color);
 
+	/* quote */
+	--blockquote-border-color: #67594c;
+	--blockquote-background-color: rgba(42, 49, 60, 0.6);
+	--blockquote-color: rgb(207, 197, 175);
+
+	/* codeblock*/
+	--codeblock-background: rgba(37, 44, 55, 0.85);
+	--codeblock-caret-color: rgb(201, 166, 130);
+	--codeblock-border-radius: 8px;
+	--codeblock-border: #e5e7eb;
+
+	/* text highlight */
+	--text-highlight-background: hsla(38, 27%, 54%, 0.5);
+	--text-highlight-border-color: hsl(31, 48%, 66%);
+	--text-highlight-color: hsl(40, 20%, 90%);
+
 	/* inline code */
 	--code-normal: #ff7b72;
 	--code-border-color: transparent;
 	--code-background: hsla(204, 15%, 25%, 0.4);
-
-	/* text highlight */
-	--text-highlight-background: hsla(40, 30%, 25%, 0.4);
-	--text-highlight-border-color: hsl(40, 27%, 61%);
-	--text-highlight-color: hsl(40, 60%, 85%);
-	--text-highlight-border-radius: 4px;
-
-	/* quote */
-	--blockquote-border-color: hsl(204, 15%, 35%);
-	--blockquote-background-color: hsla(204, 15%, 15%, 0.3);
-	--blockquote-color: hsl(204, 15%, 75%);
-
-	/* codeblock */
-	--codeblock-background: #2b303880;
-	--codeblock-caret-color: #c5cad4;
-	--codeblock-border-radius: 8px;
-	--codeblock-border: #e5e7eb;
-
-	/* link */
-	--link-external-color: rgba(196, 196, 196, 0.85);
-	--link-external-color-hover: var(--text-normal);
 
 	/* basic color */
 	--color-red-rgb: 255, 123, 114;
@@ -578,69 +631,76 @@ body {
 	--header-active-bg: rgba(255, 255, 255, 0.05);
 }
 
-/* ---- Xia ---- */
-.composer--XiaScheme.theme-light {
-	--accent-h: 12;
-	--accent-s: 31%;
-	--accent-l: 60%;
-	--background-modifier-border: hsla(25, 20%, 70%, 0.4);
+/* ---- Su ---- */
+.composer--SuScheme.theme-light {
+	--accent-h: 204;
+	--accent-s: 15%;
+	--accent-l: 58%;
 
-	--background-primary: rgb(243, 237, 233);
-	--background-primary-alt: rgb(238, 230, 225);
-	--background-secondary: rgb(232, 223, 217);
-	--background-secondary-alt: rgb(225, 215, 208);
-	--background-gradient: linear-gradient(
-		rgb(217, 224, 227),
-		rgb(235, 215, 210)
+	--background-primary: #fafafa;
+	--background-primary-alt: #f4f4f5;
+	--background-secondary: #f1f0ee;
+	--background-secondary-alt: #dddfe3;
+
+	--background-gradient: radial-gradient(
+		ellipse at 50% 30%,
+		hsl(0, 0%, 100%) 20%,
+		hsl(220, 16%, 95%) 80%
 	);
 
+	--background-modifier-border: rgba(225, 219, 214, 0.6);
+
 	/* quote */
-	--blockquote-border-color: hsl(25, 20%, 70%);
-	--blockquote-background-color: rgba(237, 228, 222, 0.811);
-	--blockquote-color: hsl(25, 20%, 30%);
+	--blockquote-border-color: hsl(220, 15%, 80%);
+	--blockquote-background-color: hsl(220, 20%, 97%);
+	--blockquote-color: hsl(220, 25%, 35%);
 
 	/* codeblock */
-	--codeblock-background: rgba(234, 223, 215, 0.749);
-	--codeblock-caret-color: hsl(25, 20%, 30%);
+	--codeblock-background: #d6d4d440;
+	--codeblock-caret-color: #4a556b;
+	--codeblock-border-radius: 8px;
 
-	/* text highlight */
-	--text-highlight-background: rgba(248, 227, 217, 0.9);
-	--text-highlight-border-color: rgb(167, 98, 64);
-	--text-highlight-color: rgb(102, 80, 63);
+	/* text-highlight */
+	--text-highlight-background: hsla(41, 61%, 92%);
+	--text-highlight-border-color: hsl(47, 48%, 42%);
+	--text-highlight-color: hsl(220, 25%, 25%);
+	--text-highlight-border-radius: 4px;
 }
 
-.composer--XiaScheme.theme-dark {
-	--accent-h: 30;
-	--accent-s: 40%;
-	--accent-l: 65%;
+.composer--SuScheme.theme-dark {
+	--accent-h: 204;
+	--accent-s: 18%;
+	--accent-l: 42%;
 
-	--background-gradient: linear-gradient(
-		hsl(215, 18%, 18%),
-		hsl(255, 12%, 28%)
+	--background-primary: #1a1e24;
+	--background-primary-alt: #252a32;
+	--background-secondary: #2d333b;
+	--background-secondary-alt: #373e48;
+
+	--background-gradient: radial-gradient(
+		ellipse at 50% 30%,
+		hsl(220, 12%, 18%) 20%,
+		hsl(220, 14%, 12%) 80%
 	);
-	--background-primary: hsl(215, 18%, 15%);
-	--background-primary-alt: hsl(215, 18%, 19%);
-	--background-secondary: hsl(255, 12%, 25%);
-	--background-secondary-alt: hsl(255, 12%, 29%);
 
-	--text-normal: #dedbd3;
-
-	/* border */
-	--background-modifier-border: rgb(69, 74, 84);
+	--background-modifier-border: rgba(67, 73, 83, 0.6);
 
 	/* quote */
-	--blockquote-border-color: #67594c;
-	--blockquote-background-color: rgba(42, 49, 60, 0.6);
-	--blockquote-color: rgb(207, 197, 175);
+	--blockquote-border-color: hsl(204, 15%, 35%);
+	--blockquote-background-color: hsla(204, 15%, 15%, 0.3);
+	--blockquote-color: hsl(204, 15%, 75%);
 
-	/* codeblock*/
-	--codeblock-background: rgba(37, 44, 55, 0.85);
-	--codeblock-caret-color: rgb(201, 166, 130);
+	/* codeblock */
+	--codeblock-background: #2b303880;
+	--codeblock-caret-color: #c5cad4;
+	--codeblock-border-radius: 8px;
+	--codeblock-border: #e5e7eb;
 
 	/* text highlight */
-	--text-highlight-background: hsla(38, 27%, 54%, 0.5);
-	--text-highlight-border-color: hsl(31, 48%, 66%);
-	--text-highlight-color: hsl(40, 20%, 90%);
+	--text-highlight-background: hsla(40, 30%, 25%, 0.4);
+	--text-highlight-border-color: hsl(40, 27%, 61%);
+	--text-highlight-color: hsl(40, 60%, 85%);
+	--text-highlight-border-radius: 4px;
 }
 
 /* ---- Qing ---- */
@@ -661,13 +721,16 @@ body {
 
 	--background-modifier-border: #dce3e5;
 
+	/* quote */
 	--blockquote-border-color: hsl(190, 15%, 70%);
 	--blockquote-background-color: hsla(190, 20%, 95%, 0.8);
 	--blockquote-color: hsl(190, 25%, 35%);
 
+	/* codeblock */
 	--codeblock-background: hsla(190, 15%, 92%, 0.9);
 	--codeblock-caret-color: hsl(192, 33%, 15%);
 
+	/* text-highlight */
 	--text-highlight-background: hsla(201, 39%, 84%, 0.45);
 	--text-highlight-border-color: hsl(198, 25%, 70%);
 	--text-highlight-color: hsl(197, 35%, 30%);
@@ -690,13 +753,16 @@ body {
 		hsl(198, 20%, 23%) 100%
 	);
 
+	/* quote */
 	--blockquote-border-color: hsl(200, 20%, 35%);
 	--blockquote-background-color: hsla(200, 25%, 18%, 0.8);
 	--blockquote-color: hsl(200, 32%, 71%);
 
+	/* codeblock */
 	--codeblock-background: hsla(200, 20%, 22%, 0.9);
 	--codeblock-caret-color: hsl(200, 30%, 65%);
 
+	/* text-highlight */
 	--text-highlight-background: hsla(200, 38%, 74%, 0.4);
 	--text-highlight-border-color: hsl(199, 55%, 88%);
 	--text-highlight-color: hsl(200, 13%, 91%);
@@ -1637,6 +1703,10 @@ body.composer--ParagraphIndent div.markdown-reading-view div.mermaid {
 }
 
 /* components */
+.composer--ParagraphIndent .components--ComponentEl {
+	--paragraph-indent: 0px;
+}
+
 .components--DialogPanel {
 	background: var(--background-gradient);
 }
