@@ -193,25 +193,25 @@ settings:
       format: hex
       default-light: "#4a556b"
       default-dark: "#c5cad4"
-    - id: H3-color
+    - id: h3-color
       title: H3
       type: variable-themed-color
       format: hex
       default-light: "#66788d"
       default-dark: "#a8aeb9"
-    - id: H4-color
+    - id: h4-color
       title: H4
       type: variable-themed-color
       format: hex
       default-light: "#7f8a9b"
       default-dark: "#8f96a1"
-    - id: H5-color
+    - id: h5-color
       title: H5
       type: variable-themed-color
       format: hex
       default-light: "#9aa5b5"
       default-dark: "#787f8a"
-    - id: H6-color
+    - id: h6-color
       title: H6
       type: variable-themed-color
       format: hex
