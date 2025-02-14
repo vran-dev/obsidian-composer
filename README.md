@@ -2,6 +2,8 @@
 
 an out-of-box theme for Obsidian, which is designed for reading and writing comfortably.
 
+<img src="screenshot.png" height="500px"/>
+
 ## Screenshots
 
 You can install `style settings` plugin and change the theme color in the plugin setting.
