@@ -2,7 +2,7 @@
 
 an out-of-box theme for Obsidian, which is designed for reading and writing comfortably.
 
-<img src="screenshot.png" height="500px"/>
+<img src="screenshot-original.png" />
 
 ## Screenshots
 
