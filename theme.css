@@ -41,6 +41,36 @@ settings:
       max: 1200
       format: px
       step: 1
+    - id: callout-setting
+      title: Callout
+      title.zh: Callout
+      type: heading
+      level: 3
+      collapsed: true
+    - id: callout-style
+      title: Callout Style
+      title.zh: Callout 样式
+      description: Choose prefered Callout style
+      description.zh: 选择喜欢的 Callout 风格
+      type: class-select
+      allowEmpty: false
+      default: composer--DefaultCalloutStyle
+      options:
+          - label: Default
+            label.zh: 默认
+            value: composer--DefaultCalloutStyle
+          - label: Subtle Grid
+            label.zh: 渐隐网格
+            value: composer--SubtleGridCallout
+          - label: Clean Line
+            label.zh: 简洁线条
+            value: composer--CleanLineCallout
+          - label: Github Style
+            label.zh: Github 风格
+            value: composer--GithubCallout
+          - label: Window Panel
+            label.zh: 窗格
+            value: composer--WindowPanelCallout
     - id: table-setting
       title: Table
       title.zh: 表格
@@ -918,7 +948,7 @@ body {
 	margin-inline-start: 26px;
 }
 
-/* callout */
+/* default callout */
 .callout {
 	border: 1px solid rgba(var(--callout-color), 0.35);
 }
@@ -931,6 +961,114 @@ body {
 	border-radius: initial;
 	overflow: hidden;
 	cursor: text;
+}
+
+/* subtle grid callout style */
+.composer--SubtleGridCallout .callout {
+	background: linear-gradient(
+		150deg,
+		rgba(var(--callout-color), 0.15) 0%,
+		rgba(var(--callout-color), 0.05) 10%,
+		var(--background-primary) 38%
+	);
+	border: 1px solid rgba(var(--callout-color), 0.38);
+	position: relative;
+	padding: 4px;
+}
+
+.composer--SubtleGridCallout .callout::before {
+	content: "";
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	width: 42%;
+	height: 88%;
+	background: repeating-linear-gradient(
+			to right,
+			transparent 0,
+			transparent 19px,
+			rgba(var(--callout-color), 0.6) 20px
+		),
+		repeating-linear-gradient(
+			to bottom,
+			transparent 0,
+			transparent 19px,
+			rgba(var(--callout-color), 0.6) 20px
+		);
+	mask: linear-gradient(to right, var(--background-primary), transparent 80%),
+		linear-gradient(to bottom, var(--background-primary), transparent 80%);
+	mask-composite: intersect;
+}
+.composer--SubtleGridCallout .callout-title {
+	padding: 8px 16px 0px 16px;
+}
+.composer--SubtleGridCallout .callout-content {
+	padding: 0px 16px 0px 16px;
+}
+
+/* window panel callout */
+.composer--WindowPanelCallout .callout {
+	border: 1px solid rgba(var(--callout-color), 0.68);
+	position: relative;
+	background-color: transparent;
+	padding: 0px;
+}
+.composer--WindowPanelCallout .callout-title {
+	border-bottom: 1px solid rgba(var(--callout-color), 0.68);
+	background-color: rgba(var(--callout-color), 0.1);
+	padding: 8px 16px 8px 16px;
+}
+
+.composer--WindowPanelCallout .callout-content {
+	padding: 0px 16px;
+}
+
+/* clean line callout */
+.composer--CleanLineCallout .callout {
+	background-color: transparent;
+}
+
+.composer--CleanLineCallout .callout-title {
+	position: relative;
+	padding: 0px 0px 8px 0px;
+}
+
+.composer--CleanLineCallout .callout.is-collapsed .callout-title {
+	padding: initial;
+}
+
+.composer--CleanLineCallout .callout.is-collapsed .callout-title::after {
+	display: none;
+	height: 0px;
+	background: initial;
+}
+
+.composer--CleanLineCallout .callout-title::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(
+		to right,
+		rgba(var(--callout-color), 0.1) 0%,
+		rgba(var(--callout-color), 0.6) 12%,
+		rgba(var(--callout-color), 0.1) 62%,
+		transparent 100%
+	);
+}
+/* github callout */
+.composer--GithubCallout .callout {
+	border: none;
+	border-left: rgba(var(--callout-color), 0.6) 4px solid;
+	border-radius: 0px;
+	background-color: transparent;
+	padding: 8px 16px 8px 16px;
+}
+
+.composer--GithubCallout .callout-title {
+	gap: var(--size-4-2);
 }
 
 /* code */
@@ -1632,9 +1770,9 @@ body:not(.is-phone) .view-header-title-parent {
 
 /* typograph */
 /* 
-  * Paragraph indent
-  * thanks for https://forum-zh.obsidian.md/t/topic/40452
-  */
+* Paragraph indent
+* thanks for https://forum-zh.obsidian.md/t/topic/40452
+*/
 .composer--ParagraphIndent {
 	--paragraph-indent: calc(var(--font-text-size) * 2);
 }
@@ -1704,8 +1842,9 @@ body.composer--ParagraphIndent div.markdown-reading-view div.mermaid {
 }
 
 /* components */
-.composer--ParagraphIndent .components--ComponentEl {
+body.composer--ParagraphIndent .components--ComponentEl {
 	--paragraph-indent: 0px;
+	text-indent: initial;
 }
 
 .components--DialogPanel {
