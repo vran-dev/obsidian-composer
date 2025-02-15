@@ -1000,7 +1000,7 @@ body {
 	mask-composite: intersect;
 }
 .composer--SubtleGridCallout .callout-title {
-	padding: 8px 16px 0px 16px;
+	padding: 8px 16px 8px 16px;
 }
 .composer--SubtleGridCallout .callout-content {
 	padding: 0px 16px 0px 16px;
