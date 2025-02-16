@@ -973,6 +973,7 @@ body {
 }
 
 .composer--SubtleGridCallout .callout::before {
+	z-index: -1;
 	content: "";
 	position: absolute;
 	top: 8px;
