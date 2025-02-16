@@ -935,12 +935,8 @@ body {
 
 /* list */
 /* add top margin at the start of list */
-.markdown-source-view .cm-line:not(.HyperMD-header) + .HyperMD-list-line-1 {
-	padding-top: 0.5rem !important;
-}
-
-.markdown-source-view .cm-line.HyperMD-list-line + .HyperMD-list-line-1 {
-	padding-top: 0px !important;
+.markdown-source-view .cm-line:not(.HyperMD-list-line) + .HyperMD-list-line-1 {
+	padding-top: 0.5rem;
 }
 
 /* reading view */
