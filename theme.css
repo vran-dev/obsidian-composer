@@ -486,17 +486,17 @@ body {
 }
 
 /* body {
-	  --ribbon-background-collapsed: transparent;
-	  --mod-left-ribbon-background: transparent;
-	  --mod-left-ribbon-background-collapsed: var(--background-primary);
-	  --mod-root-header-background: var(--background-primary);
-	  --mod-root-header-margin: 0px;
-	  --root-workspace-padding-bottom: 0px;
-	  --root-workspace-radius: 0px;
-	  --root-workspace-shadow: none;
-	  --root-workspace-margin-spacing: 0px;
-	  --side-dock-actions-border-color: transparent;
-  } */
+	--ribbon-background-collapsed: transparent;
+	--mod-left-ribbon-background: transparent;
+	--mod-left-ribbon-background-collapsed: var(--background-primary);
+	--mod-root-header-background: var(--background-primary);
+	--mod-root-header-margin: 0px;
+	--root-workspace-padding-bottom: 0px;
+	--root-workspace-radius: 0px;
+	--root-workspace-shadow: none;
+	--root-workspace-margin-spacing: 0px;
+	--side-dock-actions-border-color: transparent;
+} */
 
 .theme-light {
 	--accent-h: 12;
@@ -1082,7 +1082,7 @@ body .cm-s-obsidian .cm-scroller .cm-inline-code:not(.cm-formatting) {
 	top: 6px;
 	height: 26px;
 	width: 100px;
-  } */
+} */
 
 .HyperMD-codeblock.HyperMD-codeblock-begin.HyperMD-codeblock-begin-bg {
 	border-top-left-radius: var(--codeblock-border-radius);
@@ -1751,12 +1751,6 @@ body:not(.composer--DisableFileFolderIcon) .workspace-leaf-content[data-type="bo
 	text-indent: var(--paragraph-indent);
 }
 
-/* exclude <p within codeblock */
-.composer--ParagraphIndent .markdown-reading-view .cm-preview-code-block p,
-.composer--ParagraphIndent .is-live-preview .cm-preview-code-block p {
-	text-indent: initial;
-}
-
 .composer--ParagraphIndent .markdown-reading-view p>br,
 .composer--ParagraphIndent .is-live-preview p>br {
 	content: "";
@@ -1767,6 +1761,18 @@ body:not(.composer--DisableFileFolderIcon) .workspace-leaf-content[data-type="bo
 .composer--ParagraphIndent .is-live-preview p>br::after {
 	content: "\000A\200B";
 	margin-inline-end: var(--paragraph-indent);
+}
+
+/* exclude <p within codeblock */
+.composer--ParagraphIndent .markdown-reading-view .cm-preview-code-block p,
+.composer--ParagraphIndent .is-live-preview .cm-preview-code-block p {
+	text-indent: initial;
+}
+
+/* exclude table */
+.composer--ParagraphIndent .table-cell-wrapper .markdown-reading-view :is([class="cm-line"], [class="cm-active cm-line"], p),
+.composer--ParagraphIndent .table-cell-wrapper .is-live-preview :is([class="cm-line"], [class="cm-active cm-line"], p) {
+	text-indent: initial;
 }
 
 /* ====== Basic UI Component ====== */
