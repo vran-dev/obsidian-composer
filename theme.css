@@ -247,9 +247,9 @@ settings:
       format: hex
       default-light: "#808080"
       default-dark: "#666d78"
-    - id: navbar-settings
-      title: Navbar Settings
-      title.zh: 导航栏设置
+    - id: layout-settings
+      title: Layout Settings
+      title.zh: 布局设置
       type: heading
       level: 2
       collapsed: true
@@ -258,6 +258,10 @@ settings:
       title.zh: 关闭自动隐藏导航栏
       description: Enable this option to disable the auto-hide of the nav header
       description.zh: 启用以后，相关视图的导航栏将会常驻（比如文件列表、标签、目录栏的导航栏菜单），不会在失去焦点时自动隐藏
+      type: class-toggle
+    - id: composer--DisableFileFolderIcon
+      title: Disable File Folder Icon
+      title.zh: 禁用目录列表文件夹图标
       type: class-toggle
     - id: color-settings
       title: Color Settings
@@ -1069,6 +1073,17 @@ body .cm-s-obsidian .cm-scroller .cm-inline-code:not(.cm-formatting) {
 	word-spacing: initial;
 }
 
+/* .markdown-source-view .HyperMD-codeblock.HyperMD-codeblock-begin::before {
+	content: "";
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDU0IDE0Ij4KICAgICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxIDEpIj4KICAgICAgICA8Y2lyY2xlIGN4PSI2IiBjeT0iNiIgcj0iNiIgZmlsbD0iI0ZGNUY1NiIgc3Ryb2tlPSIjRTA0NDNFIiBzdHJva2Utd2lkdGg9Ii41Ij48L2NpcmNsZT4KICAgICAgICA8Y2lyY2xlIGN4PSIyNiIgY3k9IjYiIHI9IjYiIGZpbGw9IiNGRkJEMkUiIHN0cm9rZT0iI0RFQTEyMyIgc3Ryb2tlLXdpZHRoPSIuNSI+PC9jaXJjbGU+CiAgICAgICAgPGNpcmNsZSBjeD0iNDYiIGN5PSI2IiByPSI2IiBmaWxsPSIjMjdDOTNGIiBzdHJva2U9IiMxQUFCMjkiIHN0cm9rZS13aWR0aD0iLjUiPjwvY2lyY2xlPgogICAgICA8L2c+CiAgICA8L3N2Zz4=");
+	background-repeat: no-repeat;
+	display: inline-block;
+	position: absolute;
+	top: 6px;
+	height: 26px;
+	width: 100px;
+  } */
+
 .HyperMD-codeblock.HyperMD-codeblock-begin.HyperMD-codeblock-begin-bg {
 	border-top-left-radius: var(--codeblock-border-radius);
 	border-top-right-radius: var(--codeblock-border-radius);
@@ -1507,7 +1522,7 @@ body:not(.is-phone) .workspace:not(.is-right-sidedock-open):not(.is-left-sidedoc
 	padding-bottom: var(--root-workspace-padding-bottom);
 }
 
-body:not(.is-phone) .workspace-split.mod-right-split {
+.workspace-split.mod-right-split {
 	padding-bottom: var(--root-workspace-padding-bottom);
 }
 
@@ -1696,16 +1711,16 @@ body:not(.is-phone) .view-header-title-parent {
 	gap: 2px;
 }
 
-body .workspace-leaf-content[data-type="file-explorer"] .tree-item-icon.collapse-icon,
-body .workspace-leaf-content[data-type="bookmarks"] .tree-item-icon.collapse-icon {
+body:not(.composer--DisableFileFolderIcon) .workspace-leaf-content[data-type="file-explorer"] .tree-item-icon.collapse-icon,
+body:not(.composer--DisableFileFolderIcon) .workspace-leaf-content[data-type="bookmarks"] .tree-item-icon.collapse-icon {
 	background-color: var(--icon-color);
 	-webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.333' d='M4 9.333 4.967 7.4a1.333 1.333 0 0 1 1.193-.733h7.173m0 0a1.333 1.333 0 0 1 1.294 1.666l-1.034 4a1.333 1.333 0 0 1-1.293 1H2.667A1.333 1.333 0 0 1 1.333 12V3.333C1.333 2.6 1.933 2 2.667 2h2.62a1.333 1.333 0 0 1 1.106.6l.547.8a1.333 1.333 0 0 0 1.107.6H12a1.333 1.333 0 0 1 1.333 1.333v1.334Z'/%3e%3c/svg%3e");
 	background-repeat: no-repeat;
 	-webkit-mask-repeat: no-repeat;
 }
 
-body .workspace-leaf-content[data-type="file-explorer"] .is-collapsed .tree-item-icon.collapse-icon,
-body .workspace-leaf-content[data-type="bookmarks"] .is-collapsed .tree-item-icon.collapse-icon {
+body:not(.composer--DisableFileFolderIcon) .workspace-leaf-content[data-type="file-explorer"] .is-collapsed .tree-item-icon.collapse-icon,
+body:not(.composer--DisableFileFolderIcon) .workspace-leaf-content[data-type="bookmarks"] .is-collapsed .tree-item-icon.collapse-icon {
 	background-color: var(--icon-color);
 	-webkit-mask-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' viewBox='0 0 16 16'%3e%3cpath stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.333' d='M2.667 13.333h10.666A1.333 1.333 0 0 0 14.667 12V5.333A1.333 1.333 0 0 0 13.333 4H8.047a1.333 1.333 0 0 1-1.107-.6l-.547-.8A1.333 1.333 0 0 0 5.287 2h-2.62a1.333 1.333 0 0 0-1.334 1.333V12c0 .733.6 1.333 1.334 1.333Z'/%3e%3c/svg%3e");
 	background-repeat: no-repeat;
