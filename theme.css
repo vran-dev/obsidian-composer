@@ -263,6 +263,12 @@ settings:
       title: Disable File Folder Icon
       title.zh: 禁用目录列表文件夹图标
       type: class-toggle
+    - id: composer-DisableModalBackdrop
+      title: Disable Modal Backdrop
+      title.zh: 禁用模态框背景高斯模糊
+      description: Enable this option to disable the backdrop of the modal
+      description.zh: 启用以后，模态窗口的背景将会变成透明，背景高斯模糊效果也会消失
+      type: class-toggle
     - id: color-settings
       title: Color Settings
       title.zh: 色彩设置
@@ -1728,8 +1734,8 @@ body:not(.composer--DisableFileFolderIcon) .workspace-leaf-content[data-type="bo
 }
 
 /* modal */
-.modal-container {
-	backdrop-filter: blur(var(--modal-bg-blur));
+body:not(.composer-DisableModalBackdrop) .modal-container {
+    backdrop-filter: blur(var(--modal-bg-blur));
 }
 
 /* suggest */
