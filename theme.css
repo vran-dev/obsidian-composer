@@ -263,6 +263,15 @@ settings:
       title: Disable File Folder Icon
       title.zh: 禁用目录列表文件夹图标
       type: class-toggle
+    - id: modal-bg-blur
+      title: Modal Backdrop Blur Intensity
+      title.zh: 模态框背景模糊强度
+      type: variable-number-slider
+      default: 3
+      min: 0
+      max: 10
+      step: 1
+      format: px
     - id: color-settings
       title: Color Settings
       title.zh: 色彩设置
