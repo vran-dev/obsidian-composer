@@ -271,6 +271,7 @@ settings:
       min: 0
       max: 10
       step: 1
+      format: px
     - id: color-settings
       title: Color Settings
       title.zh: 色彩设置
@@ -413,7 +414,7 @@ body {
 	--inline-title-size: 1.6rem;
 	--inline-title-color: var(--text-normal);
 	--header-height: 36px;
-	--modal-bg-blur: 3;
+	--modal-bg-blur: 3px;
 	--metadata-input-font-size: 14px;
 	--file-margins: 24px;
 
@@ -1737,7 +1738,7 @@ body:not(.composer--DisableFileFolderIcon) .workspace-leaf-content[data-type="bo
 
 /* modal */
 .modal-container {
-    backdrop-filter: blur(calc(var(--modal-bg-blur) * 1px));
+	backdrop-filter: blur(var(--modal-bg-blur));
 }
 
 /* suggest */
