@@ -40,9 +40,9 @@
 
 ![表格样式](assets/table-style.png)
 
-### Callout style
+### Callout样式
 
-![callout style](assets/callout-style.png)
+![callout样式](assets/callout-style.png)
 
 ## 鸣谢
 

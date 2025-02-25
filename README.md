@@ -40,7 +40,7 @@ You can install `style settings` plugin and change the theme color in the plugin
 
 ![table style](assets/table-style.png)
 
-### Callout style
+### Callout Style
 
 ![callout style](assets/callout-style.png)
 
