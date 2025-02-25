@@ -11,7 +11,7 @@ You can install `style settings` plugin and change the theme color in the plugin
 
 ### Color Scheme
 
-> ![note]
+> [!NOTE]
 > color scheme change needs to install `style settings` plugin
 
 - Xia 霞

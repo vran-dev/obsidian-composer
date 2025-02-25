@@ -11,7 +11,7 @@
 
 ### 配色方案
 
-> ![note]
+> [!NOTE]
 > 改变配色方案需先安装`style settings`插件
 
 - Xia 霞
