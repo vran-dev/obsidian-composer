@@ -1,13 +1,13 @@
 中文 | [English](README.md)
 ## 简介
 
-一个开箱即用的obsidian主题，为更舒适的阅读与写作体验设计。
+一个开箱即用的 obsidian 主题，为更舒适的阅读与写作体验设计。
 
 <img src="screenshot-original.png" />
 
 ## 截图
 
-你可以安装 `style settings` 插件并用它修改Composer配色。
+你可以安装 `style settings` 插件并用它修改 Composer 配色。
 
 ### 配色方案
 
@@ -46,5 +46,5 @@
 
 ## 鸣谢
 
-- Task的复选框样式参考了[Minimal Theme](https://github.com/kepano/obsidian-minimal)， 来自@Kepano 的一个优秀obsidian主题。
+- 任务的复选框样式参考了 @Kepano 的 [Minimal 主题](https://github.com/kepano/obsidian-minimal)。
 
