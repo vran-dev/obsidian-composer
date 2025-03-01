@@ -1,3 +1,4 @@
+[中文](README_zh.md) | English
 ## Brief
 
 an out-of-box theme for Obsidian, which is designed for reading and writing comfortably.
@@ -10,7 +11,7 @@ You can install `style settings` plugin and change the theme color in the plugin
 
 ### Color Scheme
 
-> ![note]
+> [!NOTE]
 > color scheme change needs to install `style settings` plugin
 
 - Xia 霞
@@ -35,13 +36,13 @@ You can install `style settings` plugin and change the theme color in the plugin
 
 ![text formatting](assets/text-formatting.png)
 
-### Table
+### Table Style
 
 ![table style](assets/table-style.png)
 
-### Callout
+### Callout Style
 
-![callout](assets/callout-style.png)
+![callout style](assets/callout-style.png)
 
 ## Thanks
 

@@ -35,7 +35,7 @@ settings:
       title.zh: 内容区域宽度
       description: The maximum line width
       description.zh: 最大行宽
-      type: variable-number-slider
+      type: variable-number
       default: 700
       min: 420
       max: 1200
