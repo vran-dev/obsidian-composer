@@ -56,20 +56,15 @@ settings:
       allowEmpty: false
       default: composer--DefaultCalloutStyle
       options:
-          - label: Default
-            label.zh: 默认
+          - label: Default 默认
             value: composer--DefaultCalloutStyle
-          - label: Subtle Grid
-            label.zh: 渐隐网格
+          - label: Subtle Grid 渐隐网格
             value: composer--SubtleGridCallout
-          - label: Clean Line
-            label.zh: 简洁线条
+          - label: Clean Line 简洁线条
             value: composer--CleanLineCallout
           - label: Github Style
-            label.zh: Github 风格
             value: composer--GithubCallout
-          - label: Window Panel
-            label.zh: 窗格
+          - label: Window Panel 窗格
             value: composer--WindowPanelCallout
     - id: table-setting
       title: Table
@@ -86,17 +81,13 @@ settings:
       allowEmpty: false
       default: composer--DefaultTableStyle
       options:
-          - label: Default
-            label.zh: 默认
+          - label: Default 默认
             value: composer--DefaultTableStyle
           - label: Obsidian
-            label.zh: Obsidian
             value: composer--ObsidianTableStyle
-          - label: Borderless
-            label.zh: 无边框
+          - label: Borderless 无边框
             value: composer--BorderlessTableStyle
-          - label: Three Line(Academic)
-            label.zh: 三线表（学术）
+          - label: Three Line(Academic) 三线表(学术)
             value: composer--AcademicTableStyle
     - id: composer--HideStripedTableBackground
       title: Hide Striped Background
