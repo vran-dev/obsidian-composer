@@ -146,7 +146,28 @@ settings:
       title.zh: 加粗粗细
       type: variable-number
       default: 200
-    
+
+    - id: inline-code-style-setting
+      title: Inline Code Style
+      title.zh: 内联代码
+      type: heading
+      level: 3
+      collapsed: true
+    - id: inline-code-normal
+      title: Inline Code Text Color
+      title.zh: 内联代码文本色
+      type: variable-themed-color
+      format: hex
+      default-light: "#eb5757"
+      default-dark: "#ff7b72"
+    - id: inline-code-background
+      title: Inline Code Background Color
+      title.zh: 内联代码背景色
+      type: variable-themed-color
+      format: hsl
+      default-light: "hsla(31, 41%, 90%, 0.6)"
+      default-dark: "hsla(204, 15%, 25%, 0.4)"
+
     - id: typograph-heading-size
       title: Heading Font Size (H1-H6)
       title.zh: 标题字体大小（H1-H6）
@@ -586,7 +607,8 @@ body {
 	/* inline code */
 	--code-normal: #eb5757;
 	--code-border-color: transparent;
-	--code-background: hsla(31, 41%, 90%, 0.6);
+	--inline-code-normal: #eb5757;
+	--inline-code-background: hsla(31, 41%, 90%, 0.6);
 
 	/* quote */
 	--blockquote-border-color: hsl(25, 20%, 70%);
@@ -704,7 +726,8 @@ body {
 	/* inline code */
 	--code-normal: #ff7b72;
 	--code-border-color: transparent;
-	--code-background: hsla(204, 15%, 25%, 0.4);
+	--inline-code-normal: #ff7b72;
+	--inline-code-background: hsla(204, 15%, 25%, 0.4);
 
 	/* basic color */
 	--color-red-rgb: 255, 123, 114;
@@ -1142,10 +1165,15 @@ body {
 	gap: var(--size-4-2);
 }
 
-/* code */
-body .cm-s-obsidian .cm-scroller .cm-inline-code:not(.cm-formatting) {
-	padding: 0.15em 0.3em;
-	color: var(--code-normal);
+/* inline-code */
+.cm-s-obsidian span.cm-inline-code {
+	color: var(--inline-code-normal);
+	background-color: var(--inline-code-background);
+}
+
+.markdown-rendered code {
+	color: var(--inline-code-normal);
+	background-color: var(--inline-code-background);
 }
 
 /* codeblock */
