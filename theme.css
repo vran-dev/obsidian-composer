@@ -56,20 +56,15 @@ settings:
       allowEmpty: false
       default: composer--DefaultCalloutStyle
       options:
-          - label: Default
-            label.zh: 默认
+          - label: Default 默认
             value: composer--DefaultCalloutStyle
-          - label: Subtle Grid
-            label.zh: 渐隐网格
+          - label: Subtle Grid 渐隐网格
             value: composer--SubtleGridCallout
-          - label: Clean Line
-            label.zh: 简洁线条
+          - label: Clean Line 简洁线条
             value: composer--CleanLineCallout
           - label: Github Style
-            label.zh: Github 风格
             value: composer--GithubCallout
-          - label: Window Panel
-            label.zh: 窗格
+          - label: Window Panel 窗格
             value: composer--WindowPanelCallout
     - id: table-setting
       title: Table
@@ -86,17 +81,13 @@ settings:
       allowEmpty: false
       default: composer--DefaultTableStyle
       options:
-          - label: Default
-            label.zh: 默认
+          - label: Default 默认
             value: composer--DefaultTableStyle
           - label: Obsidian
-            label.zh: Obsidian
             value: composer--ObsidianTableStyle
-          - label: Borderless
-            label.zh: 无边框
+          - label: Borderless 无边框
             value: composer--BorderlessTableStyle
-          - label: Three Line(Academic)
-            label.zh: 三线表（学术）
+          - label: Three Line(Academic) 三线表(学术)
             value: composer--AcademicTableStyle
     - id: composer--HideStripedTableBackground
       title: Hide Striped Background
@@ -155,7 +146,28 @@ settings:
       title.zh: 加粗粗细
       type: variable-number
       default: 200
-    
+
+    - id: inline-code-style-setting
+      title: Inline Code Style
+      title.zh: 内联代码
+      type: heading
+      level: 3
+      collapsed: true
+    - id: inline-code-normal
+      title: Inline Code Text Color
+      title.zh: 内联代码文本色
+      type: variable-themed-color
+      format: hex
+      default-light: "#eb5757"
+      default-dark: "#ff7b72"
+    - id: inline-code-background
+      title: Inline Code Background Color
+      title.zh: 内联代码背景色
+      type: variable-themed-color
+      format: hsl
+      default-light: "hsla(31, 41%, 90%, 0.6)"
+      default-dark: "hsla(204, 15%, 25%, 0.4)"
+
     - id: typograph-heading-size
       title: Heading Font Size (H1-H6)
       title.zh: 标题字体大小（H1-H6）
@@ -272,6 +284,35 @@ settings:
       max: 10
       step: 1
       format: px
+    - id: outline-settings
+      title: Outline Settings
+      title.zh: 大纲设置
+      type: heading
+      level: 3
+      collapsed: true
+    - id: outline-style
+      title: Outline Style
+      title.zh: 大纲样式
+      description: Choose prefered outline style
+      description.zh: 选择大纲的样式
+      type: class-select
+      allowEmpty: false
+      default: composer--DefaultOutlineStyle
+      options:
+          - label: Default 默认
+            value: composer--DefaultOutlineStyle
+          - label: Node 节点
+            value: composer--NodeOutlineStyle
+    - id: outline-collapsed-icon-opacity
+      title: Outline Collapsed Icon Opacity
+      title.zh: 大纲折叠图标透明度
+      description: Set the opacity of the collapsed icon
+      description.zh: 设置折叠图标的透明度
+      type: variable-number-slider
+      default: 1
+      min: 0
+      max: 1
+      step: 0.1
     - id: color-settings
       title: Color Settings
       title.zh: 色彩设置
@@ -499,6 +540,9 @@ body {
 	--root-workspace-background: transparent;
 	--root-workspace-margin-spacing: 16px;
 	--side-dock-actions-border-color: var(--background-modifier-border);
+
+	/* outline */
+	--outline-collapsed-icon-opacity: 1;
 }
 
 /* body {
@@ -563,7 +607,8 @@ body {
 	/* inline code */
 	--code-normal: #eb5757;
 	--code-border-color: transparent;
-	--code-background: hsla(31, 41%, 90%, 0.6);
+	--inline-code-normal: #eb5757;
+	--inline-code-background: hsla(31, 41%, 90%, 0.6);
 
 	/* quote */
 	--blockquote-border-color: hsl(25, 20%, 70%);
@@ -681,7 +726,8 @@ body {
 	/* inline code */
 	--code-normal: #ff7b72;
 	--code-border-color: transparent;
-	--code-background: hsla(204, 15%, 25%, 0.4);
+	--inline-code-normal: #ff7b72;
+	--inline-code-background: hsla(204, 15%, 25%, 0.4);
 
 	/* basic color */
 	--color-red-rgb: 255, 123, 114;
@@ -1119,10 +1165,15 @@ body {
 	gap: var(--size-4-2);
 }
 
-/* code */
-body .cm-s-obsidian .cm-scroller .cm-inline-code:not(.cm-formatting) {
-	padding: 0.15em 0.3em;
-	color: var(--code-normal);
+/* inline-code */
+.cm-s-obsidian span.cm-inline-code {
+	color: var(--inline-code-normal);
+	background-color: var(--inline-code-background);
+}
+
+.markdown-rendered code {
+	color: var(--inline-code-normal);
+	background-color: var(--inline-code-background);
 }
 
 /* codeblock */
@@ -1730,6 +1781,137 @@ body:not(.is-phone) .view-header-title-parent {
 	.tree-item-self
 	.tree-item-icon.is-collapsed {
 	opacity: 1;
+}
+
+/* 
+ * Modified Outline Pane Component
+ * Based on original work Copyright (c) 2022 subframe7536
+ * Source: https://github.com/subframe7536/obsidian-theme-maple
+ * Licensed under MIT License (https://github.com/subframe7536/obsidian-theme-maple/blob/main/LICENSE)
+ */
+.composer--NodeOutlineStyle .workspace-leaf-content[data-type="outline"] .view-content {
+  /* Base styles for outline container */
+  .collapse-icon {
+    padding-inline-end: var(--size-2-3);
+	opacity: var(--outline-collapsed-icon-opacity);
+    
+    &::before {
+      content: "" !important;
+    }
+  }
+
+  /* Tree item base styles */
+  .tree-item {
+    &:not(.is-grabbing) {
+      position: relative;
+      
+      &::after {
+        content: "";
+        position: absolute;
+        width: 2px;
+        background-color: transparent;
+        top: calc(var(--nav-item-size) * 1.8 / 2 * -1);
+        left: -9px;
+        height: calc(100% - var(--nav-item-size) * 1.8 + var(--size-4-8));
+      }
+    }
+
+    /* Tree item self styling */
+    .tree-item-self {
+      position: relative;
+      margin: -1px 0 0;
+      white-space: nowrap;
+
+      .tree-item-inner {
+        padding-left: 16px;
+        margin-left: -16px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: calc(var(--nav-item-size) * 1.8);
+        line-height: calc(var(--nav-item-size) * 1.8);
+        position: relative;
+
+        &::before {
+          content: "";
+          width: var(--size-4-1);
+          height: var(--size-4-1);
+          border: 2px solid var(--color-accent);
+          border-radius: 50%;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+
+      /* Hide circle for items with icons */
+      .tree-item-icon ~ .tree-item-inner::before {
+        content: none;
+      }
+    }
+
+    /* Tree item icon styling */
+    .tree-item-icon {
+      cursor: pointer;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+
+      &::before {
+        width: var(--size-4-2);
+        height: var(--size-4-2);
+        background-color: var(--color-accent);
+        border-radius: 50%;
+        position: absolute;
+        left: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      svg {
+        display: block;
+        path { display: none; }
+      }
+    }
+
+    /* Collapsed state */
+    &.is-collapsed .tree-item-icon::before {
+      box-shadow: 0 0 0 4px var(--background-modifier-active-hover);
+    }
+
+    /* Hover states */
+    &:hover {
+      > .tree-item-children > .tree-item::after {
+        background-color: var(--color-accent);
+      }
+
+      > .tree-item-self:hover + .tree-item-children .tree-item::after,
+      > .tree-item-children > .tree-item:hover::after,
+      > .tree-item-children > .tree-item:hover ~ .tree-item::after {
+        background-color: transparent;
+      }
+    }
+
+    /* Hover decoration for child items */
+    &:hover > .tree-item-children > .tree-item:hover::before {
+      content: "";
+      position: absolute;
+      top: calc(var(--nav-item-size) * 1.8 / 2 * -1);
+      left: -9px;
+      bottom: calc(100% - (var(--nav-item-size) * 1.8 + var(--size-4-2)) / 2 - 1px);
+      width: 16px;
+      border-bottom-left-radius: var(--radius-m);
+      border-bottom: 2px solid var(--color-accent);
+      border-left: 2px solid var(--color-accent);
+    }
+  }
+
+  /* Child items spacing */
+  :is(.tree-item-children, .tree-item-self .tree-item-self) {
+    padding-left: 0;
+    margin-left: var(--size-4-5);
+    border-left: none;
+  }
 }
 
 /* windows titlebar button */
