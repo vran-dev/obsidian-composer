@@ -275,6 +275,12 @@ settings:
       title: Disable File Folder Icon
       title.zh: 禁用目录列表文件夹图标
       type: class-toggle
+    - id: composer--EnableIndentationGuidLine
+      title: Enable Indentation Guide Line
+      title.zh: 启用缩进指导线
+      description: show indentation guide line for file tree, ordered list, unordered list, and task list
+      description.zh: 显示文件树、有序列表、无序列表和任务列表的缩进指导线
+      type: class-toggle
     - id: modal-bg-blur
       title: Modal Backdrop Blur Intensity
       title.zh: 模态框背景模糊强度
@@ -546,17 +552,17 @@ body {
 }
 
 /* body {
-	  --ribbon-background-collapsed: transparent;
-	  --mod-left-ribbon-background: transparent;
-	  --mod-left-ribbon-background-collapsed: var(--background-primary);
-	  --mod-root-header-background: var(--background-primary);
-	  --mod-root-header-margin: 0px;
-	  --root-workspace-padding-bottom: 0px;
-	  --root-workspace-radius: 0px;
-	  --root-workspace-shadow: none;
-	  --root-workspace-margin-spacing: 0px;
-	  --side-dock-actions-border-color: transparent;
-  } */
+	--ribbon-background-collapsed: transparent;
+	--mod-left-ribbon-background: transparent;
+	--mod-left-ribbon-background-collapsed: var(--background-primary);
+	--mod-root-header-background: var(--background-primary);
+	--mod-root-header-margin: 0px;
+	--root-workspace-padding-bottom: 0px;
+	--root-workspace-radius: 0px;
+	--root-workspace-shadow: none;
+	--root-workspace-margin-spacing: 0px;
+	--side-dock-actions-border-color: transparent;
+} */
 
 .theme-light {
 	--accent-h: 12;
@@ -1188,15 +1194,15 @@ body {
 }
 
 /* .markdown-source-view .HyperMD-codeblock.HyperMD-codeblock-begin::before {
-	  content: "";
-	  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDU0IDE0Ij4KICAgICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxIDEpIj4KICAgICAgICA8Y2lyY2xlIGN4PSI2IiBjeT0iNiIgcj0iNiIgZmlsbD0iI0ZGNUY1NiIgc3Ryb2tlPSIjRTA0NDNFIiBzdHJva2Utd2lkdGg9Ii41Ij48L2NpcmNsZT4KICAgICAgICA8Y2lyY2xlIGN4PSIyNiIgY3k9IjYiIHI9IjYiIGZpbGw9IiNGRkJEMkUiIHN0cm9rZT0iI0RFQTEyMyIgc3Ryb2tlLXdpZHRoPSIuNSI+PC9jaXJjbGU+CiAgICAgICAgPGNpcmNsZSBjeD0iNDYiIGN5PSI2IiByPSI2IiBmaWxsPSIjMjdDOTNGIiBzdHJva2U9IiMxQUFCMjkiIHN0cm9rZS13aWR0aD0iLjUiPjwvY2lyY2xlPgogICAgICA8L2c+CiAgICA8L3N2Zz4=");
-	  background-repeat: no-repeat;
-	  display: inline-block;
-	  position: absolute;
-	  top: 6px;
-	  height: 26px;
-	  width: 100px;
-  } */
+	content: "";
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NCIgaGVpZ2h0PSIxNCIgdmlld0JveD0iMCAwIDU0IDE0Ij4KICAgICAgPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgxIDEpIj4KICAgICAgICA8Y2lyY2xlIGN4PSI2IiBjeT0iNiIgcj0iNiIgZmlsbD0iI0ZGNUY1NiIgc3Ryb2tlPSIjRTA0NDNFIiBzdHJva2Utd2lkdGg9Ii41Ij48L2NpcmNsZT4KICAgICAgICA8Y2lyY2xlIGN4PSIyNiIgY3k9IjYiIHI9IjYiIGZpbGw9IiNGRkJEMkUiIHN0cm9rZT0iI0RFQTEyMyIgc3Ryb2tlLXdpZHRoPSIuNSI+PC9jaXJjbGU+CiAgICAgICAgPGNpcmNsZSBjeD0iNDYiIGN5PSI2IiByPSI2IiBmaWxsPSIjMjdDOTNGIiBzdHJva2U9IiMxQUFCMjkiIHN0cm9rZS13aWR0aD0iLjUiPjwvY2lyY2xlPgogICAgICA8L2c+CiAgICA8L3N2Zz4=");
+	background-repeat: no-repeat;
+	display: inline-block;
+	position: absolute;
+	top: 6px;
+	height: 26px;
+	width: 100px;
+} */
 
 .HyperMD-codeblock.HyperMD-codeblock-begin.HyperMD-codeblock-begin-bg {
 	border-top-left-radius: var(--codeblock-border-radius);
@@ -1783,135 +1789,148 @@ body:not(.is-phone) .view-header-title-parent {
 	opacity: 1;
 }
 
+/* enable indentation for file explorer, ordered list, unordered list, etc.*/
+body.composer--EnableIndentationGuidLine {
+	--indentation-guide-color: rgba(var(--mono-rgb-100), 0.12);
+}
+
 /* 
- * Modified Outline Pane Component
- * Based on original work Copyright (c) 2022 subframe7536
- * Source: https://github.com/subframe7536/obsidian-theme-maple
- * Licensed under MIT License (https://github.com/subframe7536/obsidian-theme-maple/blob/main/LICENSE)
- */
-.composer--NodeOutlineStyle .workspace-leaf-content[data-type="outline"] .view-content {
-  /* Base styles for outline container */
-  .collapse-icon {
-    padding-inline-end: var(--size-2-3);
-	opacity: var(--outline-collapsed-icon-opacity);
-    
-    &::before {
-      content: "" !important;
-    }
-  }
+* Modified Outline Pane Component
+* Based on original work Copyright (c) 2022 subframe7536
+* Source: https://github.com/subframe7536/obsidian-theme-maple
+* Licensed under MIT License (https://github.com/subframe7536/obsidian-theme-maple/blob/main/LICENSE)
+*/
+.composer--NodeOutlineStyle
+	.workspace-leaf-content[data-type="outline"]
+	.view-content {
+	/* Base styles for outline container */
+	.collapse-icon {
+		padding-inline-end: var(--size-2-3);
+		opacity: var(--outline-collapsed-icon-opacity);
 
-  /* Tree item base styles */
-  .tree-item {
-    &:not(.is-grabbing) {
-      position: relative;
-      
-      &::after {
-        content: "";
-        position: absolute;
-        width: 2px;
-        background-color: transparent;
-        top: calc(var(--nav-item-size) * 1.8 / 2 * -1);
-        left: -9px;
-        height: calc(100% - var(--nav-item-size) * 1.8 + var(--size-4-8));
-      }
-    }
+		&::before {
+			content: "" !important;
+		}
+	}
 
-    /* Tree item self styling */
-    .tree-item-self {
-      position: relative;
-      margin: -1px 0 0;
-      white-space: nowrap;
+	/* Tree item base styles */
+	.tree-item {
+		&:not(.is-grabbing) {
+			position: relative;
 
-      .tree-item-inner {
-        padding-left: 16px;
-        margin-left: -16px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        height: calc(var(--nav-item-size) * 1.8);
-        line-height: calc(var(--nav-item-size) * 1.8);
-        position: relative;
+			&::after {
+				content: "";
+				position: absolute;
+				width: 2px;
+				background-color: transparent;
+				top: calc(var(--nav-item-size) * 1.8 / 2 * -1);
+				left: -9px;
+				height: calc(
+					100% - var(--nav-item-size) * 1.8 + var(--size-4-8)
+				);
+			}
+		}
 
-        &::before {
-          content: "";
-          width: var(--size-4-1);
-          height: var(--size-4-1);
-          border: 2px solid var(--color-accent);
-          border-radius: 50%;
-          position: absolute;
-          left: 0;
-          top: 50%;
-          transform: translateY(-50%);
-        }
-      }
+		/* Tree item self styling */
+		.tree-item-self {
+			position: relative;
+			margin: -1px 0 0;
+			white-space: nowrap;
 
-      /* Hide circle for items with icons */
-      .tree-item-icon ~ .tree-item-inner::before {
-        content: none;
-      }
-    }
+			.tree-item-inner {
+				padding-left: 16px;
+				margin-left: -16px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				height: calc(var(--nav-item-size) * 1.8);
+				line-height: calc(var(--nav-item-size) * 1.8);
+				position: relative;
 
-    /* Tree item icon styling */
-    .tree-item-icon {
-      cursor: pointer;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1;
+				&::before {
+					content: "";
+					width: var(--size-4-1);
+					height: var(--size-4-1);
+					border: 2px solid var(--color-accent);
+					border-radius: 50%;
+					position: absolute;
+					left: 0;
+					top: 50%;
+					transform: translateY(-50%);
+				}
+			}
 
-      &::before {
-        width: var(--size-4-2);
-        height: var(--size-4-2);
-        background-color: var(--color-accent);
-        border-radius: 50%;
-        position: absolute;
-        left: 4px;
-        top: 50%;
-        transform: translateY(-50%);
-      }
+			/* Hide circle for items with icons */
+			.tree-item-icon ~ .tree-item-inner::before {
+				content: none;
+			}
+		}
 
-      svg {
-        display: block;
-        path { display: none; }
-      }
-    }
+		/* Tree item icon styling */
+		.tree-item-icon {
+			cursor: pointer;
+			top: 50%;
+			transform: translateY(-50%);
+			z-index: 1;
 
-    /* Collapsed state */
-    &.is-collapsed .tree-item-icon::before {
-      box-shadow: 0 0 0 4px var(--background-modifier-active-hover);
-    }
+			&::before {
+				width: var(--size-4-2);
+				height: var(--size-4-2);
+				background-color: var(--color-accent);
+				border-radius: 50%;
+				position: absolute;
+				left: 4px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
 
-    /* Hover states */
-    &:hover {
-      > .tree-item-children > .tree-item::after {
-        background-color: var(--color-accent);
-      }
+			svg {
+				display: block;
+				path {
+					display: none;
+				}
+			}
+		}
 
-      > .tree-item-self:hover + .tree-item-children .tree-item::after,
-      > .tree-item-children > .tree-item:hover::after,
-      > .tree-item-children > .tree-item:hover ~ .tree-item::after {
-        background-color: transparent;
-      }
-    }
+		/* Collapsed state */
+		&.is-collapsed .tree-item-icon::before {
+			box-shadow: 0 0 0 4px var(--background-modifier-active-hover);
+		}
 
-    /* Hover decoration for child items */
-    &:hover > .tree-item-children > .tree-item:hover::before {
-      content: "";
-      position: absolute;
-      top: calc(var(--nav-item-size) * 1.8 / 2 * -1);
-      left: -9px;
-      bottom: calc(100% - (var(--nav-item-size) * 1.8 + var(--size-4-2)) / 2 - 1px);
-      width: 16px;
-      border-bottom-left-radius: var(--radius-m);
-      border-bottom: 2px solid var(--color-accent);
-      border-left: 2px solid var(--color-accent);
-    }
-  }
+		/* Hover states */
+		&:hover {
+			> .tree-item-children > .tree-item::after {
+				background-color: var(--color-accent);
+			}
 
-  /* Child items spacing */
-  :is(.tree-item-children, .tree-item-self .tree-item-self) {
-    padding-left: 0;
-    margin-left: var(--size-4-5);
-    border-left: none;
-  }
+			> .tree-item-self:hover + .tree-item-children .tree-item::after,
+			> .tree-item-children > .tree-item:hover::after,
+			> .tree-item-children > .tree-item:hover ~ .tree-item::after {
+				background-color: transparent;
+			}
+		}
+
+		/* Hover decoration for child items */
+		&:hover > .tree-item-children > .tree-item:hover::before {
+			content: "";
+			position: absolute;
+			top: calc(var(--nav-item-size) * 1.8 / 2 * -1);
+			left: -9px;
+			bottom: calc(
+				100% - (var(--nav-item-size) * 1.8 + var(--size-4-2)) / 2 - 1px
+			);
+			width: 16px;
+			border-bottom-left-radius: var(--radius-m);
+			border-bottom: 2px solid var(--color-accent);
+			border-left: 2px solid var(--color-accent);
+		}
+	}
+
+	/* Child items spacing */
+	:is(.tree-item-children, .tree-item-self .tree-item-self) {
+		padding-left: 0;
+		margin-left: var(--size-4-5);
+		border-left: none;
+	}
 }
 
 /* windows titlebar button */
