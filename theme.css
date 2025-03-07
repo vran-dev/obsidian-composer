@@ -147,6 +147,19 @@ settings:
       type: variable-number
       default: 200
 
+    - id: task-setting
+      title: Task Settings
+      title.zh: 任务
+      type: heading
+      level: 3
+      collapsed: true
+    - id: composer--RemoveTaskCompletedDecoration
+      title: Remove Task Completed Decoration
+      title.zh: 移除任务完成装饰
+      description: Remove the strikethrough for completed tasks
+      description.zh: 移除完成任务的划线
+      type: class-toggle
+
     - id: inline-code-style-setting
       title: Inline Code Style
       title.zh: 内联代码
@@ -290,9 +303,33 @@ settings:
       max: 10
       step: 1
       format: px
+    - id: nav-file-settings
+      title: Nav File Settings
+      title.zh: 导航文件
+      type: heading
+      level: 3
+      collapsed: true
+    - id: composer--EnableFilenameLineFeed
+      title: Enable Filename Line Feed
+      title.zh: 启用文件名换行
+      description: enable line feed for filename
+      description.zh: 文件名换行显示
+      type: class-toggle
+    - id: composer--EnableHiddenFileTag
+      title: Enable Hidden File Tag
+      title.zh: 启用隐藏文件标签
+      description: enable hidden file tag
+      description.zh: 隐藏文件后缀标签
+      type: class-toggle
+    - id: composer--EnableHiddenFileTagHover
+      title: Enable Hidden File Tag Hover
+      title.zh: 文件标签悬停显示
+      description: enable hidden file tag hover
+      description.zh: 文件后缀标签鼠标悬停显示
+      type: class-toggle
     - id: outline-settings
       title: Outline Settings
-      title.zh: 大纲设置
+      title.zh: 大纲
       type: heading
       level: 3
       collapsed: true
@@ -1794,6 +1831,22 @@ body.composer--EnableIndentationGuidLine {
 	--indentation-guide-color: rgba(var(--mono-rgb-100), 0.12);
 }
 
+/* enable filename line feed */
+body.composer--EnableFilenameLineFeed .nav-file-title-content {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	word-break: break-all;
+	white-space: normal;
+}
+
+/* enable hidden file tag */
+body.composer--EnableHiddenFileTag .nav-file-tag {
+	display: none;
+}
+body.composer--EnableHiddenFileTag.composer--EnableHiddenFileTagHover .nav-file:hover .nav-file-tag {
+  	display: inline;
+}
+
 /* 
 * Modified Outline Pane Component
 * Based on original work Copyright (c) 2022 subframe7536
@@ -2241,10 +2294,11 @@ SOFTWARE.
 /* checkbox styles from minimal theme */
 input[data-task=">"]:checked,
 input[data-task="!"]:checked,
-input[data-task="-"]:checked,
+/* input[data-task="-"]:checked, */
 input[data-task="<"]:checked,
 input[data-task="l"]:checked,
 input[data-task="*"]:checked,
+input[data-task="/"]:checked,
 input[data-task="I"]:checked,
 input[data-task="p"]:checked,
 input[data-task="f"]:checked,
@@ -2256,10 +2310,11 @@ input[data-task="d"]:checked,
 input[data-task="b"]:checked,
 li[data-task=">"] > input:checked,
 li[data-task="!"] > input:checked,
-li[data-task="-"] > input:checked,
+/* li[data-task="-"] > input:checked, */
 li[data-task="<"] > input:checked,
 li[data-task="l"] > input:checked,
 li[data-task="*"] > input:checked,
+li[data-task="/"] > input:checked,
 li[data-task="I"] > input:checked,
 li[data-task="p"] > input:checked,
 li[data-task="f"] > input:checked,
@@ -2271,10 +2326,11 @@ li[data-task="c"] > input:checked,
 li[data-task="b"] > input:checked,
 li[data-task=">"] > p > input:checked,
 li[data-task="!"] > p > input:checked,
-li[data-task="-"] > p > input:checked,
+/* li[data-task="-"] > p > input:checked, */
 li[data-task="<"] > p > input:checked,
 li[data-task="l"] > p > input:checked,
 li[data-task="*"] > p > input:checked,
+li[data-task="/"] > p > input:checked,
 li[data-task="I"] > p > input:checked,
 li[data-task="p"] > p > input:checked,
 li[data-task="f"] > p > input:checked,
@@ -2291,6 +2347,20 @@ li[data-task="b"] > p > input:checked {
 	background-color: currentColor;
 	-webkit-mask-size: var(--checkbox-icon);
 	-webkit-mask-position: 50% 50%;
+}
+
+/* `[x]` Completed */
+/* Removal of strikethrough for completed tasks */
+body:not(.tasks).composer--RemoveTaskCompletedDecoration
+	.markdown-source-view.mod-cm6
+	.HyperMD-task-line[data-task]:is([data-task="x"]),
+body:not(.tasks).composer--RemoveTaskCompletedDecoration
+	.markdown-preview-view
+	ul
+	li[data-task="x"].task-list-item.is-checked,
+body:not(.tasks).composer--RemoveTaskCompletedDecoration li[data-task="x"].task-list-item.is-checked {
+	text-decoration: unset;
+	color: var(--text-muted);
 }
 
 /* [>] Forwarded */
@@ -2334,24 +2404,8 @@ li[data-task="?"] > p > input:checked {
 input[data-task="/"]:checked,
 li[data-task="/"] > input:checked,
 li[data-task="/"] > p > input:checked {
-	background-image: none;
-	background-color: transparent;
-	position: relative;
-	overflow: hidden;
-}
-
-input[data-task="/"]:checked:after,
-li[data-task="/"] > input:checked:after,
-li[data-task="/"] > p > input:checked:after {
-	top: 0;
-	left: 0;
-	content: " ";
-	display: block;
-	position: absolute;
-	background-color: var(--background-modifier-accent);
-	width: calc(50% - 0.5px);
-	height: 100%;
-	-webkit-mask-image: none;
+	color: rgba(var(--color-blue-rgb), 1);
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg t='1741258757843' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='7141' width='16' height='16'%3E%3Cpath d='M870.623079 147.094124a511.04523 511.04523 0 0 1 135.984362 496.646886 512.581053 512.581053 0 0 1-365.589958 363.4782c-63.352714 16.574094-127.985282 20.669623-190.95404 13.182484l26.364968-118.386386a391.954925 391.954925 0 0 0 413.520445-289.246736 390.803058 390.803058 0 0 0-104.052034-379.796324 392.274888 392.274888 0 0 0-314.459837-110.451298L443.472201 4.454528a513.22098 513.22098 0 0 1 427.150878 142.703589zM306.847913 846.597681c22.077461 13.374462 45.242797 24.445189 69.30403 33.212181l-26.300975 118.386385a513.668928 513.668928 0 0 1-119.21829-57.145428l76.215235-94.453138zM181.550322 725.39562c13.054499 20.029697 28.156762 39.099504 45.30679 57.017442l-76.151243 94.517131-7.103183-7.103183a513.604935 513.604935 0 0 1-71.863736-92.277388l109.811372-52.154002z' fill='%2367C23B' p-id='7142'%3E%3C/path%3E%3Cpath d='M121.589218 563.238268c3.071647 23.549292 8.319043 46.906606 15.742189 69.751978l-109.811371 52.09001A510.981237 510.981237 0 0 1 0.0032 563.238268h121.586018z' fill='%238DD16C' p-id='7143'%3E%3C/path%3E%3Cpath d='M26.880109 340.863841l109.939357 51.770046A390.995036 390.995036 0 0 0 121.589218 460.78605H0.0032a511.3012 511.3012 0 0 1 26.876909-119.922209z' fill='%23B3E09D' p-id='7144'%3E%3C/path%3E%3Cpath d='M150.705869 147.094124l76.151243 94.517131-4.095529 4.415492a392.018918 392.018918 0 0 0-42.107158 54.009789l-110.00335-51.770047c21.309549-35.195952 47.226569-68.472126 77.751059-98.86863l2.303735-2.303735z' fill='%23CBEABB' p-id='7145'%3E%3C/path%3E%3Cpath d='M343.515696 27.875834l27.900791 118.066423a389.971153 389.971153 0 0 0-64.632567 31.484379l-76.151242-94.517131a510.08534 510.08534 0 0 1 112.883018-55.033671z' fill='%23E1F3D9' p-id='7146'%3E%3C/path%3E%3Cpath d='M704.498183 326.721467a51.834039 51.834039 0 0 1 52.601951-20.093689l6.527249 1.855786c14.718307 5.119411 26.364968 16.766072 31.548372 31.420387l1.855787 6.463257c4.287507 19.965704-3.647581 40.571334-18.365888 51.066127l-284.703259 283.99934a57.785355 57.785355 0 0 1-79.22289-0.319963L254.501933 522.154992a51.642061 51.642061 0 0 1 19.709733-92.341381c19.965704-4.223514 40.635327 3.647581 51.194113 18.493874L451.151318 576.484744l253.346865-249.763277z' fill='%2367C23B' p-id='7147'%3E%3C/path%3E%3C/svg%3E");
 }
 
 /* [!] Important */
@@ -2391,8 +2445,20 @@ li[data-task='"'] > p > input:checked {
 input[data-task="-"]:checked,
 li[data-task="-"] > input:checked,
 li[data-task="-"] > p > input:checked {
-	color: var(--text-faint);
-	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z' clip-rule='evenodd' /%3E%3C/svg%3E");
+	/* color: var(--text-faint);
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z' clip-rule='evenodd' /%3E%3C/svg%3E"); */
+	--checkbox-marker-color: transparent;
+	background-color: var(--text-faint);
+	border-color: var(--text-faint);
+	background-position: 50% 50%;
+	background-size: 200% 90%;
+	background-image: url('data:image/svg+xml,%3Csvg t="1741245043664" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="16219" width="20" height="20"%3E%3Cpath d="M295.232 205.44l6.016 5.312L512 421.44l210.752-210.688a64 64 0 0 1 95.808 84.48l-5.312 6.016L602.56 512l210.688 210.752a64 64 0 0 1-84.48 95.808l-6.016-5.312L512 602.56l-210.752 210.688a64 64 0 0 1-95.808-84.48l5.312-6.016L421.44 512 210.752 301.248a64 64 0 0 1 84.48-95.808z" fill="%23ffffff" p-id="16220"%3E%3C/path%3E%3C/svg%3E');
+}
+
+.theme-dark input[data-task="-"]:checked,
+.theme-dark li[data-task="-"] > input:checked,
+.theme-dark li[data-task="-"] > p > input:checked {
+	background-image: url('data:image/svg+xml,%3Csvg t="1741245385807" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="16595" width="20" height="20"%3E%3Cpath d="M295.232 205.44l6.016 5.312L512 421.44l210.752-210.688a64 64 0 0 1 95.808 84.48l-5.312 6.016L602.56 512l210.688 210.752a64 64 0 0 1-84.48 95.808l-6.016-5.312L512 602.56l-210.752 210.688a64 64 0 0 1-95.808-84.48l5.312-6.016L421.44 512 210.752 301.248a64 64 0 0 1 84.48-95.808z" fill="%232c2c2c" p-id="16596"%3E%3C/path%3E%3C/svg%3E');
 }
 
 body:not(.tasks)
