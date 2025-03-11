@@ -14,19 +14,19 @@
 > [!NOTE]
 > 改变配色方案需先安装`style settings`插件
 
-- Xia 霞
+- Xiá 霞
 
 ![霞 亮色](assets/xia-light.png)
 
 ![霞 暗色](assets/xia-dark.png)
 
-- Su 素
+- Sù 素
 
 ![素 亮色](assets/su-light.png)
 
 ![素 暗色](assets/su-dark.png)
 
-- Qing 青
+- Qīng 青
 
 ![青 亮色](assets/qing-light.png)
 
