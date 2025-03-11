@@ -583,7 +583,9 @@ body {
 	--root-workspace-background: transparent;
 	--root-workspace-margin-spacing: 16px;
 	--side-dock-actions-border-color: var(--background-modifier-border);
-
+	--side-dock-actions-shadow: var(--background-modifier-border) 0px 1px 2px
+			0px,
+		var(--background-modifier-border) 0px 0px 0px 1px;
 	/* outline */
 	--outline-collapsed-icon-opacity: 1;
 }
@@ -714,8 +716,8 @@ body {
 	--background-gradient: linear-gradient(
 		155deg,
 		var(--background-primary) 0%,
-		hsl(215, 18%, 18%),
-		hsl(255, 12%, 28%)
+		rgb(38, 45, 54),
+		rgb(67, 63, 80)
 	);
 
 	--background-modifier-border: rgb(69, 74, 84);
@@ -1422,6 +1424,7 @@ body:not(.is-mobile) .workspace-ribbon.mod-left {
 	background-color: var(--mod-left-ribbon-background);
 	margin-top: 0px;
 	padding-top: var(--header-height);
+	padding-right: 4px;
 }
 
 body:not(.is-mobile) .workspace-ribbon.mod-left.is-collapsed {
@@ -1445,13 +1448,13 @@ body.is-focused .workspace-ribbon.mod-left {
 }
 
 .side-dock-actions {
-	border-width: 1px 1px 1px 0px;
-	border-style: solid;
+	border-style: none;
 	border-color: var(--side-dock-actions-border-color);
 	border-radius: 0px var(--radius-m) var(--radius-m) 0px;
 	overflow: hidden;
 	padding: 2px;
 	margin-top: 2px;
+	box-shadow: var(--side-dock-actions-shadow);
 }
 
 /* Workspace nav header */
@@ -1843,8 +1846,10 @@ body.composer--EnableFilenameLineFeed .nav-file-title-content {
 body.composer--EnableHiddenFileTag .nav-file-tag {
 	display: none;
 }
-body.composer--EnableHiddenFileTag.composer--EnableHiddenFileTagHover .nav-file:hover .nav-file-tag {
-  	display: inline;
+body.composer--EnableHiddenFileTag.composer--EnableHiddenFileTagHover
+	.nav-file:hover
+	.nav-file-tag {
+	display: inline;
 }
 
 /* 
@@ -2358,7 +2363,8 @@ body:not(.tasks).composer--RemoveTaskCompletedDecoration
 	.markdown-preview-view
 	ul
 	li[data-task="x"].task-list-item.is-checked,
-body:not(.tasks).composer--RemoveTaskCompletedDecoration li[data-task="x"].task-list-item.is-checked {
+body:not(.tasks).composer--RemoveTaskCompletedDecoration
+	li[data-task="x"].task-list-item.is-checked {
 	text-decoration: unset;
 	color: var(--text-muted);
 }
