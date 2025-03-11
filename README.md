@@ -14,19 +14,19 @@ You can install `style settings` plugin and change the theme color in the plugin
 > [!NOTE]
 > color scheme change needs to install `style settings` plugin
 
-- Xia 霞
+- Xiá 霞
 
 ![xia light](assets/xia-light.png)
 
 ![xia dark](assets/xia-dark.png)
 
-- Su 素
+- Sù 素
 
 ![su light](assets/su-light.png)
 
 ![su dark](assets/su-dark.png)
 
-- Qing 青
+- Qīng 青
 
 ![qing light](assets/qing-light.png)
 
