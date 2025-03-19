@@ -9,21 +9,36 @@ settings:
         description: "[https://cp.cc1234.cc/](https://cp.cc1234.cc/)"
         type: info-text
         markdown: true
-    - id: theme-variant
+    - id: theme-variant-light
       title: Color Scheme
-      title.zh: 配色方案
+      title.zh: 亮色主题配色方案
       description: Choose a color scheme for the theme
-      description.zh: 选择一个预设的配色方案
+      description.zh: 为亮色主题选择一个预设的配色方案
       type: class-select
       allowEmpty: false
-      default: composer--XiaScheme
+      default: composer--XiaScheme-light
       options:
           - label: Sù 素
-            value: composer--SuScheme
+            value: composer--SuScheme-light
           - label: Xiá 霞
-            value: composer--XiaScheme
+            value: composer--XiaScheme-light
           - label: Qīng 青
-            value: composer--QingScheme
+            value: composer--QingScheme-light
+    - id: theme-variant-dark
+      title: Color Scheme
+      title.zh: 暗色主题配色方案
+      description: Choose a color scheme for the theme
+      description.zh: 为暗色主题选择一个预设的配色方案
+      type: class-select
+      allowEmpty: false
+      default: composer--XiaScheme-dark
+      options:
+          - label: Sù 素
+            value: composer--SuScheme-dark
+          - label: Xiá 霞
+            value: composer--XiaScheme-dark
+          - label: Qīng 青
+            value: composer--QingScheme-dark
     - id: typograph-settings
       title: Typograph Settings
       title.zh: 排版设置
@@ -603,7 +618,8 @@ body {
 	--side-dock-actions-border-color: transparent;
 } */
 
-.theme-light {
+/* ---- Xia ---- */
+.composer--XiaScheme-light.theme-light {
 	--accent-h: 12;
 	--accent-s: 31%;
 	--accent-l: 60%;
@@ -703,7 +719,7 @@ body {
 	--header-active-bg: rgba(31, 34, 37, 0.03);
 }
 
-.theme-dark {
+.composer--XiaScheme-dark.theme-dark {
 	--accent-h: 30;
 	--accent-s: 40%;
 	--accent-l: 65%;
@@ -795,7 +811,7 @@ body {
 }
 
 /* ---- Su ---- */
-.composer--SuScheme.theme-light {
+.composer--SuScheme-light.theme-light {
 	--accent-h: 204;
 	--accent-s: 15%;
 	--accent-l: 58%;
@@ -830,7 +846,7 @@ body {
 	--text-highlight-border-radius: 4px;
 }
 
-.composer--SuScheme.theme-dark {
+.composer--SuScheme-dark.theme-dark {
 	--accent-h: 204;
 	--accent-s: 18%;
 	--accent-l: 42%;
@@ -867,7 +883,7 @@ body {
 }
 
 /* ---- Qing ---- */
-.composer--QingScheme.theme-light {
+.composer--QingScheme-light.theme-light {
 	--accent-h: 198;
 	--accent-s: 22%;
 	--accent-l: 55%;
@@ -899,7 +915,7 @@ body {
 	--text-highlight-color: hsl(197, 35%, 30%);
 }
 
-.composer--QingScheme.theme-dark {
+.composer--QingScheme-dark.theme-dark {
 	--accent-h: 198;
 	--accent-s: 28%;
 	--accent-l: 45%;
