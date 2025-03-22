@@ -2253,6 +2253,7 @@ body.composer--ParagraphIndent .components--ComponentEl {
 	.components--DynamicDataView-PageCard
 	.components--DynamicDataView-PageTitle {
 	padding-top: 4px;
+	padding-bottom: 4px;
 }
 
 /* 
