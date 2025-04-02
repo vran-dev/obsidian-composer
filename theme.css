@@ -196,6 +196,37 @@ settings:
       default-light: "hsla(31, 41%, 90%, 0.6)"
       default-dark: "hsla(204, 15%, 25%, 0.4)"
 
+
+    - id: typograph-heading-decoration-setting
+      title: Heading Decoration
+      title.zh: 标题装饰
+      type: heading
+      level: 3
+      collapsed: true
+
+    - id: composer--enable-heading-line-editing-highlight 
+      title: Enable Heading Line Editing Highlight
+      title.zh: 启用标题行编辑时高亮
+      description: "enable line highlight for editing heading"
+      description.zh: 编辑标题时是否高亮所在行
+      type: class-toggle
+      default: true
+
+    - id: composer--enable-heading-decoration-reading-view
+      title: Enable Heading Decoration (Reading View)
+      title.zh: 启用标题装饰（阅读模式）
+      description: "enable decoration before heading (reading view)"
+      description.zh: 启用标题前方的竖杠装饰（阅读模式）
+      type: class-toggle
+      default: true
+    - id: composer--enable-heading-decoration-live-preview
+      title: Enable Heading Decoration (Live Preview View)
+      title.zh: 启用标题装饰（实时预览模式）
+      description: "enable decoration before heading (live preview view)"
+      description.zh: 启用标题前方的竖杠装饰（实时预览模式）
+      type: class-toggle
+      default: true
+
     - id: typograph-heading-size
       title: Heading Font Size (H1-H6)
       title.zh: 标题字体大小（H1-H6）
@@ -287,6 +318,8 @@ settings:
       format: hex
       default-light: "#808080"
       default-dark: "#666d78"
+
+
     - id: layout-settings
       title: Layout Settings
       title.zh: 布局设置
@@ -998,52 +1031,57 @@ body {
 	margin-inline-start: -28px;
 }
 
-.markdown-rendered > h1::before,
-.markdown-rendered > h2::before,
-.markdown-rendered > h3::before,
-.markdown-rendered > h4::before,
-.markdown-rendered > h5::before,
-.markdown-rendered > h6::before,
-.markdown-rendered .el-h1 > h1::before,
-.markdown-rendered .el-h2 > h2::before,
-.markdown-rendered .el-h3 > h3::before,
-.markdown-rendered .el-h4 > h4::before,
-.markdown-rendered .el-h5 > h5::before,
-.markdown-rendered .el-h6 > h6::before {
-	content: " ";
-	height: 0.8em;
-	display: inline-block;
-	width: 4px;
-	border-radius: var(--size-4-1);
-	margin-right: var(--heading-indicator-spacing);
-	background-color: var(--h1-indicator-color);
-	transform: translateY(-0.1em);
-	vertical-align: middle;
-}
+/* decoration before heading (reading view) */
 
-.markdown-rendered > h2::before,
-.markdown-rendered .el-h2 > h2::before {
-	background-color: var(--h2-indicator-color);
-}
+.composer--enable-heading-decoration-reading-view {
+	.markdown-rendered > h1::before,
+	.markdown-rendered > h2::before,
+	.markdown-rendered > h3::before,
+	.markdown-rendered > h4::before,
+	.markdown-rendered > h5::before,
+	.markdown-rendered > h6::before,
+	.markdown-rendered .el-h1 > h1::before,
+	.markdown-rendered .el-h2 > h2::before,
+	.markdown-rendered .el-h3 > h3::before,
+	.markdown-rendered .el-h4 > h4::before,
+	.markdown-rendered .el-h5 > h5::before,
+	.markdown-rendered .el-h6 > h6::before {
+		content: " ";
+		height: 0.8em;
+		display: inline-block;
+		width: 4px;
+		border-radius: var(--size-4-1);
+		margin-right: var(--heading-indicator-spacing);
+		background-color: var(--h1-indicator-color);
+		transform: translateY(-0.1em);
+		vertical-align: middle;
+	}
 
-.markdown-rendered > h3::before,
-.markdown-rendered .el-h3 > h3::before {
-	background-color: var(--h3-indicator-color);
-}
 
-.markdown-rendered > h4::before,
-.markdown-rendered .el-h4 > h4::before {
-	background-color: var(--h4-indicator-color);
-}
+	.markdown-rendered > h2::before,
+	.markdown-rendered .el-h2 > h2::before {
+		background-color: var(--h2-indicator-color);
+	}
 
-.markdown-rendered > h5::before,
-.markdown-rendered .el-h5 > h5::before {
-	background-color: var(--h5-indicator-color);
-}
+	.markdown-rendered > h3::before,
+	.markdown-rendered .el-h3 > h3::before {
+		background-color: var(--h3-indicator-color);
+	}
 
-.markdown-rendered > h6::before,
-.markdown-rendered .el-h6 > h6::before {
-	background-color: var(--h6-indicator-color);
+	.markdown-rendered > h4::before,
+	.markdown-rendered .el-h4 > h4::before {
+		background-color: var(--h4-indicator-color);
+	}
+
+	.markdown-rendered > h5::before,
+	.markdown-rendered .el-h5 > h5::before {
+		background-color: var(--h5-indicator-color);
+	}
+
+	.markdown-rendered > h6::before,
+	.markdown-rendered .el-h6 > h6::before {
+		background-color: var(--h6-indicator-color);
+	}
 }
 
 .markdown-source-view.mod-cm6 .HyperMD-header {
@@ -1051,11 +1089,13 @@ body {
 	padding-bottom: 1rem;
 }
 
-.markdown-source-view.mod-cm6 .HyperMD-header.cm-active {
+/* heading line highlight */
+.composer--enable-heading-line-editing-highlight .markdown-source-view.mod-cm6 .HyperMD-header.cm-active {
 	background-color: var(--header-active-bg);
 }
 
-.is-live-preview .HyperMD-header::before {
+/* decoration before heading (live preview) */
+.composer--enable-heading-decoration-live-preview .is-live-preview .HyperMD-header::before {
 	content: " ";
 	display: inline-block;
 	width: 4px;
@@ -1067,23 +1107,23 @@ body {
 	transform: translateY(-0.1em);
 }
 
-.is-live-preview .HyperMD-header-2.HyperMD-header::before {
+.composer--enable-heading-decoration-live-preview .is-live-preview .HyperMD-header-2.HyperMD-header::before {
 	background-color: var(--h2-indicator-color);
 }
 
-.is-live-preview .HyperMD-header-3.HyperMD-header::before {
+.composer--enable-heading-decoration-live-preview .is-live-preview .HyperMD-header-3.HyperMD-header::before {
 	background-color: var(--h3-indicator-color);
 }
 
-.is-live-preview .HyperMD-header-4.HyperMD-header::before {
+.composer--enable-heading-decoration-live-preview .is-live-preview .HyperMD-header-4.HyperMD-header::before {
 	background-color: var(--h4-indicator-color);
 }
 
-.is-live-preview .HyperMD-header-5.HyperMD-header::before {
+.composer--enable-heading-decoration-live-preview .is-live-preview .HyperMD-header-5.HyperMD-header::before {
 	background-color: var(--h5-indicator-color);
 }
 
-.is-live-preview .HyperMD-header-6.HyperMD-header::before {
+.composer--enable-heading-decoration-live-preview .is-live-preview .HyperMD-header-6.HyperMD-header::before {
 	background-color: var(--h6-indicator-color);
 }
 
