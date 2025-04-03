@@ -204,28 +204,28 @@ settings:
       level: 3
       collapsed: true
 
-    - id: composer--enable-heading-line-editing-highlight 
-      title: Enable Heading Line Editing Highlight
-      title.zh: 启用标题行编辑时高亮
-      description: "enable line highlight for editing heading"
+    - id: composer--DisableHeadingLineEditingHighlight
+      title: Disable Heading Line Editing Highlight
+      title.zh: 禁用标题行编辑时高亮
+      description: Disable line highlight when editing heading
       description.zh: 编辑标题时是否高亮所在行
       type: class-toggle
-      default: true
+      default: false
 
-    - id: composer--enable-heading-decoration-reading-view
-      title: Enable Heading Decoration (Reading View)
-      title.zh: 启用标题装饰（阅读模式）
-      description: "enable decoration before heading (reading view)"
-      description.zh: 启用标题前方的竖杠装饰（阅读模式）
+    - id: composer--DisableHeadingDecoration-ReadingView
+      title: Disable Heading Decoration (Reading View)
+      title.zh: 禁用标题装饰（阅读模式）
+      description: Disable decoration before heading (reading view)
+      description.zh: 禁用标题前方的竖杠装饰（阅读模式）
       type: class-toggle
-      default: true
-    - id: composer--enable-heading-decoration-live-preview
-      title: Enable Heading Decoration (Live Preview View)
-      title.zh: 启用标题装饰（实时预览模式）
-      description: "enable decoration before heading (live preview view)"
-      description.zh: 启用标题前方的竖杠装饰（实时预览模式）
+      default: false
+    - id: composer--DisableHeadingDecoration-LivePreview
+      title: Disable Heading Decoration (Live Preview View)
+      title.zh: 禁用标题装饰（实时编辑模式）
+      description: Disable decoration before heading (live preview view)
+      description.zh: 禁用标题前方的竖杠装饰（实时编辑模式）
       type: class-toggle
-      default: true
+      default: false
 
     - id: typograph-heading-size
       title: Heading Font Size (H1-H6)
@@ -1032,8 +1032,7 @@ body {
 }
 
 /* decoration before heading (reading view) */
-
-.composer--enable-heading-decoration-reading-view {
+body:not(.composer--DisableHeadingDecoration-ReadingView) {
 	.markdown-rendered > h1::before,
 	.markdown-rendered > h2::before,
 	.markdown-rendered > h3::before,
@@ -1095,36 +1094,38 @@ body {
 }
 
 /* decoration before heading (live preview) */
-.composer--enable-heading-decoration-live-preview .is-live-preview .HyperMD-header::before {
-	content: " ";
-	display: inline-block;
-	width: 4px;
-	border-radius: var(--size-4-1);
-	margin-right: var(--heading-indicator-spacing);
-	background-color: var(--h1-indicator-color);
-	vertical-align: middle;
-	height: 0.8em;
-	transform: translateY(-0.1em);
-}
+body:not(.composer--DisableHeadingDecoration-LivePreview) {
+	.is-live-preview .HyperMD-header::before {
+		content: " ";
+		display: inline-block;
+		width: 4px;
+		border-radius: var(--size-4-1);
+		margin-right: var(--heading-indicator-spacing);
+		background-color: var(--h1-indicator-color);
+		vertical-align: middle;
+		height: 0.8em;
+		transform: translateY(-0.1em);
+	}
 
-.composer--enable-heading-decoration-live-preview .is-live-preview .HyperMD-header-2.HyperMD-header::before {
-	background-color: var(--h2-indicator-color);
-}
+	.is-live-preview .HyperMD-header-2.HyperMD-header::before {
+		background-color: var(--h2-indicator-color);
+	}
 
-.composer--enable-heading-decoration-live-preview .is-live-preview .HyperMD-header-3.HyperMD-header::before {
-	background-color: var(--h3-indicator-color);
-}
+	.is-live-preview .HyperMD-header-3.HyperMD-header::before {
+		background-color: var(--h3-indicator-color);
+	}
 
-.composer--enable-heading-decoration-live-preview .is-live-preview .HyperMD-header-4.HyperMD-header::before {
-	background-color: var(--h4-indicator-color);
-}
+	.is-live-preview .HyperMD-header-4.HyperMD-header::before {
+		background-color: var(--h4-indicator-color);
+	}
 
-.composer--enable-heading-decoration-live-preview .is-live-preview .HyperMD-header-5.HyperMD-header::before {
-	background-color: var(--h5-indicator-color);
-}
+	.is-live-preview .HyperMD-header-5.HyperMD-header::before {
+		background-color: var(--h5-indicator-color);
+	}
 
-.composer--enable-heading-decoration-live-preview .is-live-preview .HyperMD-header-6.HyperMD-header::before {
-	background-color: var(--h6-indicator-color);
+	.is-live-preview .HyperMD-header-6.HyperMD-header::before {
+		background-color: var(--h6-indicator-color);
+	}
 }
 
 /* list */
