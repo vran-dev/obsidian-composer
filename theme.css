@@ -854,6 +854,19 @@ body {
 	--background-secondary: #f1f0ee;
 	--background-secondary-alt: #dddfe3;
 
+	--color-base-00: #fafafa;
+	--color-base-05: #f7f7f7;
+	--color-base-10: #f1f1f2;
+	--color-base-20: #e8e8ea;
+	--color-base-25: #dfdfe2;
+	--color-base-30: #d4d4d8;
+	--color-base-35: #bcbcc4;
+	--color-base-40: #a3a3af;
+	--color-base-50: #8a8a98;
+	--color-base-60: #6d6d7a;
+	--color-base-70: #53535f;
+	--color-base-100: #313139;
+
 	--background-gradient: radial-gradient(
 		ellipse at 50% 30%,
 		hsl(0, 0%, 100%) 20%,
@@ -888,6 +901,19 @@ body {
 	--background-primary-alt: #252a32;
 	--background-secondary: #2d333b;
 	--background-secondary-alt: #373e48;
+
+	--color-base-00: #1a1e24;
+	--color-base-05: #20242b;
+	--color-base-10: #252a32;
+	--color-base-20: #2d333b;
+	--color-base-25: #333a43;
+	--color-base-30: #3b424d;
+	--color-base-35: #444c58;
+	--color-base-40: #4d5666;
+	--color-base-50: #5e6778;
+	--color-base-60: #717b8c;
+	--color-base-70: #8b93a2;
+	--color-base-100: #e6e9ee;
 
 	--background-gradient: radial-gradient(
 		ellipse at 50% 30%,
@@ -925,6 +951,20 @@ body {
 	--background-primary-alt: #ecf2f4;
 	--background-secondary: #e0e8eb;
 	--background-secondary-alt: #d4dfe2;
+
+	--color-base-00: #f8fbfb;
+	--color-base-05: #f2f8f8;
+	--color-base-10: #eaf3f4;
+	--color-base-20: #dfeaec;
+	--color-base-25: #d1e0e3;
+	--color-base-30: #c2d5d9;
+	--color-base-35: #b0c9cf;
+	--color-base-40: #9bbbc2;
+	--color-base-50: #82a4ac;
+	--color-base-60: #668890;
+	--color-base-70: #4f6b72;
+	--color-base-100: #2c3f44;
+
 	--background-gradient: linear-gradient(
 		160deg,
 		hsl(190, 30%, 95%) 0%,
@@ -957,6 +997,19 @@ body {
 	--background-primary-alt: hsl(198, 22%, 21%);
 	--background-secondary: hsl(198, 20%, 24%);
 	--background-secondary-alt: hsl(198, 18%, 27%);
+
+	--color-base-00: #192c33;
+	--color-base-05: #1e313a;
+	--color-base-10: #233640;
+	--color-base-20: #293e49;
+	--color-base-25: #30454f;
+	--color-base-30: #384d58;
+	--color-base-35: #405861;
+	--color-base-40: #49636d;
+	--color-base-50: #5a7680;
+	--color-base-60: #6d8891;
+	--color-base-70: #869fa8;
+	--color-base-100: #dae5e9;
 
 	--background-gradient: linear-gradient(
 		165deg,
@@ -1056,7 +1109,6 @@ body:not(.composer--DisableHeadingDecoration-ReadingView) {
 		vertical-align: middle;
 	}
 
-
 	.markdown-rendered > h2::before,
 	.markdown-rendered .el-h2 > h2::before {
 		background-color: var(--h2-indicator-color);
@@ -1089,7 +1141,9 @@ body:not(.composer--DisableHeadingDecoration-ReadingView) {
 }
 
 /* heading line highlight */
-.composer--enable-heading-line-editing-highlight .markdown-source-view.mod-cm6 .HyperMD-header.cm-active {
+.composer--enable-heading-line-editing-highlight
+	.markdown-source-view.mod-cm6
+	.HyperMD-header.cm-active {
 	background-color: var(--header-active-bg);
 }
 
