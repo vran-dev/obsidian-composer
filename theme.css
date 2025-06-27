@@ -1135,18 +1135,6 @@ body:not(.composer--DisableHeadingDecoration-ReadingView) {
 	}
 }
 
-.markdown-source-view.mod-cm6 .HyperMD-header {
-	padding-top: var(--heading-spacing);
-	padding-bottom: 1rem;
-}
-
-/* heading line highlight */
-.composer--enable-heading-line-editing-highlight
-	.markdown-source-view.mod-cm6
-	.HyperMD-header.cm-active {
-	background-color: var(--header-active-bg);
-}
-
 /* decoration before heading (live preview) */
 body:not(.composer--DisableHeadingDecoration-LivePreview) {
 	.is-live-preview .HyperMD-header::before {
@@ -1180,6 +1168,35 @@ body:not(.composer--DisableHeadingDecoration-LivePreview) {
 	.is-live-preview .HyperMD-header-6.HyperMD-header::before {
 		background-color: var(--h6-indicator-color);
 	}
+}
+
+.markdown-source-view.mod-cm6 .HyperMD-header {
+	padding-top: var(--heading-spacing);
+	padding-bottom: 1rem;
+}
+
+.markdown-source-view.mod-cm6 .HyperMD-header-1 {
+	padding-top: calc(var(--heading-spacing));
+	padding-bottom: 1rem;
+}
+
+.markdown-source-view.mod-cm6 .HyperMD-header-2 {
+	padding-top: calc(var(--heading-spacing) * 0.9);
+	padding-bottom: 0.9rem;
+}
+
+/* 较小标题保持现有间距 */
+.markdown-source-view.mod-cm6 .HyperMD-header-5,
+.markdown-source-view.mod-cm6 .HyperMD-header-6 {
+	padding-top: calc(var(--heading-spacing) * 0.8);
+	padding-bottom: 0.8rem;
+}
+
+/* heading line highlight */
+body:not(.composer--DisableHeadingLineEditingHighlight)
+	.markdown-source-view.mod-cm6
+	.HyperMD-header.cm-active {
+	background-color: var(--header-active-bg);
 }
 
 /* list */
@@ -1244,6 +1261,7 @@ body:not(.composer--DisableHeadingDecoration-LivePreview) {
 	mask: linear-gradient(to right, var(--background-primary), transparent 80%),
 		linear-gradient(to bottom, var(--background-primary), transparent 80%);
 	mask-composite: intersect;
+	z-index: -1;
 }
 
 .composer--SubtleGridCallout .callout-title {
