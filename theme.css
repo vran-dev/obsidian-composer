@@ -20,6 +20,8 @@ settings:
       options:
           - label: Sù 素
             value: composer--SuScheme-light
+          - label: Ní 霓
+            value: composer--NiScheme-light
           - label: Xiá 霞
             value: composer--XiaScheme-light
           - label: Qīng 青
@@ -35,6 +37,8 @@ settings:
       options:
           - label: Sù 素
             value: composer--SuScheme-dark
+          - label: Ní 霓
+            value: composer--NiScheme-dark
           - label: Xiá 霞
             value: composer--XiaScheme-dark
           - label: Qīng 青
@@ -410,6 +414,38 @@ settings:
       type: heading
       level: 2
       collapsed: true
+    - id: light-primary-hue
+      title: Light Primary Hue (Only for Ní Scheme)
+      title.zh: 亮色主题主色调（仅适用于 Ní 方案）
+      type: variable-number-slider
+      default: 2
+      min: 0
+      max: 360
+      step: 1
+    - id: light-secondary-hue
+      title: Light Secondary Hue (Only for Ní Scheme)
+      title.zh: 亮色主题副色调（仅适用于 Ní 方案）
+      type: variable-number-slider
+      default: 330
+      min: 0
+      max: 360
+      step: 1
+    - id: dark-primary-hue
+      title: Dark Primary Hue (Only for Ní Scheme)
+      title.zh: 暗色主题主色调 （仅适用于 Ní 方案）
+      type: variable-number-slider
+      default: 282
+      min: 0
+      max: 360
+      step: 1
+    - id: dark-secondary-hue
+      title: Dark Secondary Hue (Only for Ní Scheme)
+      title.zh: 暗色主题副色调 （仅适用于 Ní 方案）
+      type: variable-number-slider
+      default: 330
+      min: 0
+      max: 360
+      step: 1
     - id: background-primary
       title: Background Primary
       title.zh: 主要背景色
@@ -1032,6 +1068,354 @@ body {
 	--text-highlight-border-color: hsl(199, 55%, 88%);
 	--text-highlight-color: hsl(200, 13%, 91%);
 }
+
+/* ---- Ní ---- */
+.composer--NiScheme-light,
+.composer--NiScheme-dark {
+  --lightness-1000: 1;
+  --lightness-950: 0.95;
+  --lightness-900: 0.9;
+  --lightness-850: 0.85;
+  --lightness-800: 0.8;
+  --lightness-750: 0.75;
+  --lightness-700: 0.7;
+  --lightness-650: 0.65;
+  --lightness-600: 0.6;
+  --lightness-550: 0.55;
+  --lightness-500: 0.5;
+  --lightness-450: 0.45;
+  --lightness-400: 0.4;
+  --lightness-350: 0.35;
+  --lightness-300: 0.3;
+  --lightness-250: 0.25;
+  --lightness-200: 0.2;
+  --lightness-150: 0.15;
+  --lightness-100: 0.1;
+  --lightness-90: 0.09;
+  --lightness-80: 0.08;
+  --lightness-70: 0.07;
+  --lightness-60: 0.06;
+  --lightness-50: 0.05;
+  --lightness-40: 0.04;
+  --lightness-30: 0.03;
+  --lightness-20: 0.02;
+  --lightness-10: 0.01;
+  --lightness-0: 0;
+
+  --h1-color: oklch(var(--lightness-350) var(--chroma-high) var(--primary-hue));
+  --h2-color: oklch(var(--lightness-450) var(--chroma-high) var(--primary-hue));
+  --h3-color: oklch(var(--lightness-550) var(--chroma-high) var(--primary-hue));
+  --h4-color: oklch(var(--lightness-650) var(--chroma-high) var(--primary-hue));
+  --h5-color: oklch(var(--lightness-750) var(--chroma-high) var(--primary-hue));
+  --h6-color: oklch(var(--lightness-800) var(--chroma-high) var(--primary-hue));
+
+  --chroma-accent: 0.16;
+  --chroma-high: 0.12;
+  --chroma-medium: 0.08;
+  --chroma-low: 0.04;
+  --chroma-neutral: 0.02;
+  --chroma-subtle: 0.01;
+}
+
+.composer--NiScheme-light.theme-light {
+  --primary-hue: var(--light-primary-hue, 2);
+  --secondary-hue: var(--light-secondary-hue, 330);
+
+  --accent-h: 340;
+  --accent-s: 60%;
+  --accent-l: 65%;
+
+  --color-red-rgb: 214, 74, 122;
+  --color-blue-rgb: 101, 176, 199;
+  --color-purple-rgb: 161, 140, 193;
+  --color-cyan-rgb: 107, 197, 187;
+  --color-orange-rgb: 232, 129, 94;
+  --color-green-rgb: 107, 178, 148;
+  --color-yellow-rgb: 233, 196, 118;
+  --color-pink-rgb: 230, 170, 185;
+
+  --background-primary: oklch(
+    calc(var(--lightness-950) + 0.015) var(--chroma-neutral) var(--primary-hue)
+  );
+  --background-primary-alt: oklch(
+    calc(var(--lightness-950) - 0.015) var(--chroma-neutral) var(--primary-hue)
+  );
+  --background-secondary: oklch(
+    var(--lightness-950) var(--chroma-low) var(--primary-hue)
+  );
+  --background-secondary-alt: oklch(
+    calc(var(--lightness-950) - 0.015) var(--chroma-low) var(--primary-hue)
+  );
+
+  --background-gradient: linear-gradient(
+    165deg,
+    oklch(var(--lightness-950) var(--chroma-low) var(--primary-hue) / 0.82) 0%,
+    oklch(var(--lightness-950) var(--chroma-neutral) var(--primary-hue)) 70%,
+    oklch(var(--lightness-950) var(--chroma-neutral) var(--secondary-hue)) 100%
+  );
+
+  --background-modifier-border: oklch(
+    var(--lightness-900) var(--chroma-low) var(--primary-hue)
+  );
+
+  --color-base-00: oklch(
+    var(--lightness-1000) var(--chroma-neutral) var(--primary-hue) / 0.32
+  );
+  --color-base-05: oklch(
+    var(--lightness-950) var(--chroma-neutral) var(--primary-hue) / 0.32
+  );
+  --color-base-10: oklch(
+    var(--lightness-900) var(--chroma-neutral) var(--primary-hue) / 0.32
+  );
+  --color-base-20: oklch(
+    var(--lightness-850) var(--chroma-neutral) var(--primary-hue) / 0.32
+  );
+  --color-base-25: oklch(
+    var(--lightness-800) var(--chroma-low) var(--primary-hue)
+  );
+  --color-base-30: oklch(
+    var(--lightness-750) var(--chroma-low) var(--primary-hue)
+  );
+  --color-base-35: oklch(
+    var(--lightness-700) var(--chroma-low) var(--primary-hue)
+  );
+  --color-base-40: oklch(
+    var(--lightness-650) var(--chroma-low) var(--primary-hue)
+  );
+  --color-base-50: oklch(
+    var(--lightness-600) var(--chroma-medium) var(--primary-hue)
+  );
+  --color-base-60: oklch(
+    var(--lightness-500) var(--chroma-medium) var(--primary-hue)
+  );
+  --color-base-70: oklch(
+    var(--lightness-400) var(--chroma-high) var(--primary-hue)
+  );
+  --color-base-100: oklch(
+    var(--lightness-100) var(--chroma-high) var(--primary-hue)
+  );
+
+  --bold-color: oklch(
+    var(--lightness-500) var(--chroma-accent) var(--primary-hue)
+  );
+  --bold-modifier: 500;
+
+  --code-normal: oklch(
+    var(--lightness-650) var(--chroma-high) var(--primary-hue)
+  );
+  --code-border-color: transparent;
+
+  --inline-code-normal: oklch(
+    var(--lightness-400) var(--chroma-accent) var(--primary-hue)
+  );
+  --inline-code-background: oklch(
+    var(--lightness-950) var(--chroma-low) calc(var(--primary-hue) + 10)
+  );
+
+  --blockquote-border-color: oklch(
+    var(--lightness-650) var(--chroma-high) var(--primary-hue)
+  );
+  --blockquote-background-color: oklch(
+    calc(var(--lightness-900) + 0.02) var(--chroma-low) var(--primary-hue) /
+      0.62
+  );
+  --blockquote-color: oklch(
+    var(--lightness-450) var(--chroma-high) var(--primary-hue)
+  );
+
+  --codeblock-background: oklch(
+    calc(var(--lightness-900) + 0.02) var(--chroma-neutral) var(--primary-hue) /
+      0.62
+  );
+  --codeblock-caret-color: oklch(
+    var(--lightness-100) var(--chroma-high) var(--primary-hue)
+  );
+  --codeblock-border-radius: 10px;
+
+  --text-highlight-background: oklch(
+    var(--lightness-900) var(--chroma-medium) var(--primary-hue) / 0.12
+  );
+  --text-highlight-border-color: oklch(
+    var(--lightness-600) var(--chroma-high) var(--primary-hue)
+  );
+  --text-highlight-color: oklch(
+    var(--lightness-450) var(--chroma-accent) var(--primary-hue)
+  );
+  --text-highlight-border-radius: 5px;
+
+  --callout-bug: var(--color-red-rgb);
+  --callout-default: 161, 140, 193;
+  --callout-error: 214, 74, 122;
+  --callout-example: 107, 197, 187;
+  --callout-fail: 214, 74, 122;
+  --callout-important: 232, 129, 94;
+  --callout-info: 101, 176, 199;
+  --callout-question: 233, 196, 118;
+  --callout-success: 107, 178, 148;
+  --callout-summary: 161, 140, 193;
+  --callout-tip: 107, 197, 187;
+  --callout-todo: 230, 170, 185;
+  --callout-warning: 233, 196, 118;
+  --callout-quote: 180, 180, 180;
+
+  /* 自定义元素 */
+  --nav-button-container-bg: oklch(
+    var(--lightness-950) var(--chroma-medium) var(--primary-hue) / 0.32
+  );
+  --header-active-bg: rgba(230, 170, 185, 0.15);
+}
+
+.composer--NiScheme-dark.theme-dark {
+  --primary-hue: var(--dark-primary-hue, 282);
+  --secondary-hue: var(--dark-secondary-hue, 2.65);
+
+  --accent-h: 272;
+  --accent-s: 40%;
+  --accent-l: 73%;
+
+  --color-red-rgb: 184, 64, 102;
+  --color-blue-rgb: 91, 156, 179;
+  --color-purple-rgb: 141, 120, 173;
+  --color-cyan-rgb: 87, 177, 167;
+  --color-orange-rgb: 202, 109, 74;
+  --color-green-rgb: 87, 158, 128;
+  --color-yellow-rgb: 203, 166, 88;
+  --color-pink-rgb: 200, 140, 155;
+
+  --background-primary: oklch(
+    calc(var(--lightness-400) + 0.025) var(--chroma-medium) var(--primary-hue)
+  );
+  --background-primary-alt: oklch(
+    calc(var(--lightness-350) - 0.025) var(--chroma-medium) var(--primary-hue)
+  );
+  --background-secondary: oklch(
+    var(--lightness-450) var(--chroma-medium) var(--primary-hue)
+  );
+  --background-secondary-alt: oklch(
+    calc(var(--lightness-450) - 0.025) var(--chroma-medium) var(--primary-hue)
+  );
+
+  --background-gradient: linear-gradient(
+    165deg,
+    oklch(var(--lightness-300) var(--chroma-medium) var(--primary-hue)) 0%,
+    oklch(var(--lightness-400) var(--chroma-medium) var(--primary-hue)) 68%,
+    oklch(var(--lightness-500) var(--chroma-low) var(--secondary-hue)) 100%
+  );
+  --background-modifier-border: oklch(
+    calc(var(--lightness-550) + 0.015) var(--chroma-medium) var(--primary-hue)
+  );
+
+  --color-base-00: oklch(
+    var(--lightness-0) var(--chroma-neutral) var(--primary-hue) / 0.32
+  );
+  --color-base-05: oklch(
+    var(--lightness-50) var(--chroma-neutral) var(--primary-hue) / 0.32
+  );
+  --color-base-10: oklch(
+    var(--lightness-100) var(--chroma-neutral) var(--primary-hue) / 0.32
+  );
+  --color-base-20: oklch(
+    var(--lightness-200) var(--chroma-neutral) var(--primary-hue) / 0.32
+  );
+  --color-base-25: oklch(
+    var(--lightness-250) var(--chroma-low) var(--primary-hue) / 0.64
+  );
+  --color-base-30: oklch(
+    var(--lightness-300) var(--chroma-low) var(--primary-hue) / 0.64
+  );
+  --color-base-35: oklch(
+    var(--lightness-350) var(--chroma-low) var(--primary-hue) / 0.64
+  );
+  --color-base-40: oklch(
+    var(--lightness-400) var(--chroma-low) var(--primary-hue) / 0.64
+  );
+  --color-base-50: oklch(
+    var(--lightness-550) var(--chroma-medium) var(--primary-hue)
+  );
+  --color-base-60: oklch(
+    var(--lightness-650) var(--chroma-medium) var(--primary-hue)
+  );
+  --color-base-70: oklch(
+    var(--lightness-700) var(--chroma-medium) var(--primary-hue)
+  );
+  --color-base-100: oklch(
+    var(--lightness-1000) var(--chroma-high) var(--primary-hue)
+  );
+
+  --h1-color: oklch(var(--lightness-800) var(--chroma-high) var(--primary-hue));
+  --h2-color: oklch(var(--lightness-750) var(--chroma-high) var(--primary-hue));
+  --h3-color: oklch(var(--lightness-700) var(--chroma-high) var(--primary-hue));
+  --h4-color: oklch(var(--lightness-650) var(--chroma-high) var(--primary-hue));
+  --h5-color: oklch(var(--lightness-600) var(--chroma-high) var(--primary-hue));
+  --h6-color: oklch(var(--lightness-550) var(--chroma-high) var(--primary-hue));
+
+  --bold-color: oklch(
+    var(--lightness-750) var(--chroma-accent) var(--primary-hue)
+  );
+  --bold-modifier: 500;
+
+  --code-normal: oklch(
+    var(--lightness-650) var(--chroma-high) var(--primary-hue)
+  );
+  --code-border-color: transparent;
+
+  --inline-code-normal: oklch(
+    var(--lightness-350) var(--chroma-accent) var(--primary-hue)
+  );
+  --inline-code-background: oklch(
+    var(--lightness-850) var(--chroma-low) calc(var(--primary-hue) + 10)
+  );
+
+  --blockquote-border-color: oklch(
+    var(--lightness-350) var(--chroma-low) var(--primary-hue)
+  );
+  --blockquote-background-color: oklch(
+    var(--lightness-10) var(--chroma-accent) var(--primary-hue) / 0.38
+  );
+  --blockquote-color: oklch(
+    var(--lightness-750) var(--chroma-high) var(--primary-hue)
+  );
+
+  --codeblock-background: oklch(
+    var(--lightness-10) var(--chroma-accent) var(--primary-hue) / 0.38
+  );
+  --codeblock-caret-color: oklch(
+    var(--lightness-450) var(--chroma-high) var(--primary-hue)
+  );
+  --codeblock-border-radius: 10px;
+
+  --text-highlight-background: oklch(
+    var(--lightness-500) var(--chroma-medium) var(--primary-hue) / 0.62
+  );
+  --text-highlight-border-color: oklch(
+    var(--lightness-950) var(--chroma-high) var(--primary-hue)
+  );
+  --text-highlight-color: oklch(
+    var(--lightness-950) var(--chroma-accent) var(--primary-hue)
+  );
+  --text-highlight-border-radius: 5px;
+
+  --callout-bug: var(--color-red-rgb);
+  --callout-default: 141, 120, 173;
+  --callout-error: 184, 64, 102;
+  --callout-example: 87, 177, 167;
+  --callout-fail: 184, 64, 102;
+  --callout-important: 202, 109, 74;
+  --callout-info: 91, 156, 179;
+  --callout-question: 203, 166, 88;
+  --callout-success: 87, 158, 128;
+  --callout-summary: 141, 120, 173;
+  --callout-tip: 87, 177, 167;
+  --callout-todo: 200, 140, 155;
+  --callout-warning: 203, 166, 88;
+  --callout-quote: 150, 150, 150;
+
+  --nav-button-container-bg: oklch(
+    var(--lightness-700) var(--chroma-medium) var(--primary-hue) / 0.25
+  );
+  --header-active-bg: rgba(200, 140, 155, 0.2);
+}
+
 
 .notice,
 .tooltip {
