@@ -1968,7 +1968,6 @@ body.is-focused .workspace-ribbon.mod-left {
 	border-style: none;
 	border-color: var(--side-dock-actions-border-color);
 	border-radius: 0px var(--radius-m) var(--radius-m) 0px;
-	overflow: hidden;
 	padding: 2px;
 	margin-top: 2px;
 	box-shadow: var(--side-dock-actions-shadow);
