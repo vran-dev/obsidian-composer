@@ -2,6 +2,8 @@
     "name": "composer",
     "version": "1.0.0",
 	"scripts": {
-		"version": "node version-bump.mjs && git add manifest.json versions.json"
+		"build": "node build.mjs",
+		"preversion": "npm run build",
+		"version": "node version-bump.mjs && git add manifest.json versions.json theme.css"
 	}
 }
