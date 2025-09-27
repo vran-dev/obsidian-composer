@@ -2185,6 +2185,7 @@ body:not(.is-phone) .workspace-tab-container {
 
 .mod-root .workspace-tab-header-container-inner {
 	padding: 1px 12px 0px 6px;
+	gap: var(--size-4-1);
 }
 
 .workspace
