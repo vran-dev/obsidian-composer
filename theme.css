@@ -275,8 +275,8 @@ settings:
   description.zh: 需要指定单位 em 或 px
   type: variable-text
   default: 1.21em
-- id: h6-size
-  title: H6 Size
+- id: h5-size
+  title: H5 Size
   title.zh: 五级标题大小
   description: you should specify the unit em or px
   description.zh: 需要指定单位 em 或 px
