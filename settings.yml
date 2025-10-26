@@ -422,6 +422,12 @@ settings:
   type: heading
   level: 2
   collapsed: true
+- id: color-hue-settings
+  title: Color Hue Settings(Only for Ní)
+  title.zh: 色调设置（仅适用于 Ní）
+  type: heading
+  level: 3
+  collapsed: true
 - id: light-primary-hue
   title: Light Primary Hue (Only for Ní Scheme)
   title.zh: 亮色主题主色调（仅适用于 Ní 方案）
@@ -455,6 +461,12 @@ settings:
   min: 0
   max: 360
   step: 1
+- id: background-colors
+  title: Background Colors
+  title.zh: 背景色
+  type: heading
+  level: 3
+  collapsed: true
 - id: background-primary
   title: Background Primary
   title.zh: 主要背景色
@@ -483,6 +495,63 @@ settings:
   format: hex
   default-light: "#dddfe3"
   default-dark: "#373e48"
+- id: rainbow-tree-settings
+  title: Rainbow Tree Settings
+  title.zh: 彩虹目录
+  type: heading
+  level: 3
+  collapsed: true
+- id: composer--DisableRainbowTree
+  title: Disable Rainbow Tree
+  title.zh: 禁用彩虹目录
+  description: disable rainbow tree for file explorer
+  description.zh: 为文件资源管理器禁用彩虹目录
+  type: class-toggle
+- id: folder-bg-opacity-setting
+  title: Folder Background Opacity
+  title.zh: 文件夹背景不透明度
+  description: Set the background opacity of the folder
+  description.zh: 设置文件夹的背景不透明度
+  type: variable-number
+  default: 0.08
+  min: 0
+  max: 1
+- id: folder-text-opacity-setting
+  title: Folder Text Opacity
+  title.zh: 文件夹文本不透明度
+  description: Set the text opacity of the folder
+  description.zh: 设置文件夹的文本不透明度
+  type: variable-number
+  default: 0.85
+  min: 0
+  max: 1
+- id: folder-hover-opacity-setting
+  title: Folder Hover Opacity
+  title.zh: 文件夹悬停不透明度
+  description: Set the hover opacity of the folder
+  description.zh: 设置文件夹的悬停不透明度
+  type: variable-number
+  default: 0.12
+  min: 0
+  max: 1
+- id: folder-sub-bg-opacity-setting
+  title: Folder Sub Background Opacity
+  title.zh: 子文件夹背景不透明度
+  description: Set the background opacity of the sub-folder
+  description.zh: 设置子文件夹的背景不透明度
+  type: variable-number
+  default: 0.04
+  min: 0
+  max: 1
+- id: folder-sub-text-opacity-setting
+  title: Folder Sub Text Opacity
+  title.zh: 子文件夹文本不透明度
+  description: Set the text opacity of the sub-folder
+  description.zh: 设置子文件夹的文本不透明度
+  type: variable-number
+  default: 0.7
+  min: 0
+  max: 1
 - id: plugin-components
   title: Components Plugin
   title.zh: Components 插件
