@@ -1758,13 +1758,13 @@ body:not(.is-mobile)
 
 /* markdown */
 /* file header title */
-body:not(.is-phone) .view-header-title-parent {
+body:not(.is-phone).composer--ToggleDesktopViewHeaderTitleParent .view-header-title-parent {
 	width: 0;
 	opacity: 0;
 }
 
 @media (hover: hover) {
-	body:not(.is-phone)
+	body:not(.is-phone).composer--ToggleDesktopViewHeaderTitleParent
 		.view-header-title-container:hover
 		.view-header-title-parent {
 		width: auto;
