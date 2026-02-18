@@ -364,6 +364,11 @@ settings:
   max: 10
   step: 1
   format: px
+- id: composer--DisableDesktopViewHeaderTitleParent
+  title: Toggle Desktop View Header Title Parent
+  title.zh: 桌面端视图标题路径折叠
+  type: class-toggle
+	default: true
 - id: nav-file-settings
   title: Nav File Settings
   title.zh: 导航文件
@@ -741,13 +746,14 @@ body {
 
 	--root-workspace-padding-bottom: 28px;
 	--root-workspace-radius: var(--radius-m);
-	--root-workspace-shadow: var(--background-modifier-border) 0px 0px 3px 0px,
+	--root-workspace-shadow:
+		var(--background-modifier-border) 0px 0px 3px 0px,
 		var(--background-modifier-border) 0px 1px 2px 0px;
 	--root-workspace-background: transparent;
 	--root-workspace-margin-spacing: 16px;
 	--side-dock-actions-border-color: var(--background-modifier-border);
-	--side-dock-actions-shadow: var(--background-modifier-border) 0px 1px 2px
-			0px,
+	--side-dock-actions-shadow:
+		var(--background-modifier-border) 0px 1px 2px 0px,
 		var(--background-modifier-border) 0px 0px 0px 1px;
 	/* outline */
 	--outline-collapsed-icon-opacity: 1;
@@ -1534,7 +1540,8 @@ body {
 }
 
 .notice {
-	box-shadow: var(--background-modifier-border) 0px 1px 3px 1px,
+	box-shadow:
+		var(--background-modifier-border) 0px 1px 3px 1px,
 		var(--background-modifier-border) 0px 1px 3px 1px;
 }
 
@@ -1723,7 +1730,8 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 	left: 8px;
 	width: 42%;
 	height: 88%;
-	background: repeating-linear-gradient(
+	background:
+		repeating-linear-gradient(
 			to right,
 			transparent 0,
 			transparent 19px,
@@ -1735,7 +1743,8 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 			transparent 19px,
 			rgba(var(--callout-color), 0.6) 20px
 		);
-	mask: linear-gradient(to right, var(--background-primary), transparent 80%),
+	mask:
+		linear-gradient(to right, var(--background-primary), transparent 80%),
 		linear-gradient(to bottom, var(--background-primary), transparent 80%);
 	mask-composite: intersect;
 	z-index: -1;
@@ -1944,8 +1953,9 @@ body .markdown-rendered mark {
 		--table-header-border-width: 0px;
 		--table-row-last-border-width: 0px;
 
-		box-shadow: hsl(var(--accent-h), var(--accent-l), var(--accent-s), 0.25)
-				0px 0px 5px -1px,
+		box-shadow:
+			hsl(var(--accent-h), var(--accent-l), var(--accent-s), 0.25) 0px 0px
+				5px -1px,
 			hsl(var(--accent-h), var(--accent-l), var(--accent-s), 0.3) 0px 1px
 				0px -1px;
 	}
@@ -1999,7 +2009,8 @@ body:not(.composer--HideStripedTableBackground) {
 
 /* link/external */
 .external-link {
-	background-image: linear-gradient(transparent, transparent),
+	background-image:
+		linear-gradient(transparent, transparent),
 		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(136, 136, 136)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='7' y1='17' x2='17' y2='7'%3E%3C/line%3E%3Cpolyline points='7 7 17 7 17 17'%3E%3C/polyline%3E%3C/svg%3E");
 	background-size: calc(var(--font-text-size) + 0.2em), 1em;
 	background-position: right center;
@@ -2121,7 +2132,8 @@ body:not(.is-mobile):not(.composer--DisableNavHeaderAutoHide)
 	border-radius: 50%;
 	padding: 0px;
 	background-color: var(--text-faint);
-	transition: max-width 240ms cubic-bezier(0.4, 0, 0.2, 1),
+	transition:
+		max-width 240ms cubic-bezier(0.4, 0, 0.2, 1),
 		max-height 240ms cubic-bezier(0.4, 0, 0.2, 1),
 		opacity 240ms cubic-bezier(0.4, 0, 0.2, 1),
 		padding 240ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -2398,13 +2410,13 @@ body:not(.is-mobile)
 
 /* markdown */
 /* file header title */
-body:not(.is-phone) .view-header-title-parent {
+body:not(.is-phone).composer--ToggleDesktopViewHeaderTitleParent .view-header-title-parent {
 	width: 0;
 	opacity: 0;
 }
 
 @media (hover: hover) {
-	body:not(.is-phone)
+	body:not(.is-phone).composer--ToggleDesktopViewHeaderTitleParent
 		.view-header-title-container:hover
 		.view-header-title-parent {
 		width: auto;
@@ -3271,283 +3283,321 @@ https://github.com/aaaaalexis/obsidian-cupertino
 	}
 }
 
-
 /* rainbow tree */
 
 .workspace-leaf-content[data-type="file-explorer"] {
-  --folder-bg-opacity: var(--folder-bg-opacity-setting, 0.08);
-  --folder-text-opacity: var(--folder-text-opacity-setting, 0.85);
-  --folder-hover-opacity: var(--folder-hover-opacity-setting, 0.12);
-  --folder-sub-bg-opacity: var(--folder-sub-bg-opacity-setting, 0.04);
-  --folder-sub-text-opacity: var(--folder-sub-text-opacity-setting, 0.7);
+	--folder-bg-opacity: var(--folder-bg-opacity-setting, 0.08);
+	--folder-text-opacity: var(--folder-text-opacity-setting, 0.85);
+	--folder-hover-opacity: var(--folder-hover-opacity-setting, 0.12);
+	--folder-sub-bg-opacity: var(--folder-sub-bg-opacity-setting, 0.04);
+	--folder-sub-text-opacity: var(--folder-sub-text-opacity-setting, 0.7);
 
-  /* 背景色 - 基于主题的暖色调 */
-  --folder-bg-1: rgba(var(--color-red-rgb), var(--folder-bg-opacity));
-  --folder-bg-2: rgba(var(--color-blue-rgb), var(--folder-bg-opacity));
-  --folder-bg-3: rgba(var(--color-green-rgb), var(--folder-bg-opacity));
-  --folder-bg-4: rgba(var(--color-orange-rgb), var(--folder-bg-opacity));
-  --folder-bg-5: rgba(var(--color-purple-rgb), var(--folder-bg-opacity));
-  --folder-bg-6: rgba(var(--color-cyan-rgb), var(--folder-bg-opacity));
-  --folder-bg-7: rgba(var(--color-pink-rgb), var(--folder-bg-opacity));
+	/* 背景色 - 基于主题的暖色调 */
+	--folder-bg-1: rgba(var(--color-red-rgb), var(--folder-bg-opacity));
+	--folder-bg-2: rgba(var(--color-blue-rgb), var(--folder-bg-opacity));
+	--folder-bg-3: rgba(var(--color-green-rgb), var(--folder-bg-opacity));
+	--folder-bg-4: rgba(var(--color-orange-rgb), var(--folder-bg-opacity));
+	--folder-bg-5: rgba(var(--color-purple-rgb), var(--folder-bg-opacity));
+	--folder-bg-6: rgba(var(--color-cyan-rgb), var(--folder-bg-opacity));
+	--folder-bg-7: rgba(var(--color-pink-rgb), var(--folder-bg-opacity));
 
-  /* 字体色 - 基于主题的深色系 */
-  --folder-text-1: rgba(var(--color-red-rgb), var(--folder-text-opacity));
-  --folder-text-2: rgba(var(--color-blue-rgb), var(--folder-text-opacity));
-  --folder-text-3: rgba(var(--color-green-rgb), var(--folder-text-opacity));
-  --folder-text-4: rgba(var(--color-orange-rgb), var(--folder-text-opacity));
-  --folder-text-5: rgba(var(--color-purple-rgb), var(--folder-text-opacity));
-  --folder-text-6: rgba(var(--color-cyan-rgb), var(--folder-text-opacity));
-  --folder-text-7: rgba(var(--color-pink-rgb), var(--folder-text-opacity));
+	/* 字体色 - 基于主题的深色系 */
+	--folder-text-1: rgba(var(--color-red-rgb), var(--folder-text-opacity));
+	--folder-text-2: rgba(var(--color-blue-rgb), var(--folder-text-opacity));
+	--folder-text-3: rgba(var(--color-green-rgb), var(--folder-text-opacity));
+	--folder-text-4: rgba(var(--color-orange-rgb), var(--folder-text-opacity));
+	--folder-text-5: rgba(var(--color-purple-rgb), var(--folder-text-opacity));
+	--folder-text-6: rgba(var(--color-cyan-rgb), var(--folder-text-opacity));
+	--folder-text-7: rgba(var(--color-pink-rgb), var(--folder-text-opacity));
 
-  /* 悬停状态 - 稍微加深背景 */
-  --folder-hover-1: rgba(var(--color-red-rgb), var(--folder-hover-opacity));
-  --folder-hover-2: rgba(var(--color-blue-rgb), var(--folder-hover-opacity));
-  --folder-hover-3: rgba(var(--color-green-rgb), var(--folder-hover-opacity));
-  --folder-hover-4: rgba(var(--color-orange-rgb), var(--folder-hover-opacity));
-  --folder-hover-5: rgba(var(--color-purple-rgb), var(--folder-hover-opacity));
-  --folder-hover-6: rgba(var(--color-cyan-rgb), var(--folder-hover-opacity));
-  --folder-hover-7: rgba(var(--color-pink-rgb), var(--folder-hover-opacity));
+	/* 悬停状态 - 稍微加深背景 */
+	--folder-hover-1: rgba(var(--color-red-rgb), var(--folder-hover-opacity));
+	--folder-hover-2: rgba(var(--color-blue-rgb), var(--folder-hover-opacity));
+	--folder-hover-3: rgba(var(--color-green-rgb), var(--folder-hover-opacity));
+	--folder-hover-4: rgba(
+		var(--color-orange-rgb),
+		var(--folder-hover-opacity)
+	);
+	--folder-hover-5: rgba(
+		var(--color-purple-rgb),
+		var(--folder-hover-opacity)
+	);
+	--folder-hover-6: rgba(var(--color-cyan-rgb), var(--folder-hover-opacity));
+	--folder-hover-7: rgba(var(--color-pink-rgb), var(--folder-hover-opacity));
 
-  /* 子目录淡化色 */
-  --folder-sub-bg-1: rgba(var(--color-red-rgb), var(--folder-sub-bg-opacity));
-  --folder-sub-bg-2: rgba(var(--color-blue-rgb), var(--folder-sub-bg-opacity));
-  --folder-sub-bg-3: rgba(var(--color-green-rgb), var(--folder-sub-bg-opacity));
-  --folder-sub-bg-4: rgba(
-    var(--color-orange-rgb),
-    var(--folder-sub-bg-opacity)
-  );
-  --folder-sub-bg-5: rgba(
-    var(--color-purple-rgb),
-    var(--folder-sub-bg-opacity)
-  );
-  --folder-sub-bg-6: rgba(var(--color-cyan-rgb), var(--folder-sub-bg-opacity));
-  --folder-sub-bg-7: rgba(var(--color-pink-rgb), var(--folder-sub-bg-opacity));
+	/* 子目录淡化色 */
+	--folder-sub-bg-1: rgba(var(--color-red-rgb), var(--folder-sub-bg-opacity));
+	--folder-sub-bg-2: rgba(
+		var(--color-blue-rgb),
+		var(--folder-sub-bg-opacity)
+	);
+	--folder-sub-bg-3: rgba(
+		var(--color-green-rgb),
+		var(--folder-sub-bg-opacity)
+	);
+	--folder-sub-bg-4: rgba(
+		var(--color-orange-rgb),
+		var(--folder-sub-bg-opacity)
+	);
+	--folder-sub-bg-5: rgba(
+		var(--color-purple-rgb),
+		var(--folder-sub-bg-opacity)
+	);
+	--folder-sub-bg-6: rgba(
+		var(--color-cyan-rgb),
+		var(--folder-sub-bg-opacity)
+	);
+	--folder-sub-bg-7: rgba(
+		var(--color-pink-rgb),
+		var(--folder-sub-bg-opacity)
+	);
 
-  --folder-sub-text-1: rgba(
-    var(--color-red-rgb),
-    var(--folder-sub-text-opacity)
-  );
-  --folder-sub-text-2: rgba(
-    var(--color-blue-rgb),
-    var(--folder-sub-text-opacity)
-  );
-  --folder-sub-text-3: rgba(
-    var(--color-green-rgb),
-    var(--folder-sub-text-opacity)
-  );
-  --folder-sub-text-4: rgba(
-    var(--color-orange-rgb),
-    var(--folder-sub-text-opacity)
-  );
-  --folder-sub-text-5: rgba(
-    var(--color-purple-rgb),
-    var(--folder-sub-text-opacity)
-  );
-  --folder-sub-text-6: rgba(
-    var(--color-cyan-rgb),
-    var(--folder-sub-text-opacity)
-  );
-  --folder-sub-text-7: rgba(
-    var(--color-pink-rgb),
-    var(--folder-sub-text-opacity)
-  );
+	--folder-sub-text-1: rgba(
+		var(--color-red-rgb),
+		var(--folder-sub-text-opacity)
+	);
+	--folder-sub-text-2: rgba(
+		var(--color-blue-rgb),
+		var(--folder-sub-text-opacity)
+	);
+	--folder-sub-text-3: rgba(
+		var(--color-green-rgb),
+		var(--folder-sub-text-opacity)
+	);
+	--folder-sub-text-4: rgba(
+		var(--color-orange-rgb),
+		var(--folder-sub-text-opacity)
+	);
+	--folder-sub-text-5: rgba(
+		var(--color-purple-rgb),
+		var(--folder-sub-text-opacity)
+	);
+	--folder-sub-text-6: rgba(
+		var(--color-cyan-rgb),
+		var(--folder-sub-text-opacity)
+	);
+	--folder-sub-text-7: rgba(
+		var(--color-pink-rgb),
+		var(--folder-sub-text-opacity)
+	);
 }
 
 /* 顶级目录配色 - 根据序号循环展示7种颜色 */
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 1)
-  > .nav-folder-title {
-  background-color: var(--folder-bg-1);
-  color: var(--folder-text-1);
-  --nav-collapse-icon-color: var(--folder-text-1);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 1)
+	> .nav-folder-title {
+	background-color: var(--folder-bg-1);
+	color: var(--folder-text-1);
+	--nav-collapse-icon-color: var(--folder-text-1);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 2)
-  > .nav-folder-title {
-  background-color: var(--folder-bg-2);
-  color: var(--folder-text-2);
-  --nav-collapse-icon-color: var(--folder-text-2);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 2)
+	> .nav-folder-title {
+	background-color: var(--folder-bg-2);
+	color: var(--folder-text-2);
+	--nav-collapse-icon-color: var(--folder-text-2);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 3)
-  > .nav-folder-title {
-  background-color: var(--folder-bg-3);
-  color: var(--folder-text-3);
-  --nav-collapse-icon-color: var(--folder-text-3);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 3)
+	> .nav-folder-title {
+	background-color: var(--folder-bg-3);
+	color: var(--folder-text-3);
+	--nav-collapse-icon-color: var(--folder-text-3);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 4)
-  > .nav-folder-title {
-  background-color: var(--folder-bg-4);
-  color: var(--folder-text-4);
-  --nav-collapse-icon-color: var(--folder-text-4);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 4)
+	> .nav-folder-title {
+	background-color: var(--folder-bg-4);
+	color: var(--folder-text-4);
+	--nav-collapse-icon-color: var(--folder-text-4);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 5)
-  > .nav-folder-title {
-  background-color: var(--folder-bg-5);
-  color: var(--folder-text-5);
-  --nav-collapse-icon-color: var(--folder-text-5);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 5)
+	> .nav-folder-title {
+	background-color: var(--folder-bg-5);
+	color: var(--folder-text-5);
+	--nav-collapse-icon-color: var(--folder-text-5);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 6)
-  > .nav-folder-title {
-  background-color: var(--folder-bg-6);
-  color: var(--folder-text-6);
-  --nav-collapse-icon-color: var(--folder-text-6);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 6)
+	> .nav-folder-title {
+	background-color: var(--folder-bg-6);
+	color: var(--folder-text-6);
+	--nav-collapse-icon-color: var(--folder-text-6);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n)
-  > .nav-folder-title {
-  background-color: var(--folder-bg-7);
-  color: var(--folder-text-7);
-  --nav-collapse-icon-color: var(--folder-text-7);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n)
+	> .nav-folder-title {
+	background-color: var(--folder-bg-7);
+	color: var(--folder-text-7);
+	--nav-collapse-icon-color: var(--folder-text-7);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
 /* 子目录配色 - 继承父目录颜色但更淡 */
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 1)
-  .tree-item-children
-  .nav-folder-title {
-  background-color: var(--folder-sub-bg-1);
-  color: var(--folder-sub-text-1);
-  --nav-collapse-icon-color: var(--folder-text-1);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 1)
+	.tree-item-children
+	.nav-folder-title {
+	background-color: var(--folder-sub-bg-1);
+	color: var(--folder-sub-text-1);
+	--nav-collapse-icon-color: var(--folder-text-1);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 2)
-  .tree-item-children
-  .nav-folder-title {
-  background-color: var(--folder-sub-bg-2);
-  color: var(--folder-sub-text-2);
-  --nav-collapse-icon-color: var(--folder-text-2);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 2)
+	.tree-item-children
+	.nav-folder-title {
+	background-color: var(--folder-sub-bg-2);
+	color: var(--folder-sub-text-2);
+	--nav-collapse-icon-color: var(--folder-text-2);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 3)
-  .tree-item-children
-  .nav-folder-title {
-  background-color: var(--folder-sub-bg-3);
-  color: var(--folder-sub-text-3);
-  --nav-collapse-icon-color: var(--folder-text-3);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 3)
+	.tree-item-children
+	.nav-folder-title {
+	background-color: var(--folder-sub-bg-3);
+	color: var(--folder-sub-text-3);
+	--nav-collapse-icon-color: var(--folder-text-3);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 4)
-  .tree-item-children
-  .nav-folder-title {
-  background-color: var(--folder-sub-bg-4);
-  color: var(--folder-sub-text-4);
-  --nav-collapse-icon-color: var(--folder-text-4);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 4)
+	.tree-item-children
+	.nav-folder-title {
+	background-color: var(--folder-sub-bg-4);
+	color: var(--folder-sub-text-4);
+	--nav-collapse-icon-color: var(--folder-text-4);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 5)
-  .tree-item-children
-  .nav-folder-title {
-  background-color: var(--folder-sub-bg-5);
-  color: var(--folder-sub-text-5);
-  --nav-collapse-icon-color: var(--folder-text-5);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 5)
+	.tree-item-children
+	.nav-folder-title {
+	background-color: var(--folder-sub-bg-5);
+	color: var(--folder-sub-text-5);
+	--nav-collapse-icon-color: var(--folder-text-5);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 6)
-  .tree-item-children
-  .nav-folder-title {
-  background-color: var(--folder-sub-bg-6);
-  color: var(--folder-sub-text-6);
-  --nav-collapse-icon-color: var(--folder-text-6);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 6)
+	.tree-item-children
+	.nav-folder-title {
+	background-color: var(--folder-sub-bg-6);
+	color: var(--folder-sub-text-6);
+	--nav-collapse-icon-color: var(--folder-text-6);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n)
-  .tree-item-children
-  .nav-folder-title {
-  background-color: var(--folder-sub-bg-7);
-  color: var(--folder-sub-text-7);
-  --nav-collapse-icon-color: var(--folder-text-7);
-  --icon-color: var(--nav-collapse-icon-color);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n)
+	.tree-item-children
+	.nav-folder-title {
+	background-color: var(--folder-sub-bg-7);
+	color: var(--folder-sub-text-7);
+	--nav-collapse-icon-color: var(--folder-text-7);
+	--icon-color: var(--nav-collapse-icon-color);
 }
 
 /* 顶级目录悬停效果 */
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 1)
-  > .nav-folder-title:hover {
-  background-color: var(--folder-hover-1);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 1)
+	> .nav-folder-title:hover {
+	background-color: var(--folder-hover-1);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 2)
-  > .nav-folder-title:hover {
-  background-color: var(--folder-hover-2);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 2)
+	> .nav-folder-title:hover {
+	background-color: var(--folder-hover-2);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 3)
-  > .nav-folder-title:hover {
-  background-color: var(--folder-hover-3);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 3)
+	> .nav-folder-title:hover {
+	background-color: var(--folder-hover-3);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 4)
-  > .nav-folder-title:hover {
-  background-color: var(--folder-hover-4);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 4)
+	> .nav-folder-title:hover {
+	background-color: var(--folder-hover-4);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 5)
-  > .nav-folder-title:hover {
-  background-color: var(--folder-hover-5);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 5)
+	> .nav-folder-title:hover {
+	background-color: var(--folder-hover-5);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n + 6)
-  > .nav-folder-title:hover {
-  background-color: var(--folder-hover-6);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n + 6)
+	> .nav-folder-title:hover {
+	background-color: var(--folder-hover-6);
 }
 
-body:not(.composer--DisableRainbowTree) .nav-files-container
-  > div
-  > .tree-item.nav-folder:nth-child(7n)
-  > .nav-folder-title:hover {
-  background-color: var(--folder-hover-7);
+body:not(.composer--DisableRainbowTree)
+	.nav-files-container
+	> div
+	> .tree-item.nav-folder:nth-child(7n)
+	> .nav-folder-title:hover {
+	background-color: var(--folder-hover-7);
 }
