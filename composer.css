@@ -1584,6 +1584,12 @@ body:not(.is-phone) .workspace-tab-container {
 	background-color: transparent;
 }
 
+body:not(.is-mobile) .workspace-leaf-content .view-content {
+    padding: var(--size-4-3) var(--size-4-3) var(--size-4-1);
+    padding-bottom: max(var(--safe-area-inset-bottom), var(--size-4-1));
+    overflow: auto;
+}
+
 /* Root tab */
 .workspace .mod-root {
 	background-color: var(--mod-root-background);
