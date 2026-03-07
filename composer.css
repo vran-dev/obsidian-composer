@@ -1590,6 +1590,13 @@ body:not(.is-mobile) .workspace-leaf-content .view-content {
     overflow: auto;
 }
 
+/* Hide drawer tab options only when keyboard height exists and is not 0px */
+html[style*="--keyboard-height"]:not([style*="--keyboard-height: 0px"]):not([style*="--keyboard-height:0px"]) body.is-phone .workspace-drawer-tab-options,
+html[style*="--keyboard-height"]:not([style*="--keyboard-height: 0px"]):not([style*="--keyboard-height:0px"]) body.is-phone .workspace-drawer-header
+{
+  display: none !important;
+}
+
 /* Root tab */
 .workspace .mod-root {
 	background-color: var(--mod-root-background);
