@@ -758,6 +758,11 @@ body {
 	--outline-collapsed-icon-opacity: 1;
 }
 
+body.is-phone {
+    --vault-profile-order: 0;
+    --nav-item-parent-padding: var(--size-4-2) var(--size-4-2) var(--size-4-2) var(--size-4-8);
+}
+
 /* body {
 	--ribbon-background-collapsed: transparent;
 	--mod-left-ribbon-background: transparent;
@@ -2234,6 +2239,32 @@ body:not(.is-mobile) .workspace-leaf-content .view-content {
     padding-bottom: max(var(--safe-area-inset-bottom), var(--size-4-1));
     overflow: auto;
 }
+
+/* Hide drawer tab options only when keyboard height exists and is not 0px */
+html[style*="--keyboard-height"]:not([style*="--keyboard-height: 0px"]):not([style*="--keyboard-height:0px"]) body.is-phone .workspace-drawer-tab-options,
+html[style*="--keyboard-height"]:not([style*="--keyboard-height: 0px"]):not([style*="--keyboard-height:0px"]) body.is-phone .workspace-drawer-header
+{
+  display: none !important;
+}
+
+/* optimize side panel layout in phone */
+.is-mobile.is-floating-nav.is-phone
+  .workspace-drawer
+  .workspace-leaf-content
+  .nav-header
+  ~ div:last-child {
+  padding-bottom: var(--size-4-2);
+}
+
+.is-phone .workspace-drawer .nav-buttons-container {
+  position: initial;
+}
+
+.is-phone .workspace-drawer-tab-select .workspace-tab-header-inner {
+    background-color: rgba(0, 0, 0, 0.03);
+    color: var(--text-muted);
+}
+
 
 /* Root tab */
 .workspace .mod-root {
