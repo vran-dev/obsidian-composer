@@ -1699,11 +1699,11 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 
 /* default callout */
 .callout {
-	border: 1px solid rgba(var(--callout-color), 0.35);
+	border: 1px solid color-mix(in srgb, var(--callout-color) 35%, transparent);
 }
 
 .callout:hover {
-	border-color: rgba(var(--callout-color), 0.8);
+	border-color: color-mix(in srgb, var(--callout-color) 80%, transparent);
 }
 
 .markdown-source-view.mod-cm6 .cm-embed-block:not(.cm-table-widget):hover {
@@ -1717,11 +1717,11 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 .composer--SubtleGridCallout .callout {
 	background: linear-gradient(
 		150deg,
-		rgba(var(--callout-color), 0.15) 0%,
-		rgba(var(--callout-color), 0.05) 10%,
+		color-mix(in srgb, var(--callout-color) 15%, transparent) 0%,
+		color-mix(in srgb, var(--callout-color) 5%, transparent) 10%,
 		var(--background-primary) 38%
 	);
-	border: 1px solid rgba(var(--callout-color), 0.38);
+	border: 1px solid color-mix(in srgb, var(--callout-color) 38%, transparent);
 	position: relative;
 	padding: 4px;
 }
@@ -1737,13 +1737,13 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 			to right,
 			transparent 0,
 			transparent 19px,
-			rgba(var(--callout-color), 0.6) 20px
+			color-mix(in srgb, var(--callout-color) 60%, transparent) 20px
 		),
 		repeating-linear-gradient(
 			to bottom,
 			transparent 0,
 			transparent 19px,
-			rgba(var(--callout-color), 0.6) 20px
+			color-mix(in srgb, var(--callout-color) 60%, transparent) 20px
 		);
 	mask: linear-gradient(to right, var(--background-primary), transparent 80%),
 		linear-gradient(to bottom, var(--background-primary), transparent 80%);
@@ -1761,15 +1761,15 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 
 /* window panel callout */
 .composer--WindowPanelCallout .callout {
-	border: 1px solid rgba(var(--callout-color), 0.68);
+	border: 1px solid color-mix(in srgb, var(--callout-color) 68%, transparent);
 	position: relative;
 	background-color: transparent;
 	padding: 0px;
 }
 
 .composer--WindowPanelCallout .callout-title {
-	border-bottom: 1px solid rgba(var(--callout-color), 0.68);
-	background-color: rgba(var(--callout-color), 0.1);
+	border-bottom: 1px solid color-mix(in srgb, var(--callout-color) 68%, transparent);
+	background-color: color-mix(in srgb, var(--callout-color) 10%, transparent);
 	padding: 8px 16px 8px 16px;
 }
 
@@ -1806,9 +1806,9 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 	height: 2px;
 	background: linear-gradient(
 		to right,
-		rgba(var(--callout-color), 0.1) 0%,
-		rgba(var(--callout-color), 0.6) 12%,
-		rgba(var(--callout-color), 0.1) 62%,
+		color-mix(in srgb, var(--callout-color) 10%, transparent) 0%,
+		color-mix(in srgb, var(--callout-color) 60%, transparent) 12%,
+		color-mix(in srgb, var(--callout-color) 10%, transparent) 62%,
 		transparent 100%
 	);
 }
@@ -1816,7 +1816,7 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 /* github callout */
 .composer--GithubCallout .callout {
 	border: none;
-	border-left: rgba(var(--callout-color), 0.6) 4px solid;
+	border-left: color-mix(in srgb, var(--callout-color) 60%, transparent) 4px solid;
 	border-radius: 0px;
 	background-color: transparent;
 	padding: 8px 16px 8px 16px;
