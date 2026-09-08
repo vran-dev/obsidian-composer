@@ -146,6 +146,31 @@ settings:
     description.zh: 设置段落的词间距，需要指定单位 em 或 px
     type: variable-text
     default: 0.035em
+  - id: typograph-list
+    title: List
+    title.zh: 列表
+    type: heading
+    level: 3
+    collapsed: true
+  - id: list-marker-color-ul
+    title: Unordered List Marker Color
+    title.zh: 无序列表符号颜色
+    description: Color of the bullets of unordered lists and task lists
+    description.zh: 无序列表和任务列表符号的颜色
+    type: variable-themed-color
+    format: hex
+    default-light: "#8a7e76"
+    default-dark: "#5a616a"
+  - id: list-marker-color-ol
+    title: Ordered List Marker Color
+    title.zh: 有序列表序号颜色
+    description: Color of the numbers of ordered lists
+    description.zh: 有序列表序号的颜色
+    type: variable-themed-color
+    format: hex
+    default-light: "#8a7e76"
+    default-dark: "#5a616a"
+
   - id: bold-style-setting
     title: Bold
     title.zh: 加粗
@@ -697,6 +722,19 @@ body {
 
 	/* list */
 	--list-spacing: 0.225em;
+	/*
+	 * List marker color tokens. Obsidian paints every list marker (reading
+	 * view ::marker / .list-bullet:after, live preview .cm-formatting-list)
+	 * with the single native var --list-marker-color, so route it through
+	 * per-type tokens. Defaults keep the native look and follow each color
+	 * scheme; exposing more states (hover / collapsed) later only needs a
+	 * matching Style Settings entry.
+	 */
+	--list-marker-color: var(--list-marker-color-ul);
+	--list-marker-color-ul: var(--text-faint);
+	--list-marker-color-ol: var(--text-faint);
+	--list-marker-color-hover: var(--text-muted);
+	--list-marker-color-collapsed: var(--text-accent);
 	/* embed */
 	--embed-border-start: 2px solid #cbd5e0;
 	/* suggestion */
@@ -761,6 +799,13 @@ body {
 body.is-phone {
     --vault-profile-order: 0;
     --nav-item-parent-padding: var(--size-4-2) var(--size-4-2) var(--size-4-2) var(--size-4-8);
+}
+
+/* ordered lists: re-scope the native marker var per list type; a custom
+   property declared on the element itself wins over the inherited value */
+ol,
+.cm-formatting-list-ol {
+	--list-marker-color: var(--list-marker-color-ol);
 }
 
 /* body {

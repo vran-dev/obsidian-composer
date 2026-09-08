@@ -145,6 +145,31 @@ settings:
     description.zh: 设置段落的词间距，需要指定单位 em 或 px
     type: variable-text
     default: 0.035em
+  - id: typograph-list
+    title: List
+    title.zh: 列表
+    type: heading
+    level: 3
+    collapsed: true
+  - id: list-marker-color-ul
+    title: Unordered List Marker Color
+    title.zh: 无序列表符号颜色
+    description: Color of the bullets of unordered lists and task lists
+    description.zh: 无序列表和任务列表符号的颜色
+    type: variable-themed-color
+    format: hex
+    default-light: "#8a7e76"
+    default-dark: "#5a616a"
+  - id: list-marker-color-ol
+    title: Ordered List Marker Color
+    title.zh: 有序列表序号颜色
+    description: Color of the numbers of ordered lists
+    description.zh: 有序列表序号的颜色
+    type: variable-themed-color
+    format: hex
+    default-light: "#8a7e76"
+    default-dark: "#5a616a"
+
   - id: bold-style-setting
     title: Bold
     title.zh: 加粗
