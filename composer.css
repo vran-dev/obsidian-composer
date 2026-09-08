@@ -212,20 +212,20 @@ body.is-phone {
 	--color-pink-rgb: 184, 92, 132;
 
 	/* callout */
-	--callout-bug: var(--color-red-rgb);
-	--callout-default: var(--color-blue-rgb);
-	--callout-error: 158, 48, 57;
-	--callout-example: var(--color-purple-rgb);
-	--callout-fail: var(--color-red-rgb);
-	--callout-important: var(--color-cyan-rgb);
-	--callout-info: var(--color-blue-rgb);
-	--callout-question: var(--color-orange-rgb);
-	--callout-success: var(--color-green-rgb);
-	--callout-summary: var(--color-cyan-rgb);
-	--callout-tip: var(--color-cyan-rgb);
-	--callout-todo: var(--color-blue-rgb);
-	--callout-warning: 191, 127, 63;
-	--callout-quote: 158, 158, 158;
+	--callout-bug: rgb(var(--color-red-rgb));
+	--callout-default: rgb(var(--color-blue-rgb));
+	--callout-error: rgb(158, 48, 57);
+	--callout-example: rgb(var(--color-purple-rgb));
+	--callout-fail: rgb(var(--color-red-rgb));
+	--callout-important: rgb(var(--color-cyan-rgb));
+	--callout-info: rgb(var(--color-blue-rgb));
+	--callout-question: rgb(var(--color-orange-rgb));
+	--callout-success: rgb(var(--color-green-rgb));
+	--callout-summary: rgb(var(--color-cyan-rgb));
+	--callout-tip: rgb(var(--color-cyan-rgb));
+	--callout-todo: rgb(var(--color-blue-rgb));
+	--callout-warning: rgb(191, 127, 63);
+	--callout-quote: rgb(158, 158, 158);
 
 	/* customize */
 	--nav-button-container-bg: rgba(31, 34, 37, 0.03);
@@ -314,9 +314,9 @@ body.is-phone {
 	--color-pink-rgb: 255, 157, 194;
 
 	/* callout */
-	--callout-error: 255, 100, 92;
-	--callout-warning: 255, 170, 92;
-	--callout-quote: 158, 158, 158;
+	--callout-error: rgb(255, 100, 92);
+	--callout-warning: rgb(255, 170, 92);
+	--callout-quote: rgb(158, 158, 158);
 
 	/* 自定义组件 */
 	--nav-button-container-bg: rgba(255, 255, 255, 0.03);
@@ -703,20 +703,20 @@ body.is-phone {
 	);
 	--text-highlight-border-radius: 5px;
 
-	--callout-bug: var(--color-red-rgb);
-	--callout-default: 161, 140, 193;
-	--callout-error: 214, 74, 122;
-	--callout-example: 107, 197, 187;
-	--callout-fail: 214, 74, 122;
-	--callout-important: 232, 129, 94;
-	--callout-info: 101, 176, 199;
-	--callout-question: 233, 196, 118;
-	--callout-success: 107, 178, 148;
-	--callout-summary: 161, 140, 193;
-	--callout-tip: 107, 197, 187;
-	--callout-todo: 230, 170, 185;
-	--callout-warning: 233, 196, 118;
-	--callout-quote: 180, 180, 180;
+	--callout-bug: rgb(var(--color-red-rgb));
+	--callout-default: rgb(161, 140, 193);
+	--callout-error: rgb(214, 74, 122);
+	--callout-example: rgb(107, 197, 187);
+	--callout-fail: rgb(214, 74, 122);
+	--callout-important: rgb(232, 129, 94);
+	--callout-info: rgb(101, 176, 199);
+	--callout-question: rgb(233, 196, 118);
+	--callout-success: rgb(107, 178, 148);
+	--callout-summary: rgb(161, 140, 193);
+	--callout-tip: rgb(107, 197, 187);
+	--callout-todo: rgb(230, 170, 185);
+	--callout-warning: rgb(233, 196, 118);
+	--callout-quote: rgb(180, 180, 180);
 
 	/* 自定义元素 */
 	--nav-button-container-bg: oklch(
@@ -871,20 +871,20 @@ body.is-phone {
 	);
 	--text-highlight-border-radius: 5px;
 
-	--callout-bug: var(--color-red-rgb);
-	--callout-default: 141, 120, 173;
-	--callout-error: 184, 64, 102;
-	--callout-example: 87, 177, 167;
-	--callout-fail: 184, 64, 102;
-	--callout-important: 202, 109, 74;
-	--callout-info: 91, 156, 179;
-	--callout-question: 203, 166, 88;
-	--callout-success: 87, 158, 128;
-	--callout-summary: 141, 120, 173;
-	--callout-tip: 87, 177, 167;
-	--callout-todo: 200, 140, 155;
-	--callout-warning: 203, 166, 88;
-	--callout-quote: 150, 150, 150;
+	--callout-bug: rgb(var(--color-red-rgb));
+	--callout-default: rgb(141, 120, 173);
+	--callout-error: rgb(184, 64, 102);
+	--callout-example: rgb(87, 177, 167);
+	--callout-fail: rgb(184, 64, 102);
+	--callout-important: rgb(202, 109, 74);
+	--callout-info: rgb(91, 156, 179);
+	--callout-question: rgb(203, 166, 88);
+	--callout-success: rgb(87, 158, 128);
+	--callout-summary: rgb(141, 120, 173);
+	--callout-tip: rgb(87, 177, 167);
+	--callout-todo: rgb(200, 140, 155);
+	--callout-warning: rgb(203, 166, 88);
+	--callout-quote: rgb(150, 150, 150);
 
 	--nav-button-container-bg: oklch(
 		var(--lightness-700) var(--chroma-medium) var(--primary-hue) / 0.25
@@ -1054,11 +1054,11 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 
 /* default callout */
 .callout {
-	border: 1px solid rgba(var(--callout-color), 0.35);
+	border: 1px solid color-mix(in srgb, var(--callout-color) 35%, transparent);
 }
 
 .callout:hover {
-	border-color: rgba(var(--callout-color), 0.8);
+	border-color: color-mix(in srgb, var(--callout-color) 80%, transparent);
 }
 
 .markdown-source-view.mod-cm6 .cm-embed-block:not(.cm-table-widget):hover {
@@ -1072,11 +1072,11 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 .composer--SubtleGridCallout .callout {
 	background: linear-gradient(
 		150deg,
-		rgba(var(--callout-color), 0.15) 0%,
-		rgba(var(--callout-color), 0.05) 10%,
+		color-mix(in srgb, var(--callout-color) 15%, transparent) 0%,
+		color-mix(in srgb, var(--callout-color) 5%, transparent) 10%,
 		var(--background-primary) 38%
 	);
-	border: 1px solid rgba(var(--callout-color), 0.38);
+	border: 1px solid color-mix(in srgb, var(--callout-color) 38%, transparent);
 	position: relative;
 	padding: 4px;
 }
@@ -1092,13 +1092,13 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 			to right,
 			transparent 0,
 			transparent 19px,
-			rgba(var(--callout-color), 0.6) 20px
+			color-mix(in srgb, var(--callout-color) 60%, transparent) 20px
 		),
 		repeating-linear-gradient(
 			to bottom,
 			transparent 0,
 			transparent 19px,
-			rgba(var(--callout-color), 0.6) 20px
+			color-mix(in srgb, var(--callout-color) 60%, transparent) 20px
 		);
 	mask: linear-gradient(to right, var(--background-primary), transparent 80%),
 		linear-gradient(to bottom, var(--background-primary), transparent 80%);
@@ -1116,15 +1116,15 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 
 /* window panel callout */
 .composer--WindowPanelCallout .callout {
-	border: 1px solid rgba(var(--callout-color), 0.68);
+	border: 1px solid color-mix(in srgb, var(--callout-color) 68%, transparent);
 	position: relative;
 	background-color: transparent;
 	padding: 0px;
 }
 
 .composer--WindowPanelCallout .callout-title {
-	border-bottom: 1px solid rgba(var(--callout-color), 0.68);
-	background-color: rgba(var(--callout-color), 0.1);
+	border-bottom: 1px solid color-mix(in srgb, var(--callout-color) 68%, transparent);
+	background-color: color-mix(in srgb, var(--callout-color) 10%, transparent);
 	padding: 8px 16px 8px 16px;
 }
 
@@ -1161,9 +1161,9 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 	height: 2px;
 	background: linear-gradient(
 		to right,
-		rgba(var(--callout-color), 0.1) 0%,
-		rgba(var(--callout-color), 0.6) 12%,
-		rgba(var(--callout-color), 0.1) 62%,
+		color-mix(in srgb, var(--callout-color) 10%, transparent) 0%,
+		color-mix(in srgb, var(--callout-color) 60%, transparent) 12%,
+		color-mix(in srgb, var(--callout-color) 10%, transparent) 62%,
 		transparent 100%
 	);
 }
@@ -1171,7 +1171,7 @@ body:not(.composer--DisableHeadingLineEditingHighlight)
 /* github callout */
 .composer--GithubCallout .callout {
 	border: none;
-	border-left: rgba(var(--callout-color), 0.6) 4px solid;
+	border-left: color-mix(in srgb, var(--callout-color) 60%, transparent) 4px solid;
 	border-radius: 0px;
 	background-color: transparent;
 	padding: 8px 16px 8px 16px;
