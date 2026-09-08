@@ -2882,6 +2882,10 @@ body:not(.composer--DisableFileFolderIcon)
 /* mermaid */
 div.mermaid {
 	letter-spacing: initial;
+	/* mermaid measures label width outside .markdown-preview-view /
+	   .markdown-source-view, so the scoped word-spacing is not included in
+	   the measured size and the rendered label can overflow or wrap. */
+	word-spacing: initial;
 }
 
 body.composer--ParagraphIndent div.markdown-reading-view div.mermaid {
