@@ -739,8 +739,43 @@ body {
 	--embed-border-start: 2px solid #cbd5e0;
 	/* suggestion */
 	--suggesttion-highlight-color: var(--code-normal);
+	/* native highlight colors */
+	--highlight-background: var(
+		--text-highlight-bg,
+		var(--highlight-background-yellow)
+	);
+	--highlight-background-red: color-mix(
+		in oklch,
+		var(--color-red) var(--highlight-opacity),
+		transparent
+	);
+	--highlight-background-orange: color-mix(
+		in oklch,
+		var(--color-orange) var(--highlight-opacity),
+		transparent
+	);
+	--highlight-background-yellow: color-mix(
+		in oklch,
+		var(--color-yellow) var(--highlight-opacity),
+		transparent
+	);
+	--highlight-background-green: color-mix(
+		in oklch,
+		var(--color-green) var(--highlight-opacity),
+		transparent
+	);
+	--highlight-background-blue: color-mix(
+		in oklch,
+		var(--color-blue) var(--highlight-opacity),
+		transparent
+	);
+	--highlight-background-purple: color-mix(
+		in oklch,
+		var(--color-purple) var(--highlight-opacity),
+		transparent
+	);
 
-	--ribbon-padding: 0px;
+	--ribbon-padding: var(--size-4-1);
 	--ribbon-background: transparent;
 	--titlebar-background: transparent;
 	--titlebar-background-focused: transparent;
@@ -1942,7 +1977,10 @@ pre[class*="language-"] {
 body .cm-s-obsidian .cm-scroller span.cm-formatting-highlight,
 body .cm-s-obsidian .cm-scroller span.cm-highlight {
 	color: var(--text-highlight-color);
-	background-color: var(--text-highlight-background);
+	background-color: var(
+		--highlight-background,
+		var(--text-highlight-background)
+	);
 	border-bottom: 1px dashed var(--text-highlight-border-color);
 	padding: 2px 4px;
 }
@@ -1955,7 +1993,10 @@ body .cm-s-obsidian .cm-scroller span.cm-highlight {
 /* highlight for reading view */
 body .markdown-rendered mark {
 	color: var(--text-highlight-color);
-	background-color: var(--text-highlight-background);
+	background-color: var(
+		--highlight-background,
+		var(--text-highlight-background)
+	);
 	border-bottom: 1px dashed var(--text-highlight-border-color);
 	padding: 2px 4px;
 }
@@ -2079,6 +2120,10 @@ body:not(.composer--HideStripedTableBackground) {
 .workspace-ribbon {
 	--divider-color: transparent;
 	--divider-width: 0px;
+}
+
+.workspace-ribbon.mod-primary:before {
+	border-bottom: none;
 }
 
 body:not(.is-mobile) .workspace-ribbon.mod-left {
