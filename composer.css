@@ -70,7 +70,7 @@ body {
 	/* suggestion */
 	--suggesttion-highlight-color: var(--code-normal);
 
-	--ribbon-padding: 0px;
+	--ribbon-padding: var(--size-4-1);
 	--ribbon-background: transparent;
 	--titlebar-background: transparent;
 	--titlebar-background-focused: transparent;
@@ -1409,6 +1409,10 @@ body:not(.composer--HideStripedTableBackground) {
 .workspace-ribbon {
 	--divider-color: transparent;
 	--divider-width: 0px;
+}
+
+.workspace-ribbon.mod-primary:before {
+	border-bottom: none;
 }
 
 body:not(.is-mobile) .workspace-ribbon.mod-left {
