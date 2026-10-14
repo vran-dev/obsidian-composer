@@ -919,12 +919,6 @@ ol,
 	--codeblock-caret-color: hsl(25, 20%, 30%);
 	--codeblock-border-radius: 8px;
 
-	/* text highlight */
-	--text-highlight-background: rgba(248, 227, 217, 0.9);
-	--text-highlight-border-color: rgb(167, 98, 64);
-	--text-highlight-color: rgb(102, 80, 63);
-	--text-highlight-border-radius: 4px;
-
 	/* basic color */
 	--color-red-rgb: 174, 62, 76;
 	--color-blue-rgb: 74, 85, 107;
@@ -1017,11 +1011,6 @@ ol,
 	--codeblock-border-radius: 8px;
 	--codeblock-border: #e5e7eb;
 
-	/* text highlight */
-	--text-highlight-background: hsla(38, 27%, 54%, 0.5);
-	--text-highlight-border-color: hsl(31, 48%, 66%);
-	--text-highlight-color: hsl(40, 20%, 90%);
-
 	/* inline code */
 	--code-normal: #ff7b72;
 	--code-border-color: transparent;
@@ -1089,12 +1078,6 @@ ol,
 	--codeblock-background: #d6d4d440;
 	--codeblock-caret-color: #4a556b;
 	--codeblock-border-radius: 8px;
-
-	/* text-highlight */
-	--text-highlight-background: hsla(41, 61%, 92%);
-	--text-highlight-border-color: hsl(47, 48%, 42%);
-	--text-highlight-color: hsl(220, 25%, 25%);
-	--text-highlight-border-radius: 4px;
 }
 
 .composer--SuScheme-dark.theme-dark {
@@ -1138,12 +1121,6 @@ ol,
 	--codeblock-caret-color: #c5cad4;
 	--codeblock-border-radius: 8px;
 	--codeblock-border: #e5e7eb;
-
-	/* text highlight */
-	--text-highlight-background: hsla(40, 30%, 25%, 0.4);
-	--text-highlight-border-color: hsl(40, 27%, 61%);
-	--text-highlight-color: hsl(40, 60%, 85%);
-	--text-highlight-border-radius: 4px;
 }
 
 /* ---- Qing ---- */
@@ -1186,11 +1163,6 @@ ol,
 	/* codeblock */
 	--codeblock-background: hsla(190, 15%, 92%, 0.9);
 	--codeblock-caret-color: hsl(192, 33%, 15%);
-
-	/* text-highlight */
-	--text-highlight-background: hsla(201, 39%, 84%, 0.45);
-	--text-highlight-border-color: hsl(198, 25%, 70%);
-	--text-highlight-color: hsl(197, 35%, 30%);
 }
 
 .composer--QingScheme-dark.theme-dark {
@@ -1231,11 +1203,6 @@ ol,
 	/* codeblock */
 	--codeblock-background: hsla(200, 20%, 22%, 0.9);
 	--codeblock-caret-color: hsl(200, 30%, 65%);
-
-	/* text-highlight */
-	--text-highlight-background: hsla(200, 38%, 74%, 0.4);
-	--text-highlight-border-color: hsl(199, 55%, 88%);
-	--text-highlight-color: hsl(200, 13%, 91%);
 }
 
 /* ---- Ní ---- */
@@ -1417,17 +1384,6 @@ ol,
 	);
 	--codeblock-border-radius: 10px;
 
-	--text-highlight-background: oklch(
-		var(--lightness-900) var(--chroma-medium) var(--primary-hue) / 0.12
-	);
-	--text-highlight-border-color: oklch(
-		var(--lightness-600) var(--chroma-high) var(--primary-hue)
-	);
-	--text-highlight-color: oklch(
-		var(--lightness-450) var(--chroma-accent) var(--primary-hue)
-	);
-	--text-highlight-border-radius: 5px;
-
 	--callout-bug: rgb(var(--color-red-rgb));
 	--callout-default: rgb(161, 140, 193);
 	--callout-error: rgb(214, 74, 122);
@@ -1584,17 +1540,6 @@ ol,
 		var(--lightness-450) var(--chroma-high) var(--primary-hue)
 	);
 	--codeblock-border-radius: 10px;
-
-	--text-highlight-background: oklch(
-		var(--lightness-500) var(--chroma-medium) var(--primary-hue) / 0.62
-	);
-	--text-highlight-border-color: oklch(
-		var(--lightness-950) var(--chroma-high) var(--primary-hue)
-	);
-	--text-highlight-color: oklch(
-		var(--lightness-950) var(--chroma-accent) var(--primary-hue)
-	);
-	--text-highlight-border-radius: 5px;
 
 	--callout-bug: rgb(var(--color-red-rgb));
 	--callout-default: rgb(141, 120, 173);
@@ -1976,12 +1921,7 @@ pre[class*="language-"] {
 /* highlight */
 body .cm-s-obsidian .cm-scroller span.cm-formatting-highlight,
 body .cm-s-obsidian .cm-scroller span.cm-highlight {
-	color: var(--text-highlight-color);
-	background-color: var(
-		--highlight-background,
-		var(--text-highlight-background)
-	);
-	border-bottom: 1px dashed var(--text-highlight-border-color);
+	background-color: var(--highlight-background);
 	padding: 2px 4px;
 }
 
@@ -1992,12 +1932,7 @@ body .cm-s-obsidian .cm-scroller span.cm-highlight {
 
 /* highlight for reading view */
 body .markdown-rendered mark {
-	color: var(--text-highlight-color);
-	background-color: var(
-		--highlight-background,
-		var(--text-highlight-background)
-	);
-	border-bottom: 1px dashed var(--text-highlight-border-color);
+	background-color: var(--highlight-background);
 	padding: 2px 4px;
 }
 
